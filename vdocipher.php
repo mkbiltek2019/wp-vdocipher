@@ -152,7 +152,7 @@ if (is_admin()) { // admin actions
 }
 function vdo_menu()
 {
-    add_options_page('VdoCipher Options', 'VdoCipher', 'manage_options', 'vdocipher', 'vdo_options');
+    add_menu_page('VdoCipher Options', 'VdoCipher', 'manage_options', 'vdocipher', 'vdo_options');
 }
 function vdo_options()
 {
