@@ -137,7 +137,7 @@ add_filter("plugin_action_links_$plugin", 'vdo_settings_link');
 
 function vdo_settings_link($links)
 {
-    $settings_link = '<a href="options-general.php?page=vdocipher.php">Settings</a>';
+    $settings_link = '<a href="options-general.php?page=vdocipher">Settings</a>';
     array_unshift($links, $settings_link);
     return $links;
 }
