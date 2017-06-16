@@ -47,7 +47,7 @@ do_settings_sections('vdo_option-group');
                 echo get_option('vdo_annotate_code');
             }
             ?></textarea>
-            <p class="description">Leave this text blank in case you do not need watermark over all Videos</p>
+            <p class="description">Leave this text blank in case you do not need watermark over all Videos. For details on writing the annotation code <a href="https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/">check this out</a></p>
         </td>
         </tr>
     </table>
