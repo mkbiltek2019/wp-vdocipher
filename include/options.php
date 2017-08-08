@@ -6,6 +6,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
         "this server.</p>\r\n</body></html>");
 }
 ?>
+
 <div class="wrap">
 <h2>VdoCipher Options</h2>
 
@@ -42,9 +43,17 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
         <tr valign="top">
         <th scope="row">Player Version</th>
-        <td><input type="text" name="vdo_embed_version"
-          value="<?php echo esc_attr(get_option('vdo_embed_version')); ?>"
-        /></td>
+        <td>
+            <?php $vdo_embed_version_vars = array('0.5', '1.0.0'); ?>
+            <?php $vdo_embed_version_str = get_option('vdo_embed_version')?>    <!--Unclear about why this has to be specified here again -->
+            <select name="vdo_embed_version" id="vdo_embed_version">
+                <?php foreach($vdo_embed_version_vars as $vdo_embed_version_var) { ?>
+                    <?php if($vdo_embed_version_str == $vdo_embed_version_var) { $selected = 'selected="selected"'; } else { $selected = ''; } ?>
+                    <?php if($vdo_embed_version_var == '0.5') {$version_old_new = ' (old player)';} elseif ($vdo_embed_version_var == '1.0.0') {$version_old_new = ' (new player)';} else {'';} ?>
+                    <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?>><?php echo $vdo_embed_version_var . $version_old_new ; ?></option>
+                <?php } ?>
+            </select>            
+        </td>
         </tr>
         
         <tr valign="top">
