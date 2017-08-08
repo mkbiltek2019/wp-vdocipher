@@ -38,6 +38,14 @@ do_settings_sections('vdo_option-group');
           value="<?php echo esc_attr(get_option('vdo_default_height')); ?>"
         /></td>
         </tr>
+
+        <!-- Version Number -->
+        <tr valign="top">
+        <th scope="row">Player Version</th>
+        <td><input type="text" name="vdo_embed_version"
+          value="<?php echo esc_attr(get_option('vdo_embed_version')); ?>"
+        /></td>
+        </tr>
         
         <tr valign="top">
         <th scope="row">Annotation Statement</th>

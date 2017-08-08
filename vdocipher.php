@@ -114,18 +114,41 @@ function vdo_shortcode($atts)
     if (isset($atts['version'])) {
         $version = $atts['version'];
     }
-    $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
-    $output .= "<script> (function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
-        " (v[o].d=v[o].d||[]).push(a);};";
-    $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0]; a.async=1; ".
-        "a.src=e; m.parentNode.insertBefore(a,m);}";
-    $output .= " })(window,document,'script','//de122v0opjemw.cloudfront.net/vdo.js','vdo'); vdo.add({ ";
-    $output .= "o: '$OTP', ";
-    if ($version == 32) {
-        $output .= "version: '$version' ";
-    }
-    $output .= "}); </script>";
-    return $output;
+
+    $vdo_embed_version_str = get_option('vdo_embed_version');
+    // Old Embed Code
+    if($vdo_embed_version_str == '0.5') {
+	    $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
+	    $output .= "<script> (function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
+	        " (v[o].d=v[o].d||[]).push(a);};";
+	    $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0]; a.async=1; ".
+	        "a.src=e; m.parentNode.insertBefore(a,m);}";
+	    $output .= " })(window,document,'script','//de122v0opjemw.cloudfront.net/vdo.js','vdo'); vdo.add({ ";
+	    $output .= "o: '$OTP', ";
+	    if ($version == 32) {
+	        $output .= "version: '$version' ";
+	    }
+	    $output .= "}); </script>";
+	}
+	//New embed code
+	else {
+		$output .= "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
+		$output .= "<script>(function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){ (v[o].d=v[o].d||[]).push(a);};";
+		$output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0];";
+		$output .= "a.async=1; a.src=e; m.parentNode.insertBefore(a,m);}";
+		$output .= "})(window,document,'script','https://d1z78r8i505acl.cloudfront.net/playerAssets/";
+		$output .= "$vdo_embed_version_str";
+		$output .= "/vdo.js','vdo');";
+		$output .= "vdo.add({";
+		$output .= "otp: '$OTP',";
+		$output .= "playbackInfo: btoa(JSON.stringify({";
+		$output .= "videoId: '$video'})),";
+		$output .= "theme: '9ae8bbe8dd964ddc9bdb932cca1cb59a',";
+		$output .= "container: document.querySelector('#vdo$OTP'),});";
+		$output .= "</script>";
+	}
+
+	return $output;
 }
 
 add_shortcode('vdo', 'vdo_shortcode');
@@ -179,6 +202,7 @@ function register_vdo_settings()
     register_setting('vdo_option-group', 'vdo_default_height');
     register_setting('vdo_option-group', 'vdo_default_width');
     register_setting('vdo_option-group', 'vdo_annotate_code');
+    register_setting('vdo_option-group', 'vdo_embed_version');
 }
 
 /// adding a section for asking for the client key
@@ -193,6 +217,7 @@ function vdo_deactivate()
     delete_option('vdo_default_width');
     delete_option('vdo_default_height');
     delete_option('vdo_annotate_code');
+    delete_option('vdo_embed_version');
 }
 function vdo_activate()
 {
