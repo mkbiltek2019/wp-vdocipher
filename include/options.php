@@ -41,6 +41,11 @@ do_settings_sections('vdo_option-group');
         </tr>
 
         <!-- Version Number -->
+         <?php
+            if (empty(get_option('vdo_embed_version'))) {
+            update_option('vdo_embed_version', '0.5');
+            } 
+        ?>
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
@@ -56,6 +61,19 @@ do_settings_sections('vdo_option-group');
         </td>
         </tr>
         
+        <!-- Player Theme Options -->
+        <?php 
+            if (empty(get_option('vdo_player_theme'))) {
+            update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
+            } 
+        ?>
+        <tr valign="top">
+        <th scope="row">Player Theme</th>
+        <td><input type="text" name="vdo_player_theme"
+          value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>"
+        /></td>
+        </tr>
+
         <tr valign="top">
         <th scope="row">Annotation Statement</th>
         <td>

@@ -117,7 +117,11 @@ function vdo_shortcode($atts)
     if (empty(get_option('vdo_embed_version'))) {
         update_option('vdo_embed_version', '0.5');
     }
+    if (empty(get_option('vdo_player_theme'))) {
+        update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
+    }
     $vdo_embed_version_str = get_option('vdo_embed_version');
+    $vdo_player_theme = get_option('vdo_player_theme');
 
     // Old Embed Code
     if($vdo_embed_version_str == '0.5') {
@@ -146,16 +150,14 @@ function vdo_shortcode($atts)
 		$output .= "otp: '$OTP',";
 		$output .= "playbackInfo: btoa(JSON.stringify({";
 		$output .= "videoId: '$video'})),";
-		$output .= "theme: '9ae8bbe8dd964ddc9bdb932cca1cb59a',";
+		$output .= "theme: '$vdo_player_theme',";
 		$output .= "container: document.querySelector('#vdo$OTP'),});";
 		$output .= "</script>";
 	}
-
 	return $output;
 }
 
 add_shortcode('vdo', 'vdo_shortcode');
-
 
 /// adding the settings link
 $plugin = plugin_basename(__FILE__);
@@ -167,7 +169,6 @@ function vdo_settings_link($links)
     array_unshift($links, $settings_link);
     return $links;
 }
-
 
 /// add the menu item and register settings
 if (is_admin()) { // admin actions
@@ -206,6 +207,7 @@ function register_vdo_settings()
     register_setting('vdo_option-group', 'vdo_default_width');
     register_setting('vdo_option-group', 'vdo_annotate_code');
     register_setting('vdo_option-group', 'vdo_embed_version');
+    register_setting('vdo_option-group', 'vdo_player_theme');
 }
 
 /// adding a section for asking for the client key
@@ -221,6 +223,7 @@ function vdo_deactivate()
     delete_option('vdo_default_height');
     delete_option('vdo_annotate_code');
     delete_option('vdo_embed_version');
+    delete_option('vdo_player_theme');
 }
 function vdo_activate()
 {
@@ -232,6 +235,9 @@ function vdo_activate()
     }
     if (empty(get_option('vdo_embed_version'))) {
         update_option('vdo_embed_version', '0.5');
+    }
+    if (empty(get_option('vdo_player_theme'))) {
+        update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
 }
 register_activation_hook(__FILE__, 'vdo_activate');
