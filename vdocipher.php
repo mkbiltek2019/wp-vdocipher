@@ -114,8 +114,11 @@ function vdo_shortcode($atts)
     if (isset($atts['version'])) {
         $version = $atts['version'];
     }
-
+    if (empty(get_option('vdo_embed_version'))) {
+        update_option('vdo_embed_version', '0.5');
+    }
     $vdo_embed_version_str = get_option('vdo_embed_version');
+
     // Old Embed Code
     if($vdo_embed_version_str == '0.5') {
 	    $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
@@ -222,10 +225,13 @@ function vdo_deactivate()
 function vdo_activate()
 {
     if (!get_option('vdo_default_height')) {
-        update_option('vdo_default_height', '400');
+        update_option('vdo_default_height', '360');
     }
     if (!get_option('vdo_default_width')) {
         update_option('vdo_default_width', '640');
+    }
+    if (empty(get_option('vdo_embed_version'))) {
+        update_option('vdo_embed_version', '0.5');
     }
 }
 register_activation_hook(__FILE__, 'vdo_activate');
