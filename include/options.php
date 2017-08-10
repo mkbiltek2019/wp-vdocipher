@@ -23,7 +23,7 @@ do_settings_sections('vdo_option-group');
         <th scope="row">Client Secret Key</th>
         <td><input type="text" name="vdo_client_key"
           value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
-          max-length="64" size="60" id="vdo_client_key" /></td>
+          max-length="64" style="width: 640px" id="vdo_client_key" /></td>
         </tr>
          
         <tr valign="top">
@@ -84,7 +84,7 @@ do_settings_sections('vdo_option-group');
         <th scope="row">Player Theme</th>
         <td>
             <input type="text" name="vdo_player_theme"
-          value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>"
+          value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>" max-length = "32" style="width: 320px"
         />
         <p class="description">Player theme is not available for old player version(0.5). The default theme will be applied for old player.</p>
         </td>
