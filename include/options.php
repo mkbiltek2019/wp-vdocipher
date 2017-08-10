@@ -82,9 +82,12 @@ do_settings_sections('vdo_option-group');
         ?>
         <tr valign="top">
         <th scope="row">Player Theme</th>
-        <td><input type="text" name="vdo_player_theme"
+        <td>
+            <input type="text" name="vdo_player_theme"
           value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>"
-        /></td>
+        />
+        <p class="description">Player theme is not available for old player version(0.5). The default theme will be applied for old player.</p>
+        </td>
         </tr>
 
         <tr valign="top">
