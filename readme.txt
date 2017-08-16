@@ -3,7 +3,7 @@ Contributors: vibhavsinha
 Tags: video, DRM, video, sell video, e-learning, movie
 Requires at least: 3.5.1
 Tested up to: 4.8.1
-Stable tag: 1.13
+Stable tag: 1.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 4. Video playing inside a post.
 
 == Changelog ==
+
+= 1.14 =
+* add new player version 1.1.0
 
 = 1.13 =
 * New player with ability to choose player version
