@@ -10,7 +10,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 <div class="wrap">
 <h2>VdoCipher Options</h2>
 
-<form method="post" action="options.php"> 
+<form method="post" action="options.php">
 <?php
 settings_fields('vdo_option-group');
 do_settings_sections('vdo_option-group');
@@ -25,14 +25,14 @@ do_settings_sections('vdo_option-group');
           value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
           max-length="64" style="width: 640px" id="vdo_client_key" /></td>
         </tr>
-         
+
         <tr valign="top">
         <th scope="row">Default Width</th>
         <td><input type="text" name="vdo_default_width"
           value="<?php echo esc_attr(get_option('vdo_default_width')); ?>"
         /></td>
         </tr>
-        
+
         <tr valign="top">
         <th scope="row">Default Height</th>
         <td><input type="text" name="vdo_default_height"
@@ -44,7 +44,7 @@ do_settings_sections('vdo_option-group');
          <?php
             if (empty(get_option('vdo_embed_version'))) {
             update_option('vdo_embed_version', '0.5');
-            } 
+            }
         ?>
         <tr valign="top">
         <th scope="row">Player Version</th>
@@ -52,33 +52,33 @@ do_settings_sections('vdo_option-group');
             <?php $vdo_embed_version_vars = array('0.5', '1.0.0'); ?>
             <select name="vdo_embed_version" id="vdo_embed_version">
                 <?php
-                    $vdo_embed_version_str = get_option('vdo_embed_version'); 
+                    $vdo_embed_version_str = get_option('vdo_embed_version');
                     ?>
                 <?php
-                    foreach($vdo_embed_version_vars as $vdo_embed_version_var) {                 
-                        if ($vdo_embed_version_str == $vdo_embed_version_var) { 
-                                $selected = 'selected="selected"'; } 
-                        else { $selected = ''; } 
-                                      
+                    foreach($vdo_embed_version_vars as $vdo_embed_version_var) {
+                        if ($vdo_embed_version_str == $vdo_embed_version_var) {
+                                $selected = 'selected="selected"'; }
+                        else { $selected = ''; }
+
                         if($vdo_embed_version_var == '0.5') {
-                            $version_old_new = ' (old player)' ; } 
+                            $version_old_new = ' (old player)' ; }
                         elseif ($vdo_embed_version_var == '1.0.0') {
-                            $version_old_new = ' (new player)' ; } 
-                        else {'' ; } 
+                            $version_old_new = ' (new player)' ; }
+                        else {'' ; }
                     ?>
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
                     </option>
                 <?php } ?>
-            </select>            
+            </select>
         </td>
         </tr>
-        
+
         <!-- Player Theme Options -->
-        <?php 
+        <?php
             if (empty(get_option('vdo_player_theme'))) {
             update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
-            } 
+            }
         ?>
         <tr valign="top">
         <th scope="row">Player Theme</th>
