@@ -49,7 +49,7 @@ do_settings_sections('vdo_option-group');
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
-            <?php $vdo_embed_version_vars = array('0.5', '1.0.0'); ?>
+            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0'); ?>
             <select name="vdo_embed_version" id="vdo_embed_version">
                 <?php
                     $vdo_embed_version_str = get_option('vdo_embed_version');
@@ -60,11 +60,10 @@ do_settings_sections('vdo_option-group');
                                 $selected = 'selected="selected"'; }
                         else { $selected = ''; }
 
-                        if($vdo_embed_version_var == '0.5') {
+                        if($vdo_embed_version_var === '0.5') {
                             $version_old_new = ' (old player)' ; }
-                        elseif ($vdo_embed_version_var == '1.0.0') {
+                        else {
                             $version_old_new = ' (new player)' ; }
-                        else {'' ; }
                     ?>
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
