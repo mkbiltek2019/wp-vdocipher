@@ -114,10 +114,10 @@ function vdo_shortcode($atts)
     if (isset($atts['version'])) {
         $version = $atts['version'];
     }
-    if (empty(get_option('vdo_embed_version'))) {
+    if ((get_option('vdo_embed_version')) == false) {
         update_option('vdo_embed_version', '0.5');
     }
-    if (empty(get_option('vdo_player_theme'))) {
+    if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
     $vdo_embed_version_str = get_option('vdo_embed_version');
@@ -227,16 +227,17 @@ function vdo_deactivate()
 }
 function vdo_activate()
 {
-    if (!get_option('vdo_default_height')) {
+    if ((get_option('vdo_default_height')) == false) {
         update_option('vdo_default_height', '360');
     }
-    if (!get_option('vdo_default_width')) {
+    if ((get_option('vdo_default_width')) == false) {
         update_option('vdo_default_width', '640');
     }
-    if (empty(get_option('vdo_embed_version'))) {
-        update_option('vdo_embed_version', '0.5');
+	//https://stackoverflow.com/a/2173318/5022684
+	if ((get_option('vdo_embed_version')) == false) {
+	    update_option('vdo_embed_version', '0.5');
     }
-    if (empty(get_option('vdo_player_theme'))) {
+    if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
 }

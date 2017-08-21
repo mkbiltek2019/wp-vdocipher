@@ -42,7 +42,7 @@ do_settings_sections('vdo_option-group');
 
         <!-- Version Number -->
          <?php
-            if (empty(get_option('vdo_embed_version'))) {
+            if ((get_option('vdo_embed_version')) == false) {
             update_option('vdo_embed_version', '0.5');
             }
         ?>
@@ -75,7 +75,7 @@ do_settings_sections('vdo_option-group');
 
         <!-- Player Theme Options -->
         <?php
-            if (empty(get_option('vdo_player_theme'))) {
+            if ((get_option('vdo_player_theme')) == false) {
             update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
             }
         ?>
