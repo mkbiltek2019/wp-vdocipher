@@ -125,36 +125,36 @@ function vdo_shortcode($atts)
 
     // Old Embed Code
     if($vdo_embed_version_str === '0.5') {
-	    $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
-	    $output .= "<script> (function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
-	        " (v[o].d=v[o].d||[]).push(a);};";
-	    $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0]; a.async=1; ".
-	        "a.src=e; m.parentNode.insertBefore(a,m);}";
-	    $output .= " })(window,document,'script','//de122v0opjemw.cloudfront.net/vdo.js','vdo'); vdo.add({ ";
-	    $output .= "o: '$OTP', ";
-	    if ($version == 32) {
-	        $output .= "version: '$version' ";
-	    }
-	    $output .= "}); </script>";
-	}
-	//New embed code
-	else {
-		$output .= "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
-		$output .= "<script>(function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){ (v[o].d=v[o].d||[]).push(a);};";
-		$output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0];";
-		$output .= "a.async=1; a.src=e; m.parentNode.insertBefore(a,m);}";
-		$output .= "})(window,document,'script','https://d1z78r8i505acl.cloudfront.net/playerAssets/";
-		$output .= "$vdo_embed_version_str";
-		$output .= "/vdo.js','vdo');";
-		$output .= "vdo.add({";
-		$output .= "otp: '$OTP',";
-		$output .= "playbackInfo: btoa(JSON.stringify({";
-		$output .= "videoId: '$video'})),";
-		$output .= "theme: '$vdo_player_theme',";
-		$output .= "container: document.querySelector('#vdo$OTP'),});";
-		$output .= "</script>";
-	}
-	return $output;
+        $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
+        $output .= "<script> (function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
+            " (v[o].d=v[o].d||[]).push(a);};";
+        $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0]; a.async=1; ".
+            "a.src=e; m.parentNode.insertBefore(a,m);}";
+        $output .= " })(window,document,'script','//de122v0opjemw.cloudfront.net/vdo.js','vdo'); vdo.add({ ";
+        $output .= "o: '$OTP', ";
+        if ($version == 32) {
+            $output .= "version: '$version' ";
+        }
+        $output .= "}); </script>";
+    }
+    //New embed code
+    else {
+        $output .= "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
+        $output .= "<script>(function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){ (v[o].d=v[o].d||[]).push(a);};";
+        $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0];";
+        $output .= "a.async=1; a.src=e; m.parentNode.insertBefore(a,m);}";
+        $output .= "})(window,document,'script','https://d1z78r8i505acl.cloudfront.net/playerAssets/";
+        $output .= "$vdo_embed_version_str";
+        $output .= "/vdo.js','vdo');";
+        $output .= "vdo.add({";
+        $output .= "otp: '$OTP',";
+        $output .= "playbackInfo: btoa(JSON.stringify({";
+        $output .= "videoId: '$video'})),";
+        $output .= "theme: '$vdo_player_theme',";
+        $output .= "container: document.querySelector('#vdo$OTP'),});";
+        $output .= "</script>";
+    }
+    return $output;
 }
 
 add_shortcode('vdo', 'vdo_shortcode');
@@ -233,9 +233,9 @@ function vdo_activate()
     if ((get_option('vdo_default_width')) == false) {
         update_option('vdo_default_width', '640');
     }
-	//https://stackoverflow.com/a/2173318/5022684
-	if ((get_option('vdo_embed_version')) == false) {
-	    update_option('vdo_embed_version', '0.5');
+    //https://stackoverflow.com/a/2173318/5022684
+    if ((get_option('vdo_embed_version')) == false) {
+        update_option('vdo_embed_version', '0.5');
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
