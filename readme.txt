@@ -1,44 +1,51 @@
 === Plugin Name ===
 Contributors: vibhavsinha
-Tags: video, DRM, video, sell video, e-learning, movie
+Tags: video, DRM, video plugin, sell video, e-learning, movie
 Requires at least: 3.5.1
 Tested up to: 4.8.1
 Stable tag: 1.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple wordpress plugin which enables you to embed vdocipher videos inside a wordpress website.
+A simple wordpress plugin which enables you to embed VdoCipher videos inside a WordPress website.
 
 == Description ==
 
-**About VdoCipher** - [VdoCipher](http://www.vdocipher.com) is an online video streaming service for premium content. VdoCipher Video Plugin for Wordpress ensures highest protection against content piracy. Encryption, Watermarking & Backend Authentication ensures that no downloader or plugin can download videos embedded using VdoCipher. This enables our customers to earn maximum revenues from their customers.  The video plugin is easy to use and you can integrate and start streaming in 10 minutes. This makes it the ideal choice for easily hosting premium video content like lecture vidoes, music or movies.
-[VdoCipher](https://www.vdocipher.com) provides a nice smooth wordpress embed video player to have your viewers best video streaming experience. Multiple bitrates can be allowed on the wordpress video player.
+VdoCipher video plugin enables you to host premium video content on your WordPress website. VdoCipher's Video Plugin gives you complete control over your video content, so you can start minting money out of your awesome videos.
 
-**Getting started** - To get started, you need to create an account on [VdoCipher](https://www.vdocipher.com), After creating the account, you will receive a client_secret_key by email. You will need this client_secret_key to use this plugin. Upload vidoes from the website. You can also import vidoes directly from URL or Dropbox.
+With VdoCipher's WordPress video plugin you get the highest protection from video piracy. Our video streaming service involves Video Encryption, Backend Authentication & Watermarking. This video encryption technology makes sure that no downloader or plugin can download your videos.
 
-*Requirements*
+= Perfect Choice for Premium Video Content =
+VdoCipher is the perfect choice for premium video content, such as lecture videos, music, and movies. VdoCipher WordPress video plugin seamlessly integrates with all popular WP membership plugins, including *Members*, *Restrict Content Pro*, *MemberPress* and *WP eMember*. The video plugin also works perfectly with top Learning Management systems such as *Sensei*, *LearnDash*, *WP CourseWare*, *LifterLMS* and *LearnPress*
+
+= Makes Embedding Secure Videos as Easy as Copying URLs =
+It would take you at most 10 minutes to signing up on [VdoCipher](http://www.vdocipher.com) and install the video plugin. You can embed videos to your website using a one-line shortcode.
+
+= Multi-Bitrate Video Streaming =
+With VdoCipher video plugin your users get the choice to watch low bitrate videos to optimize their data usage. Our encoding optimizations ensure that videos use the lowest bandwidth for high quality videos.
+
+[youtube https://www.youtube.com/watch?v=bGJLs6VOvAM]
+
+= Getting started =
+To get started, you need to create an account on [VdoCipher](https://www.vdocipher.com), After creating the account, you will receive a client_secret_key by email. You will need this client_secret_key to use this plugin. Upload vidoes from the website. You can also import vidoes directly from URL or Dropbox.
+
+= Requirements =
 php5-curl need to be installed on the server for this plugin to work.
-
 
 == Installation ==
 1. Activate the "VdoCipher" plugin .
 2. Click on the settings link or go to Settings > VdoCipher to configure.
 3. Enter the API key that you received from VdoCipher and click Save.
 
-You plugin is ready to use. Inside a post or page you can write `[vdo id="id_of_video"]` to embed the video in a post or page.
+Your video plugin is ready to use. Inside a post or page you can write `[vdo id="id_of_video"]` to embed the video in a post or page.
 
-You can optionally use the title to set the video. This will display the first video matching the given title.
 To set width and height use, `[vdo id="id_of_video" width="300" and height="200"]`
-You need to use the exact title of the video as shown in the dashboard.
-
 
 == Frequently Asked Questions ==
 Please refer to the [FAQ page on VdoCipher](http://www.vdocipher.com/page/faq)
 
-
-= Is there any free trial? =
+= Is there a free trial? =
 On account creation, you shall be provided with 5GB of free trial bandwidth.
-
 
 == Screenshots ==
 
@@ -78,7 +85,7 @@ Bug fixes
 * Annotation can now be set from wordpress dashboard
 * Better system for storing client key
 * Clear options table of plugin related keys on deactivate
-* Inlcude options form to set default options for videos.
+* Include options form to set default options for videos.
 
 = 0.1 =
 * A basic plugin which just makes it possible to embed vdocipher videos inside a wordpress plugin
