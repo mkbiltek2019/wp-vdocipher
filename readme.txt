@@ -21,16 +21,21 @@ VdoCipher is the perfect choice for premium video content, such as lecture video
 = Makes Embedding Secure Videos as Easy as Copying URLs =
 It would take you at most 10 minutes to signing up on [VdoCipher](http://www.vdocipher.com) and install the video plugin. You can embed videos to your website using a one-line shortcode.
 
+= Getting started =
+To get started, you should create an account on [VdoCipher](https://www.vdocipher.com). You will then receive a client_secret_key by email. You will need this client_secret_key to use the video plugin. You can upload vidoes to the VdoCipher dashboard, or import directly from URL or Dropbox.
+
 = Multi-Bitrate Video Streaming =
 With VdoCipher video plugin your users get the choice to watch low bitrate videos to optimize their data usage. Our encoding optimizations ensure that videos use the lowest bandwidth for high quality videos.
 
 [youtube https://www.youtube.com/watch?v=bGJLs6VOvAM]
 
-= Getting started =
-To get started, you need to create an account on [VdoCipher](https://www.vdocipher.com), After creating the account, you will receive a client_secret_key by email. You will need this client_secret_key to use this plugin. Upload vidoes from the website. You can also import vidoes directly from URL or Dropbox.
-
 = Requirements =
 php5-curl need to be installed on the server for this plugin to work.
+
+= Additional Resources =
+[VdoCipher's video encryption technology](https://www.vdocipher.com/blog/2016/08/encrypted-video-streaming-vdocipher-technology-details/)
+[VdoCipher's complete feature set](https://www.vdocipher.com/blog/2016/12/video-hosting-for-business/)
+[Watermarking with the WordPress video plugin](https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/)
 
 == Installation ==
 1. Activate the "VdoCipher" plugin .
