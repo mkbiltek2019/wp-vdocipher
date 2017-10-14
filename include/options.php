@@ -49,7 +49,7 @@ do_settings_sections('vdo_option-group');
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
-            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7'); ?>
+            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3'); ?>
             <select name="vdo_embed_version" id="vdo_embed_version">
                 <?php
                     $vdo_embed_version_str = get_option('vdo_embed_version');
