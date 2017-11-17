@@ -2,7 +2,7 @@
 Contributors: vibhavsinha
 Tags: video, DRM, video plugin, sell video, e-learning, movie
 Requires at least: 3.5.1
-Tested up to: 4.8.1
+Tested up to: 4.9
 Stable tag: 1.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
