@@ -3,7 +3,7 @@
  * Plugin Name: VdoCipher
  * Plugin URI: http://www.vdocipher.com
  * Description: Secured video hosting for wordpress
- * Version: 1.18
+ * Version: 1.20
  * Author: VdoCipher
  * Author URI: http://www.vdocipher.com
  * License: GPL2
@@ -115,7 +115,7 @@ function vdo_shortcode($atts)
         $version = $atts['version'];
     }
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '0.5');
+        update_option('vdo_embed_version', '1.4.5');
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
@@ -179,7 +179,7 @@ if (is_admin()) { // admin actions
 }
 function vdo_menu()
 {
-    add_menu_page('VdoCipher Options', 'VdoCipher', 'manage_options', 'vdocipher', 'vdo_options');
+    add_menu_page('VdoCipher Options', 'VdoCipher', 'manage_options', 'vdocipher', 'vdo_options', plugin_dir_url(__FILE__).'images/logo.png');
 }
 function vdo_options()
 {
@@ -235,7 +235,7 @@ function vdo_activate()
     }
     //https://stackoverflow.com/a/2173318/5022684
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '0.5');
+        update_option('vdo_embed_version', '1.4.5');
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');

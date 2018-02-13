@@ -43,13 +43,13 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
          <?php
             if ((get_option('vdo_embed_version')) == false) {
-            update_option('vdo_embed_version', '0.5');
+            update_option('vdo_embed_version', '1.4.5');
             }
         ?>
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
-            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.4'); ?>
+            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5'); ?>
             <select name="vdo_embed_version" id="vdo_embed_version">
                 <?php
                     $vdo_embed_version_str = get_option('vdo_embed_version');
@@ -70,6 +70,7 @@ do_settings_sections('vdo_option-group');
                     </option>
                 <?php } ?>
             </select>
+            <p class="description">It is recommended that you use the latest player version for best video playback.</p>
         </td>
         </tr>
 
