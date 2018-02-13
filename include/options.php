@@ -62,8 +62,10 @@ do_settings_sections('vdo_option-group');
 
                         if($vdo_embed_version_var === '0.5') {
                             $version_old_new = ' (old player)' ; }
-                        else {
-                            $version_old_new = ' (new player)' ; }
+                        elseif ($vdo_embed_version_var === '1.4.5'){
+                            $version_old_new = ' (newest player)' ; }
+                            else {
+                                $version_old_new = ' (new player)' ; }
                     ?>
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
