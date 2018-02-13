@@ -61,6 +61,9 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 
 == Changelog ==
 
+= 1.20 =
+* default player version set to 1.4.5, logo added
+
 = 1.19 =
 * add new player
 
