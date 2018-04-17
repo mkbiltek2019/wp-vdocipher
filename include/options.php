@@ -95,12 +95,22 @@ do_settings_sections('vdo_option-group');
         <tr valign="top">
         <th scope="row">Annotation Statement</th>
         <td>
-            <textarea name="vdo_annotate_code" type="textarea" rows="5" cols="60"><?php
+          <div style="display: inline-flex;">
+          <textarea name="vdo_annotate_code" id="vdo_watermarkjson" type="textarea" rows="6" cols="55" style="display: float-left"> <?php
             if (get_option('vdo_annotate_code') != "") {
-                echo get_option('vdo_annotate_code');
-            }
-            ?></textarea>
-            <p class="description">Leave this text blank in case you do not need watermark over all Videos. For details on writing the annotation code <a href="https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/" target="_blank">check this out</a></p>
+              echo get_option('vdo_annotate_code');
+              $vdo_annotation_code = get_option('vdo_annotate_code');
+           }
+          ?>
+          </textarea>
+          <p class="description" style="margin-left:20px; position: relative">
+          <span style="color:purple"><b>Sample Code for Dynamic Watermark</b></span><br/>
+          [{'type':'rtext', 'text':' {name}', 'alpha':'0.60', 'color':'0xFF0000','size':'17','interval':'5000'}] <br/>
+          <span style="color:purple"><b>Sample Code for Static Watermark</b></span><br/>
+          [{'type':'text', 'text':'{ip}', 'alpha':'0.5' , 'x':'10', 'y':'100', 'color':'0xFF0000', 'size':'12'}] <br/>
+          </p>
+          </div>
+          <p class="description">Leave this text blank in case you do not need watermark over all videos. For details on writing the annotation code <a href="https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/" target="_blank">check this out</a></p>
         </td>
         </tr>
     </table>
