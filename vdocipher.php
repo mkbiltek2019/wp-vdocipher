@@ -50,6 +50,9 @@ function vdo_shortcode($atts)
                     ),
         $atts
     ));
+    if((get_option('vdo_default_height')) == 'auto') {
+      $height = 'auto';
+    }
     if (!$atts['id']) {
         if (!$atts['title']) {
             return "Required argument id for embedded video not found.";
@@ -115,7 +118,7 @@ function vdo_shortcode($atts)
         $version = $atts['version'];
     }
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '1.4.5');
+        update_option('vdo_embed_version', '1.5.0');
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
@@ -184,10 +187,10 @@ function vdo_menu()
 function vdo_options()
 {
     if (!get_option('vdo_default_height')) {
-        update_option('vdo_default_height', '360');
+        update_option('vdo_default_height', 'auto');
     }
     if (!get_option('vdo_default_width')) {
-        update_option('vdo_default_width', '640');
+        update_option('vdo_default_width', '1280');
     }
     $vdo_client_key = get_option('vdo_client_key');
     if (!$vdo_client_key && strlen($vdo_client_key) != 64) {
@@ -228,14 +231,14 @@ function vdo_deactivate()
 function vdo_activate()
 {
     if ((get_option('vdo_default_height')) == false) {
-        update_option('vdo_default_height', '360');
+        update_option('vdo_default_height', 'auto');
     }
     if ((get_option('vdo_default_width')) == false) {
-        update_option('vdo_default_width', '640');
+        update_option('vdo_default_width', '1280');
     }
     //https://stackoverflow.com/a/2173318/5022684
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '1.4.5');
+        update_option('vdo_embed_version', '1.5.0');
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');

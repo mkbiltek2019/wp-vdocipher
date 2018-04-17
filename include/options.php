@@ -43,13 +43,13 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
          <?php
             if ((get_option('vdo_embed_version')) == false) {
-            update_option('vdo_embed_version', '1.4.5');
+            update_option('vdo_embed_version', '1.5.0');
             }
         ?>
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
-            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5'); ?>
+            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0'); ?>
             <select name="vdo_embed_version" id="vdo_embed_version">
                 <?php
                     $vdo_embed_version_str = get_option('vdo_embed_version');
@@ -62,7 +62,7 @@ do_settings_sections('vdo_option-group');
 
                         if($vdo_embed_version_var === '0.5') {
                             $version_old_new = ' (old player)' ; }
-                        elseif ($vdo_embed_version_var === '1.4.5'){
+                        elseif ($vdo_embed_version_var === '1.5.0'){
                             $version_old_new = ' (newest player)' ; }
                             else {
                                 $version_old_new = ' (new player)' ; }
