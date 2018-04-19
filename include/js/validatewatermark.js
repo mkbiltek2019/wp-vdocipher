@@ -1,7 +1,7 @@
 var vdoWatermarkJson = document.getElementById('vdo_watermarkjson');
 var vdoValidator = document.getElementById('vdojsonvalidator');
 
-vdoWatermarkJson.onchange = function(){
+vdoWatermarkJson.onkeyup = function(){
   try{
     JSON.parse(vdoWatermarkJson.value.replace(/[\'\‘\’\′]/g, '"'));
     vdoValidator.innerHTML="Correct JSON";
