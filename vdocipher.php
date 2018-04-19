@@ -47,6 +47,7 @@ function vdo_shortcode($atts)
                     'id'    => 'id',
                     'no_annotate'=> false,
                     'version'=> 0,
+                    'player_tech'=> ''
                     ),
         $atts
     ));
@@ -126,6 +127,28 @@ function vdo_shortcode($atts)
     $vdo_embed_version_str = get_option('vdo_embed_version');
     $vdo_player_theme = get_option('vdo_player_theme');
 
+    // tech override custom names start
+    switch ($player_tech) {
+        case "flash":
+            $player_tech = "*,-dash";
+            break;
+        case "nohtml5":
+            $player_tech = "*,-dash";
+            break;
+        case "noflash":
+            $player_tech = "*,-hss";
+            break;
+        case "nozen":
+            $player_tech = "*,-zen";
+            break;
+        case "noios":
+            $player_tech = "*,-hlse";
+            break;
+        default:
+            break;
+    }
+    // tech override ends
+
     // Old Embed Code
     if($vdo_embed_version_str === '0.5') {
         $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
@@ -154,6 +177,16 @@ function vdo_shortcode($atts)
         $output .= "playbackInfo: btoa(JSON.stringify({";
         $output .= "videoId: '$video'})),";
         $output .= "theme: '$vdo_player_theme',";
+        if($player_tech !== ''){
+          $output .= "techoverride: [" ;
+          $techarray = explode(',', $player_tech);
+          for($i = 0; $i < sizeof($techarray); $i++){
+            $output .= "'$techarray[$i]'";
+            if($i !== sizeof($techarray)-1)
+                $output .= ", ";
+          }
+          $output .= "],";
+        }
         $output .= "container: document.querySelector('#vdo$OTP'),});";
         $output .= "</script>";
     }
