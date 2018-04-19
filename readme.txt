@@ -65,6 +65,7 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 * default player version set to 1.5.0
 * corrected bugs
 * height auto available
+* player tech over-ride enabled to play exclusively html5, flash, zen player
 
 = 1.19 =
 * add new player
@@ -116,6 +117,7 @@ Bug fixes
 * default player version set to 1.5.0
 * corrected bugs
 * height auto available
+* player tech over-ride enabled to play exclusively html5, flash, zen player
 
 = 1.17 =
 * updated player theme
