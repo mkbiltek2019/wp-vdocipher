@@ -110,10 +110,18 @@ do_settings_sections('vdo_option-group');
           [{'type':'text', 'text':'{ip}', 'alpha':'0.5' , 'x':'10', 'y':'100', 'color':'0xFF0000', 'size':'12'}] <br/>
           </p>
           </div>
+          <p class="description" id="vdojsonvalidator"></p>
           <p class="description">Leave this text blank in case you do not need watermark over all videos. For details on writing the annotation code <a href="https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/" target="_blank">check this out</a></p>
         </td>
         </tr>
     </table>
+    <?php
+        wp_enqueue_script('vdo_change_player_version',plugin_dir_url(__FILE__).'js/validatewatermark.js');
+        wp_localize_script('vdo_change_player_version', 'vdoVersionData', array(
+          'vdoWatermark' => $vdo_annotation_code
+        )
+      );
+        ?>
 <?php submit_button(); ?>
 </form>
 </div>
