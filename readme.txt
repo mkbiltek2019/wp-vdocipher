@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: vibhavsinha, milangupta
+Contributors: vibhavsinha, milangupta4
 Tags: video, DRM, video plugin, sell video, e-learning, movie
 Requires at least: 3.5.1
 Tested up to: 4.9.5
