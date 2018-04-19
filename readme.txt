@@ -62,7 +62,9 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 == Changelog ==
 
 = 1.20 =
-* default player version set to 1.4.5, logo added
+* default player version set to 1.5.0
+* corrected bugs
+* height auto available
 
 = 1.19 =
 * add new player
@@ -109,6 +111,11 @@ Bug fixes
 * A basic plugin which just makes it possible to embed vdocipher videos inside a wordpress plugin
 
 == Upgrade Notice ==
+
+= 1.20 =
+* default player version set to 1.5.0
+* corrected bugs
+* height auto available
 
 = 1.17 =
 * updated player theme
