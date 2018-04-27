@@ -75,17 +75,10 @@ do_settings_sections('vdo_option-group');
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
                     </option>
-                <?php }
-                 if (in_array($vdo_embed_version_str,$vdo_embed_version_vars)) { ?>
-                    <option value="Custom Version">
-                        <?php echo 'Custom Version' ?>
-                    </option>
-                  <?php }
-                  else { ?>
-                    <option value="Custom Version" selected>
-                        <?php echo 'Custom Version' ?>
-                    </option>
-                <?php  } ?>
+                <?php } ?>
+                <option value="Custom Version">
+                    <?php echo 'Custom Version' ?>
+                </option>
                 </select>
                 <?php
                   wp_enqueue_script('vdo_change_player_version',plugin_dir_url(__FILE__).'js/customplayerversion.js');
