@@ -43,45 +43,58 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
          <?php
             if ((get_option('vdo_embed_version')) == false) {
-            update_option('vdo_embed_version', '1.6.2');
+            update_option('vdo_embed_version', '1.6.3');
             }
         ?>
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
-            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.2','Custom Version'); ?>
+            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.3'); ?>
             <div style="display: inline-flex">
-            <select name="vdo_embed_version" id="vdo_embed_version">
+            <select id="vdo_embed_version">
                 <?php
                     $vdo_embed_version_str = get_option('vdo_embed_version');
                     ?>
                 <?php
                     foreach($vdo_embed_version_vars as $vdo_embed_version_var) {
                         if ($vdo_embed_version_str == $vdo_embed_version_var) {
-                                $selected = 'selected="selected"'; }
+                                $selected = 'selected'; }
                         else { $selected = ''; }
                         switch ($vdo_embed_version_var){
                           case '0.5':
                             $version_old_new = ' (old player)';
                             break;
-                          case '1.6.2':
+                          case '1.6.3':
                             $version_old_new = ' (newest player)' ;
-                            break;
-                          case 'Custom Version':
-                            $version_old_new = '';
                             break;
                           default:
                             $version_old_new = ' (new player)';
                             break;
                         }
                     ?>
-
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
                     </option>
-                <?php } ?>
-            </select>
-            <input type="text" name="vdo_custom_player_version" value="<?php echo esc_attr(get_option('vdo_embed_version')); ?>" style="margin-left:20px; position: relative; width:120px" />
+                <?php }
+                 if (in_array($vdo_embed_version_str,$vdo_embed_version_vars)) { ?>
+                    <option value="Custom Version">
+                        <?php echo 'Custom Version' ?>
+                    </option>
+                  <?php }
+                  else { ?>
+                    <option value="Custom Version" selected>
+                        <?php echo 'Custom Version' ?>
+                    </option>
+                <?php  } ?>
+                </select>
+                <?php
+                  wp_enqueue_script('vdo_change_player_version',plugin_dir_url(__FILE__).'js/customplayerversion.js');
+                  wp_localize_script('vdo_change_player_version', 'vdoVD', array(
+                      'vdoAV' => $vdo_embed_version_vars,
+                      'vdoSV' => $vdo_embed_version_str
+                    ));
+                ?>
+                <input type="text" name="vdo_embed_version" id="vdo_custom_version" style="margin-left:20px; position: relative; width:120px;" />
             </div>
             <p class="description">It is recommended that you use the latest player version for best video playback.</p>
         </td>
@@ -127,8 +140,8 @@ do_settings_sections('vdo_option-group');
         </tr>
     </table>
     <?php
-        wp_enqueue_script('vdo_change_player_version',plugin_dir_url(__FILE__).'js/validatewatermark.js');
-        wp_localize_script('vdo_change_player_version', 'vdoVersionData', array(
+        wp_enqueue_script('vdo_validate_watermark',plugin_dir_url(__FILE__).'js/validatewatermark.js');
+        wp_localize_script('vdo_validate_watermark', 'vdoValidateWatermark', array(
           'vdoWatermark' => $vdo_annotation_code
         )
       );
