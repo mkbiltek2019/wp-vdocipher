@@ -3,7 +3,7 @@ Contributors: vibhavsinha, milangupta4
 Tags: video, DRM, video plugin, sell video, e-learning, movie
 Requires at least: 3.5.1
 Tested up to: 4.9.5
-Stable tag: 1.20
+Stable tag: 1.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -112,6 +112,13 @@ Bug fixes
 * A basic plugin which just makes it possible to embed vdocipher videos inside a wordpress plugin
 
 == Upgrade Notice ==
+
+= 1.21 =
+* Strong HTML5 watermark
+* User can opt for Flash watermark globally
+* Tested for PHP version 5.6 and above
+* Player version 1.6.3
+* User can manually add player version
 
 = 1.20 =
 * default player version set to 1.5.0

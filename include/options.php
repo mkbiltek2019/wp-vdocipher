@@ -43,13 +43,14 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
          <?php
             if ((get_option('vdo_embed_version')) == false) {
-            update_option('vdo_embed_version', '1.5.0');
+            update_option('vdo_embed_version', '1.6.2');
             }
         ?>
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
-            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0'); ?>
+            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.2','Custom Version'); ?>
+            <div style="display: inline-flex">
             <select name="vdo_embed_version" id="vdo_embed_version">
                 <?php
                     $vdo_embed_version_str = get_option('vdo_embed_version');
@@ -59,19 +60,29 @@ do_settings_sections('vdo_option-group');
                         if ($vdo_embed_version_str == $vdo_embed_version_var) {
                                 $selected = 'selected="selected"'; }
                         else { $selected = ''; }
-
-                        if($vdo_embed_version_var === '0.5') {
-                            $version_old_new = ' (old player)' ; }
-                        elseif ($vdo_embed_version_var === '1.5.0'){
-                            $version_old_new = ' (newest player)' ; }
-                            else {
-                                $version_old_new = ' (new player)' ; }
+                        switch ($vdo_embed_version_var){
+                          case '0.5':
+                            $version_old_new = ' (old player)';
+                            break;
+                          case '1.6.2':
+                            $version_old_new = ' (newest player)' ;
+                            break;
+                          case 'Custom Version':
+                            $version_old_new = '';
+                            break;
+                          default:
+                            $version_old_new = ' (new player)';
+                            break;
+                        }
                     ?>
+
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
                     </option>
                 <?php } ?>
             </select>
+            <input type="text" name="vdo_custom_player_version" value="<?php echo esc_attr(get_option('vdo_embed_version')); ?>" style="margin-left:20px; position: relative; width:120px" />
+            </div>
             <p class="description">It is recommended that you use the latest player version for best video playback.</p>
         </td>
         </tr>
