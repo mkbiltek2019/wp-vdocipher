@@ -10,7 +10,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 <div class="wrap">
 <h2>VdoCipher Options</h2>
 
-<form method="post" action="options.php">
+<form name="vdoOptionForm" method="post" action="options.php">
 <?php
 settings_fields('vdo_option-group');
 do_settings_sections('vdo_option-group');
@@ -80,13 +80,6 @@ do_settings_sections('vdo_option-group');
                     <?php echo 'Custom Version' ?>
                 </option>
                 </select>
-                <?php
-                  wp_enqueue_script('vdo_change_player_version',plugin_dir_url(__FILE__).'js/customplayerversion.js');
-                  wp_localize_script('vdo_change_player_version', 'vdoVD', array(
-                      'vdoAV' => $vdo_embed_version_vars,
-                      'vdoSV' => $vdo_embed_version_str
-                    ));
-                ?>
                 <input type="text" name="vdo_embed_version" id="vdo_custom_version" style="margin-left:20px; position: relative; width:120px;" />
             </div>
             <p class="description">It is recommended that you use the latest player version for best video playback.</p>
@@ -108,6 +101,53 @@ do_settings_sections('vdo_option-group');
         <p class="description">Player theme is not available for old player version(0.5). The default theme will be applied for old player.</p>
         </td>
         </tr>
+        <!-- Player Theme Options end-->
+
+
+        <!-- Player Watermark option - Yes No - shows -->
+        <tr id="vdo_watermark_option" valign="top">
+          <th scope="row"> Do you require Watermark </th>
+          <td>
+            <?php
+            if ((get_option(vdo_require_watermark) == 'yes')){
+              $vdocheckedyes1 = 'checked';
+              $vdocheckedno1 = '';
+              }
+            elseif ((get_option(vdo_require_watermark) == 'no')) {
+              $vdocheckedyes1 = '';
+              $vdocheckedno1 = 'checked';
+            }
+            ?>
+            <input type="radio" class="vdo-reqannotate" value="yes" name="vdo_require_watermark" id="vdo_watermarkyes" <?php echo $vdocheckedyes1; ?> >
+            <label for="yes">Yes</label>
+            <input type="radio" class="vdo-reqannotate" value="no" name="vdo_require_watermark" id="vdo_watermarkno" <?php echo $vdocheckedno1; ?> >
+            <labelfor="no">No</label>
+          </td>
+        </tr>
+        <!-- Player watermark option - Yes No - ends -->
+
+        <!-- Player Watermark option - Flash/ HTML5 starts -->
+        <tr id="vdo_watermark_html_flash" valign="top">
+          <th scope="row"> Choice of Watermark </th>
+          <td>
+          <?php
+            if ((get_option(vdo_watermark_flash_html) == 'flash')){
+              $vdocheckedyes2 = 'checked';
+              $vdocheckedno2 = '';
+            }
+            elseif ((get_option(vdo_watermark_flash_html) == 'html5')) {
+              $vdocheckedyes2 = '';
+              $vdocheckedno2 = 'checked';
+            }
+          ?>
+            <input type="radio" class="vdo-htmlflash" value="flash" name="vdo_watermark_flash_html" id="vdo_flash" <?php echo $vdocheckedyes2; ?> >
+            <label for="flash">Flash (Hard-coded)</label>
+            <input type="radio" class="vdo-htmlflash" value="html5" name="vdo_watermark_flash_html" id="vdo_HTML5" <?php echo $vdocheckedno2; ?> >
+            <label for="HTML5">HTML5 (Overlay)</label>
+          </td>
+        </tr>
+        <!-- Player Watermark option - Flash/ HTML5 ends -->
+
 
         <tr valign="top">
         <th scope="row">Annotation Statement</th>
@@ -136,6 +176,13 @@ do_settings_sections('vdo_option-group');
         wp_enqueue_script('vdo_validate_watermark',plugin_dir_url(__FILE__).'js/validatewatermark.js');
         wp_localize_script('vdo_validate_watermark', 'vdoValidateWatermark', array(
           'vdoWatermark' => $vdo_annotation_code
+        )
+      );
+        wp_enqueue_script('vdo_html_flash_choice',plugin_dir_url(__FILE__).'js/flashhtml5choice.js');
+        wp_localize_script('vdo_html_flash_choice', 'vdoVD', array(
+          'vdoChoice' => $vdo_annotation_code,
+          'vdoAV' => $vdo_embed_version_vars,
+          'vdoSV' => $vdo_embed_version_str
         )
       );
         ?>
