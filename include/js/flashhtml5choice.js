@@ -12,7 +12,14 @@ var vdoDefaultHeight = document.getElementById('vdo_default_height');
 if (inVdoArray(vdoVD.vdoSV, vdoVD.vdoAV)) hideVdoCustomVersion();
 else showVdoCustomVersion(vdoVD.vdoSV);
 
-evaluateVersion();
+evaluateVCV();
+var vdoWHState;
+if (vdoHtml5WE(vdoCustomVersion.value, 5)){
+  vdoWHState = 1;
+}
+else {
+  vdoWHState = 0;
+}
 
 if (vdoRad1[1].checked === true) {
   jQuery(".vdo-htmlflash").attr('disabled', true);
@@ -39,47 +46,41 @@ for(var i = 0; i < vdoRad1.length; i++) {
 // Listens to changes in vdoPlayerVersion dropdown
 // and in Custom Version field when that is changed
 vdoPlayerVersion.onchange = function() {
-  console.log('Changed theme to ', vdoPlayerVersion.value);
   if (vdoPlayerVersion.value === 'Custom Version') {
     showVdoCustomVersion('');
     vdoCustomVersion.onkeyup = function() {
-      evaluateVersion();
+    evaluateVCV();
+    evaluateVHW();
     }
   }
   else {
     hideVdoCustomVersion();
-    evaluateVersion();
+    evaluateVCV();
+    evaluateVHW();
   }
 };
+// correct for player version change - height width always changes, even for player changes over 1.5.0
 
-// Evaluates for versions 1.5 and above (for height auto), and for 1.6 and above (for HTML5 watermark)
-function evaluateVersion() {
+// Evaluates for versions 1.6 and above (for HTML5 watermark)
+function evaluateVCV() {
   if (vdoHtml5WE(vdoCustomVersion.value, 6)) vdoShowWatermarkChoices();
   else vdoHideWatermarkChoices();
-  if(vdoHtml5WE(vdoCustomVersion.value, 5)) vdoChangeHW(1280 ,'auto');
-  else vdoChangeHW(640, 360);
 }
 
-
-// Hides Custom Version field
-function hideVdoCustomVersion() {
-  vdoCustomVersion.style.display = 'none';
-  vdoCustomVersion.value = vdoPlayerVersion.value;
-}
-
-// Shows Custom Version field
-function showVdoCustomVersion(str) {
-  vdoCustomVersion.style.display = 'inline-block';
-  vdoPlayerVersion.value = 'Custom Version';
-  vdoCustomVersion.value = str;
-}
-
-// Evaluates if the version number selected is in the list of available versions
-function inVdoArray(vdoVersion, vdoAvailable){
-  for (var i = 0; i < vdoAvailable.length; i++){
-    if (vdoVersion == vdoAvailable[i]) return true;
+// Evaluates for versions 1.5 and above (for height auto)
+function evaluateVHW() {
+  if(vdoHtml5WE(vdoCustomVersion.value, 5)){
+    if (vdoWHState === 0){
+      vdoWHState = 1;
+      vdoChangeHW(1280 ,'auto');
+    }
   }
-  return false;
+  else {
+    if(vdoWHState === 1) {
+      vdoWHState = 0;
+      vdoChangeHW(640, 360);
+    }
+  }
 }
 
 // Evaluates if the player version selected is greater than or equal to 1.6.0
@@ -89,6 +90,12 @@ function vdoHtml5WE(value,num){
   var minor = parseInt(matches[2]);
   if (major > 1 || (major === 1 && minor >= num)) return true;
   else return false;
+}
+
+// Shows watermark yes/no Flash/HTML5 choices
+function vdoShowWatermarkChoices() {
+  vdoWatermarkOption1.style.display="table-row";
+  vdoWatermarkOption2.style.display="table-row";
 }
 
 // Hides watermark yes/no Flash/HTML5 choices
@@ -101,13 +108,29 @@ function vdoHideWatermarkChoices(){
   vdoWatermarkJson.value = vdoVD.vdoChoice;
 }
 
-// Shows watermark yes/no Flash/HTML5 choices
-function vdoShowWatermarkChoices() {
-  vdoWatermarkOption1.style.display="table-row";
-  vdoWatermarkOption2.style.display="table-row";
-}
-
+// Change default video height and width
 function vdoChangeHW (width, height) {
   vdoDefaultWidth.value = width;
   vdoDefaultHeight.value = height;
+}
+
+// Evaluates if the version number selected is in the list of available versions
+function inVdoArray(vdoVersion, vdoAvailable){
+  for (var i = 0; i < vdoAvailable.length; i++){
+    if (vdoVersion == vdoAvailable[i]) return true;
+  }
+  return false;
+}
+
+// Shows Custom Version field
+function showVdoCustomVersion(str) {
+  vdoCustomVersion.style.display = 'inline-block';
+  vdoPlayerVersion.value = 'Custom Version';
+  vdoCustomVersion.value = str;
+}
+
+// Hides Custom Version field
+function hideVdoCustomVersion() {
+  vdoCustomVersion.style.display = 'none';
+  vdoCustomVersion.value = vdoPlayerVersion.value;
 }
