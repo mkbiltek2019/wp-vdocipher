@@ -118,7 +118,7 @@ do_settings_sections('vdo_option-group');
             }
           ?>
             <input type="radio" class="vdo-htmlflash" value="html5" name="vdo_watermark_flash_html" id="vdo_html5" <?php echo $vdocheckedhtml5; ?> >
-            <label for="vdo_html5">HTML5 (Overlay)</label>
+            <label for="vdo_html5">HTML5 (Overlay)&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="radio" class="vdo-htmlflash" value="flash" name="vdo_watermark_flash_html" id="vdo_flash" <?php echo $vdocheckedflash; ?> >
             <label for="vdo_flash">Flash (Hard-Coded)</label>
           </td>
