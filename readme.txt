@@ -61,6 +61,13 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 
 == Changelog ==
 
+= 1.21 =
+* Strong HTML5 watermark
+* User can opt for Flash watermark globally
+* Default player version 1.6.3
+* User can add custom player version
+* Tested for PHP version 5.6 and above
+
 = 1.20 =
 * default player version set to 1.5.0
 * corrected bugs

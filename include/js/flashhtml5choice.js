@@ -35,9 +35,9 @@ vdoPlayerVersion.onchange = function() {
     evaluateVHW();
   }
 };
-// correct for player version change - height width always changes, even for player changes over 1.5.0
 
-// Evaluates for versions 1.6 and above (for HTML5 watermark)
+// Evaluates for versions 1.6 and above (for HTML5 watermark), and
+// shows WatermarkChoice accordingly
 function evaluateVCV() {
   if (vdoHtml5WE(vdoCustomVersion.value, 6)) vdoShowWatermarkChoices();
   else vdoHideWatermarkChoices();
@@ -59,7 +59,7 @@ function evaluateVHW() {
   }
 }
 
-// Evaluates if the player version selected is greater than or equal to 1.6.0
+// Evaluates if the player version selected is greater than or equal to 1.num
 function vdoHtml5WE(value,num){
   var matches = value.match(/^([0-9]+)\.([0-9]+)/);
   var major = parseInt(matches[1]);
