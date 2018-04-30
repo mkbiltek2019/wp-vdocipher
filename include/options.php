@@ -28,14 +28,14 @@ do_settings_sections('vdo_option-group');
 
         <tr valign="top">
         <th scope="row">Default Width</th>
-        <td><input type="text" name="vdo_default_width"
+        <td><input type="text" id="vdo_default_width" name="vdo_default_width"
           value="<?php echo esc_attr(get_option('vdo_default_width')); ?>"
         /></td>
         </tr>
 
         <tr valign="top">
         <th scope="row">Default Height</th>
-        <td><input type="text" name="vdo_default_height"
+        <td><input type="text" id="vdo_default_height" name="vdo_default_height"
           value="<?php echo esc_attr(get_option('vdo_default_height')); ?>"
         /></td>
         </tr>
@@ -119,9 +119,9 @@ do_settings_sections('vdo_option-group');
             }
             ?>
             <input type="radio" class="vdo-reqannotate" value="yes" name="vdo_require_watermark" id="vdo_watermarkyes" <?php echo $vdocheckedyes1; ?> >
-            <label for="yes">Yes</label>
+            <label for="vdo_watermarkyes">Yes</label>
             <input type="radio" class="vdo-reqannotate" value="no" name="vdo_require_watermark" id="vdo_watermarkno" <?php echo $vdocheckedno1; ?> >
-            <labelfor="no">No</label>
+            <label for="vdo_watermarkno">No</label>
           </td>
         </tr>
         <!-- Player watermark option - Yes No - ends -->
@@ -141,9 +141,9 @@ do_settings_sections('vdo_option-group');
             }
           ?>
             <input type="radio" class="vdo-htmlflash" value="flash" name="vdo_watermark_flash_html" id="vdo_flash" <?php echo $vdocheckedyes2; ?> >
-            <label for="flash">Flash (Hard-coded)</label>
+            <label for="vdo_flash">Flash (Hard-coded)</label>
             <input type="radio" class="vdo-htmlflash" value="html5" name="vdo_watermark_flash_html" id="vdo_HTML5" <?php echo $vdocheckedno2; ?> >
-            <label for="HTML5">HTML5 (Overlay)</label>
+            <label for="vdo_HTML5">HTML5 (Overlay)</label>
           </td>
         </tr>
         <!-- Player Watermark option - Flash/ HTML5 ends -->
