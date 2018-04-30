@@ -249,7 +249,6 @@ function register_vdo_settings()
     register_setting('vdo_option-group', 'vdo_annotate_code');
     register_setting('vdo_option-group', 'vdo_embed_version');
     register_setting('vdo_option-group', 'vdo_player_theme');
-    register_setting('vdo_option-group', 'vdo_require_watermark');
     register_setting('vdo_option-group', 'vdo_watermark_flash_html');
 }
 
@@ -267,7 +266,6 @@ function vdo_deactivate()
     delete_option('vdo_annotate_code');
     delete_option('vdo_embed_version');
     delete_option('vdo_player_theme');
-    delete_option('vdo_require_watermark');
     delete_option('vdo_watermark_flash_html');
 }
 function vdo_activate()
@@ -285,11 +283,8 @@ function vdo_activate()
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
-    if ((get_option('vdo_client_key')) == true ) {
-        update_option('vdo_require_watermark','yes');
-    }
-    if ((get_option('vdo_client_key') == true )) {
-        update_option('vdo_watermark_flash_html','flash');
+    if ((get_option('vdo_watermark_flash_html')) == false ) {
+        update_option('vdo_watermark_flash_html','html5');
     }
 }
 register_activation_hook(__FILE__, 'vdo_activate');

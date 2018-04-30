@@ -103,47 +103,24 @@ do_settings_sections('vdo_option-group');
         </tr>
         <!-- Player Theme Options end-->
 
-
-        <!-- Player Watermark option - Yes No - shows -->
-        <tr id="vdo_watermark_option" valign="top">
-          <th scope="row"> Do you require Watermark </th>
-          <td>
-            <?php
-            if ((get_option(vdo_require_watermark) == 'yes')){
-              $vdocheckedyes1 = 'checked';
-              $vdocheckedno1 = '';
-              }
-            elseif ((get_option(vdo_require_watermark) == 'no')) {
-              $vdocheckedyes1 = '';
-              $vdocheckedno1 = 'checked';
-            }
-            ?>
-            <input type="radio" class="vdo-reqannotate" value="yes" name="vdo_require_watermark" id="vdo_watermarkyes" <?php echo $vdocheckedyes1; ?> >
-            <label for="vdo_watermarkyes">Yes</label>
-            <input type="radio" class="vdo-reqannotate" value="no" name="vdo_require_watermark" id="vdo_watermarkno" <?php echo $vdocheckedno1; ?> >
-            <label for="vdo_watermarkno">No</label>
-          </td>
-        </tr>
-        <!-- Player watermark option - Yes No - ends -->
-
         <!-- Player Watermark option - Flash/ HTML5 starts -->
         <tr id="vdo_watermark_html_flash" valign="top">
           <th scope="row"> Choice of Watermark </th>
           <td>
           <?php
-            if ((get_option(vdo_watermark_flash_html) == 'flash')){
-              $vdocheckedyes2 = 'checked';
-              $vdocheckedno2 = '';
+            if ((get_option(vdo_watermark_flash_html) == 'html5')){
+              $vdocheckedhtml5 = 'checked';
+              $vdocheckedflash = '';
             }
-            elseif ((get_option(vdo_watermark_flash_html) == 'html5')) {
-              $vdocheckedyes2 = '';
-              $vdocheckedno2 = 'checked';
+            elseif ((get_option(vdo_watermark_flash_html) == 'flash')) {
+              $vdocheckedhtml5 = '';
+              $vdocheckedflash = 'checked';
             }
           ?>
-            <input type="radio" class="vdo-htmlflash" value="flash" name="vdo_watermark_flash_html" id="vdo_flash" <?php echo $vdocheckedyes2; ?> >
-            <label for="vdo_flash">Flash (Hard-coded)</label>
-            <input type="radio" class="vdo-htmlflash" value="html5" name="vdo_watermark_flash_html" id="vdo_HTML5" <?php echo $vdocheckedno2; ?> >
-            <label for="vdo_HTML5">HTML5 (Overlay)</label>
+            <input type="radio" class="vdo-htmlflash" value="html5" name="vdo_watermark_flash_html" id="vdo_html5" <?php echo $vdocheckedhtml5; ?> >
+            <label for="vdo_html5">HTML5 (Overlay)</label>
+            <input type="radio" class="vdo-htmlflash" value="flash" name="vdo_watermark_flash_html" id="vdo_flash" <?php echo $vdocheckedflash; ?> >
+            <label for="vdo_flash">Flash (Hard-Coded)</label>
           </td>
         </tr>
         <!-- Player Watermark option - Flash/ HTML5 ends -->
@@ -162,7 +139,7 @@ do_settings_sections('vdo_option-group');
           </textarea>
           <p class="description" style="margin-left:20px; position: relative">
           <span style="color:purple"><b>Sample Code for Dynamic Watermark</b></span><br/>
-          [{'type':'rtext', 'text':' {name}', 'alpha':'0.60', 'color':'0xFF0000','size':'17','interval':'5000'}] <br/>
+          [{'type':'rtext', 'text':' {name}', 'alpha':'0.60', 'color':'0xFF0000','size':'15','interval':'5000'}] <br/>
           <span style="color:purple"><b>Sample Code for Static Watermark</b></span><br/>
           [{'type':'text', 'text':'{ip}', 'alpha':'0.5' , 'x':'10', 'y':'100', 'color':'0xFF0000', 'size':'12'}] <br/>
           </p>
@@ -180,7 +157,6 @@ do_settings_sections('vdo_option-group');
       );
         wp_enqueue_script('vdo_html_flash_choice',plugin_dir_url(__FILE__).'js/flashhtml5choice.js');
         wp_localize_script('vdo_html_flash_choice', 'vdoVD', array(
-          'vdoChoice' => $vdo_annotation_code,
           'vdoAV' => $vdo_embed_version_vars,
           'vdoSV' => $vdo_embed_version_str
         )

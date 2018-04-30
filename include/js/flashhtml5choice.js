@@ -1,11 +1,9 @@
 var vdoPlayerVersion = document.getElementById('vdo_embed_version');
 var vdoCustomVersion = document.getElementById('vdo_custom_version');
-var vdoWatermarkOption1 = document.getElementById('vdo_watermark_option');
-var vdoWatermarkOption2 = document.getElementById('vdo_watermark_html_flash');
+var vdoWatermarkOption = document.getElementById('vdo_watermark_html_flash');
 var vdoWatermarkJson = document.getElementById('vdo_watermarkjson');
 var vdoPrev;
-var vdoRad1 = document.vdoOptionForm.vdo_require_watermark;
-var vdoRad2 = document.vdoOptionForm.vdo_watermark_flash_html;
+var vdoRad = document.vdoOptionForm.vdo_watermark_flash_html;
 var vdoDefaultWidth = document.getElementById('vdo_default_width');
 var vdoDefaultHeight = document.getElementById('vdo_default_height');
 
@@ -19,28 +17,6 @@ if (vdoHtml5WE(vdoCustomVersion.value, 5)){
 }
 else {
   vdoWHState = 0;
-}
-
-if (vdoRad1[1].checked === true) {
-  jQuery(".vdo-htmlflash").attr('disabled', true);
-  vdoWatermarkJson.disabled = true;
-}
-
-// Listens to changes in Watermark Yes/No form to enable/disable
-// JSON & HTML/flash fields
-for(var i = 0; i < vdoRad1.length; i++) {
-  vdoRad1[i].addEventListener('click', function() {
-    vdoPrev = this;
-    if (this.value == 'no') {
-      jQuery(".vdo-htmlflash").attr('disabled', true);
-      vdoWatermarkJson.disabled = true;
-    }
-    if (this.value == 'yes') {
-      jQuery(".vdo-htmlflash").attr('disabled', false);
-      vdoWatermarkJson.disabled = false;
-      vdoWatermarkJson.value = vdoVD.vdoChoice;
-    }
-  });
 }
 
 // Listens to changes in vdoPlayerVersion dropdown
@@ -92,20 +68,15 @@ function vdoHtml5WE(value,num){
   else return false;
 }
 
-// Shows watermark yes/no Flash/HTML5 choices
+// Shows watermark Flash/HTML5 choices
 function vdoShowWatermarkChoices() {
-  vdoWatermarkOption1.style.display="table-row";
-  vdoWatermarkOption2.style.display="table-row";
+  vdoWatermarkOption.style.display="table-row";
 }
 
-// Hides watermark yes/no Flash/HTML5 choices
+// Hides watermark Flash/HTML5 choices
 function vdoHideWatermarkChoices(){
-  vdoWatermarkOption1.style.display="none";
-  vdoWatermarkOption2.style.display="none";
-  vdoRad1[0].checked = true;
-  vdoRad2[1].checked = true;
-  vdoWatermarkJson.disabled = false;
-  vdoWatermarkJson.value = vdoVD.vdoChoice;
+  vdoWatermarkOption.style.display="none";
+  vdoRad[0].checked = true;
 }
 
 // Change default video height and width
