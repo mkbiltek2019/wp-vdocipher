@@ -1,8 +1,6 @@
 var vdoPlayerVersion = document.getElementById('vdo_embed_version');
 var vdoCustomVersion = document.getElementById('vdo_custom_version');
 var vdoWatermarkOption = document.getElementById('vdo_watermark_html_flash');
-var vdoWatermarkJson = document.getElementById('vdo_watermarkjson');
-var vdoPrev;
 var vdoRad = document.vdoOptionForm.vdo_watermark_flash_html;
 var vdoDefaultWidth = document.getElementById('vdo_default_width');
 var vdoDefaultHeight = document.getElementById('vdo_default_height');
