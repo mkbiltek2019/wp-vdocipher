@@ -119,7 +119,7 @@ function vdo_shortcode($atts)
         $version = $atts['version'];
     }
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '1.6.3');
+        update_option('vdo_embed_version', '1.5.0');
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
@@ -278,7 +278,7 @@ function vdo_activate()
     }
     //https://stackoverflow.com/a/2173318/5022684
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '1.6.3');
+        update_option('vdo_embed_version', '1.5.0');
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
