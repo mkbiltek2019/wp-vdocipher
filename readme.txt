@@ -62,7 +62,7 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 == Changelog ==
 
 = 1.21 =
-* HTML5 watermark for custom version 1.6.2
+* HTML5 watermark for custom version 1.6.4
 * User can opt for Flash watermark globally
 * User can add custom player version
 * Height change to auto for player versions more than 1.5.0
@@ -121,7 +121,7 @@ Bug fixes
 == Upgrade Notice ==
 
 = 1.21 =
-* HTML5 watermark for custom version 1.6.2
+* HTML5 watermark for custom version 1.6.4
 * User can opt for Flash watermark globally
 * User can manually add player version
 * Height change to auto for player versions more than 1.5.0
