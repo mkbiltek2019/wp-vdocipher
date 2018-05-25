@@ -130,13 +130,12 @@ do_settings_sections('vdo_option-group');
         <th scope="row">Annotation Statement</th>
         <td>
           <div style="display: inline-flex;">
-          <textarea name="vdo_annotate_code" id="vdo_watermarkjson" type="textarea" rows="6" cols="55" style="display: float-left"> <?php
+          <textarea name="vdo_annotate_code" id="vdo_watermarkjson" type="textarea" rows="6" cols="55" style="display: float-left"><?php
             if (get_option('vdo_annotate_code') != "") {
               echo get_option('vdo_annotate_code');
               $vdo_annotation_code = get_option('vdo_annotate_code');
            }
-          ?>
-          </textarea>
+          ?></textarea>
           <p class="description" style="margin-left:20px; position: relative">
           <span style="color:purple"><b>Sample Code for Dynamic Watermark</b></span><br/>
           [{'type':'rtext', 'text':' {name}', 'alpha':'0.60', 'color':'0xFF0000','size':'15','interval':'5000'}] <br/>
