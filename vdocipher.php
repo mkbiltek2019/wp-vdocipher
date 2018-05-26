@@ -51,8 +51,8 @@ function vdo_shortcode($atts)
                     ),
         $atts
     ));
-    if((get_option('vdo_default_height')) == 'auto') {
-      $height = 'auto';
+    if ((get_option('vdo_default_height')) == 'auto') {
+        $height = 'auto';
     }
     if (!$atts['id']) {
         if (!$atts['title']) {
@@ -122,7 +122,7 @@ function vdo_shortcode($atts)
         update_option('vdo_embed_version', '1.6.4');
     }
     if ((get_option('vdo_player_theme')) == false) {
-        update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
+        update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
     $vdo_embed_version_str = get_option('vdo_embed_version');
     $vdo_player_theme = get_option('vdo_player_theme');
@@ -150,11 +150,11 @@ function vdo_shortcode($atts)
     // tech override ends
 
     // Old Embed Code
-    if($vdo_embed_version_str === '0.5') {
+    if ($vdo_embed_version_str === '0.5') {
         $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
         $output .= "<script> (function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
             " (v[o].d=v[o].d||[]).push(a);};";
-        $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0]; a.async=1; ".
+        $output .= "if(!v[o].l) { v[o].l=1*new Date();a=i.createElement(d),m=i.getElementsByTagName(d)[0];a.async=1;".
             "a.src=e; m.parentNode.insertBefore(a,m);}";
         $output .= " })(window,document,'script','//de122v0opjemw.cloudfront.net/vdo.js','vdo'); vdo.add({ ";
         $output .= "o: '$OTP', ";
@@ -162,16 +162,16 @@ function vdo_shortcode($atts)
             $output .= "version: '$version' ";
         }
         $output .= "}); </script>";
-    }
-    //New embed code
-    else {
-      if ($player_tech === ''){
-        if(get_option(vdo_watermark_flash_html) === 'flash') {
-          $player_tech = "*,-dash";
+    } else {
+        //New embed code
+        if ($player_tech === '') {
+            if (get_option(vdo_watermark_flash_html) === 'flash') {
+                $player_tech = "*,-dash";
+            }
         }
-      }
         $output .= "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
-        $output .= "<script>(function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){ (v[o].d=v[o].d||[]).push(a);};";
+        $output .= "<script>(function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
+            "(v[o].d=v[o].d||[]).push(a);};";
         $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0];";
         $output .= "a.async=1; a.src=e; m.parentNode.insertBefore(a,m);}";
         $output .= "})(window,document,'script','https://d1z78r8i505acl.cloudfront.net/playerAssets/";
@@ -182,15 +182,17 @@ function vdo_shortcode($atts)
         $output .= "playbackInfo: btoa(JSON.stringify({";
         $output .= "videoId: '$video'})),";
         $output .= "theme: '$vdo_player_theme',";
-        if($player_tech !== ''){
-          $output .= "techoverride: [" ;
-          $techarray = explode(',', $player_tech);
-          for($i = 0; $i < sizeof($techarray); $i++){
-            $output .= "'$techarray[$i]'";
-            if($i !== sizeof($techarray)-1)
-                $output .= ", ";
-          }
-          $output .= "],";
+        if ($player_tech !== '') {
+            $output .= "techoverride: [" ;
+            $techarray = explode(',', $player_tech);
+            for ($i = 0; $i < sizeof($techarray); $i++) {
+                $techStr = $techarray[$i];
+                $output .= "'$techStr'";
+                if ($i !== sizeof($techarray)-1) {
+                    $output .= ", ";
+                }
+            }
+            $output .= "],";
         }
         $output .= "container: document.querySelector('#vdo$OTP'),});";
         $output .= "</script>";
@@ -220,7 +222,14 @@ if (is_admin()) { // admin actions
 }
 function vdo_menu()
 {
-    add_menu_page('VdoCipher Options', 'VdoCipher', 'manage_options', 'vdocipher', 'vdo_options', plugin_dir_url(__FILE__).'images/logo.png');
+    add_menu_page(
+        'VdoCipher Options',
+        'VdoCipher',
+        'manage_options',
+        'vdocipher',
+        'vdo_options',
+        plugin_dir_url(__FILE__).'images/logo.png'
+    );
 }
 function vdo_options()
 {
@@ -281,10 +290,10 @@ function vdo_activate()
         update_option('vdo_embed_version', '1.6.4');
     }
     if ((get_option('vdo_player_theme')) == false) {
-        update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
+        update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
-    if ((get_option('vdo_watermark_flash_html')) == false ) {
-        update_option('vdo_watermark_flash_html','html5');
+    if ((get_option('vdo_watermark_flash_html')) == false) {
+        update_option('vdo_watermark_flash_html', 'html5');
     }
 }
 register_activation_hook(__FILE__, 'vdo_activate');

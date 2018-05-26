@@ -41,37 +41,39 @@ do_settings_sections('vdo_option-group');
         </tr>
 
         <!-- Version Number -->
-         <?php
-            if ((get_option('vdo_embed_version')) == false) {
+        <?php
+        if ((get_option('vdo_embed_version')) == false) {
             update_option('vdo_embed_version', '1.6.4');
-            }
+        }
         ?>
         <tr valign="top">
         <th scope="row">Player Version</th>
         <td>
-            <?php $vdo_embed_version_vars = array('0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.4'); ?>
             <div style="display: inline-flex">
             <select id="vdo_embed_version">
                 <?php
-                    $vdo_embed_version_str = get_option('vdo_embed_version');
-                    ?>
-                <?php
-                    foreach($vdo_embed_version_vars as $vdo_embed_version_var) {
-                        if ($vdo_embed_version_str == $vdo_embed_version_var) {
-                                $selected = 'selected'; }
-                        else { $selected = ''; }
-                        switch ($vdo_embed_version_var){
-                          case '0.5':
+                $vdo_embed_version_vars = array(
+                    '0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.4'
+                );
+                $vdo_embed_version_str = get_option('vdo_embed_version');
+                foreach ($vdo_embed_version_vars as $vdo_embed_version_var) {
+                    if ($vdo_embed_version_str == $vdo_embed_version_var) {
+                        $selected = 'selected';
+                    } else {
+                        $selected = '';
+                    }
+                    switch ($vdo_embed_version_var) {
+                        case '0.5':
                             $version_old_new = ' (old player)';
                             break;
-                          case '1.6.4':
+                        case '1.6.4':
                             $version_old_new = ' (newest player)' ;
                             break;
-                          default:
+                        default:
                             $version_old_new = ' (new player)';
                             break;
-                        }
-                    ?>
+                    }
+                ?>
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
                     </option>
@@ -80,7 +82,9 @@ do_settings_sections('vdo_option-group');
                     <?php echo 'Custom Version' ?>
                 </option>
                 </select>
-                <input type="text" name="vdo_embed_version" id="vdo_custom_version" style="margin-left:20px; position: relative; width:120px;" />
+                <input type="text" name="vdo_embed_version"
+                    id="vdo_custom_version"
+                    style="margin-left:20px; position: relative; width:120px;" />
             </div>
             <p class="description">It is recommended that you use the latest player version for best video playback.</p>
         </td>
@@ -88,9 +92,9 @@ do_settings_sections('vdo_option-group');
 
         <!-- Player Theme Options -->
         <?php
-            if ((get_option('vdo_player_theme')) == false) {
-            update_option('vdo_player_theme','9ae8bbe8dd964ddc9bdb932cca1cb59a');
-            }
+        if ((get_option('vdo_player_theme')) == false) {
+            update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
+        }
         ?>
         <tr valign="top">
         <th scope="row">Player Theme</th>
@@ -98,7 +102,9 @@ do_settings_sections('vdo_option-group');
             <input type="text" name="vdo_player_theme"
           value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>" max-length = "32" style="width: 320px"
         />
-        <p class="description">Player theme is not available for old player version(0.5). The default theme will be applied for old player.</p>
+        <p class="description">
+            Player theme is not available for old player version(0.5). The default theme will be applied for old player.
+        </p>
         </td>
         </tr>
         <!-- Player Theme Options end-->
@@ -107,19 +113,23 @@ do_settings_sections('vdo_option-group');
         <tr id="vdo_watermark_html_flash" valign="top">
           <th scope="row"> Choice of Watermark </th>
           <td>
-          <?php
-            if ((get_option(vdo_watermark_flash_html) == 'html5')){
-              $vdocheckedhtml5 = 'checked';
-              $vdocheckedflash = '';
+            <?php
+            if ((get_option(vdo_watermark_flash_html) == 'html5')) {
+                $vdocheckedhtml5 = 'checked';
+                $vdocheckedflash = '';
+            } elseif ((get_option(vdo_watermark_flash_html) == 'flash')) {
+                $vdocheckedhtml5 = '';
+                $vdocheckedflash = 'checked';
             }
-            elseif ((get_option(vdo_watermark_flash_html) == 'flash')) {
-              $vdocheckedhtml5 = '';
-              $vdocheckedflash = 'checked';
-            }
-          ?>
-            <input type="radio" class="vdo-htmlflash" value="html5" name="vdo_watermark_flash_html" id="vdo_html5" <?php echo $vdocheckedhtml5; ?> >
-            <label for="vdo_html5">HTML5 (Overlay)&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="radio" class="vdo-htmlflash" value="flash" name="vdo_watermark_flash_html" id="vdo_flash" <?php echo $vdocheckedflash; ?> >
+            ?>
+            <input type="radio" class="vdo-htmlflash"
+                value="html5" name="vdo_watermark_flash_html"
+                id="vdo_html5" <?php echo $vdocheckedhtml5; ?> >
+            <label for="vdo_html5">HTML5 (Overlay)</label>
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" class="vdo-htmlflash"
+                value="flash" name="vdo_watermark_flash_html"
+                id="vdo_flash" <?php echo $vdocheckedflash; ?> >
             <label for="vdo_flash">Flash (Hard-Coded)</label>
           </td>
         </tr>
@@ -130,12 +140,14 @@ do_settings_sections('vdo_option-group');
         <th scope="row">Annotation Statement</th>
         <td>
           <div style="display: inline-flex;">
-          <textarea name="vdo_annotate_code" id="vdo_watermarkjson" type="textarea" rows="6" cols="55" style="display: float-left"><?php
+          <textarea name="vdo_annotate_code" id="vdo_watermarkjson"
+            type="textarea" rows="6" cols="55" style="display: float-left"
+          ><?php
             if (get_option('vdo_annotate_code') != "") {
-              echo get_option('vdo_annotate_code');
-              $vdo_annotation_code = get_option('vdo_annotate_code');
-           }
-          ?></textarea>
+                echo get_option('vdo_annotate_code');
+                $vdo_annotation_code = get_option('vdo_annotate_code');
+            }
+            ?></textarea>
           <p class="description" style="margin-left:20px; position: relative">
           <span style="color:purple"><b>Sample Code for Dynamic Watermark</b></span><br/>
           [{'type':'rtext', 'text':' {name}', 'alpha':'0.60', 'color':'0xFF0000','size':'15','interval':'5000'}] <br/>
@@ -144,22 +156,26 @@ do_settings_sections('vdo_option-group');
           </p>
           </div>
           <p class="description" id="vdojsonvalidator"></p>
-          <p class="description">Leave this text blank in case you do not need watermark over all videos. For details on writing the annotation code <a href="https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/" target="_blank">check this out</a></p>
+          <p class="description">
+                Leave this text blank in case you do not need watermark over all
+                videos. For details on writing the annotation code
+                <a href="https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/" target="_blank">
+                    check this out
+                </a>
+          </p>
         </td>
         </tr>
     </table>
     <?php
-        wp_enqueue_script('vdo_validate_watermark',plugin_dir_url(__FILE__).'js/validatewatermark.js');
+        wp_enqueue_script('vdo_validate_watermark', plugin_dir_url(__FILE__).'js/validatewatermark.js');
         wp_localize_script('vdo_validate_watermark', 'vdoValidateWatermark', array(
           'vdoWatermark' => $vdo_annotation_code
-        )
-      );
-        wp_enqueue_script('vdo_html_flash_choice',plugin_dir_url(__FILE__).'js/flashhtml5choice.js');
+        ));
+        wp_enqueue_script('vdo_html_flash_choice', plugin_dir_url(__FILE__).'js/flashhtml5choice.js');
         wp_localize_script('vdo_html_flash_choice', 'vdoVD', array(
           'vdoAV' => $vdo_embed_version_vars,
           'vdoSV' => $vdo_embed_version_str
-        )
-      );
+        ));
         ?>
 <?php submit_button(); ?>
 </form>
