@@ -37,6 +37,26 @@ function vdo_send($action, $params, $posts = array())
     }
     return $response['body'];
 }
+
+function vdo_otp($video, $otp_post_json) {
+    $client_key = get_option('vdo_client_key');
+    if ($client_key == false || $client_key == "") {
+        return "Plugin not configured. Please set the key to embed videos.";
+    }
+    $url = "https://dev.vdocipher.com/api/videos/$video/otp";
+    $headers = array(
+        'Authorization'=>'Apisecret '.$client_key,
+        'Content-Type'=>'application/json',
+        'Accept'=>'application/json'
+    );
+    $response = wp_remote_post($url, array(
+        'method'    =>  'POST',
+        'headers'   =>  $headers,
+        'body'      =>  $otp_post_json
+    ));
+    return $response['body'];
+}
+
 function vdo_shortcode($atts)
 {
     extract(shortcode_atts(
@@ -83,7 +103,7 @@ function vdo_shortcode($atts)
     $params = array(
         'video'=>$video
     );
-    $anno = false;
+    $otp_post_array = false;
     if (!function_exists("eval_date")) {
         function eval_date($matches)
         {
@@ -103,17 +123,23 @@ function vdo_shortcode($atts)
         $vdo_annotate_code = str_replace('{ip}', $_SERVER['REMOTE_ADDR'], $vdo_annotate_code);
         $vdo_annotate_code = preg_replace_callback('/\{date\.([^\}]+)\}/', "eval_date", $vdo_annotate_code);
         $vdo_annotate_code = apply_filters('vdocipher_annotate_postprocess', $vdo_annotate_code);
+        // Add annotate code to $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
         if (!$no_annotate) {
-            $anno = array("annotate" => $vdo_annotate_code);
+            $otp_post_array = array("annotate" => $vdo_annotate_code);
         }
     }
-    $OTP = vdo_send("otp", $params, $anno);
-    $OTP = json_decode($OTP);
+    // Set time-to-live to 300s in $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
+    $otp_post_array["ttl"] = 300;
+    $otp_post_json = json_encode($otp_post_array);
+    $OTP_Response = vdo_otp($video, $otp_post_json);
+    $OTP_Response = json_decode($OTP_Response);
+    $OTP = $OTP_Response->otp;
+    $playbackInfo = $OTP_Response->playbackInfo;
     if (is_null($OTP)) {
+
         $output = "<span id='vdo$OTP' style='background:#555555;color:#FFFFFF'><h4>Video not found</h4></span>";
         return $output;
     }
-    $OTP = $OTP->otp;
 
     $version = 0;
     if (isset($atts['version'])) {
@@ -132,7 +158,6 @@ function vdo_shortcode($atts)
     else {
         $vdo_player_theme = $vdo_theme;
     }
-
 
     // tech override custom names start
     switch ($player_tech) {
@@ -186,8 +211,9 @@ function vdo_shortcode($atts)
         $output .= "/vdo.js','vdo');";
         $output .= "vdo.add({";
         $output .= "otp: '$OTP',";
-        $output .= "playbackInfo: btoa(JSON.stringify({";
-        $output .= "videoId: '$video'})),";
+//        $output .= "playbackInfo: btoa(JSON.stringify({";
+//        $output .= "videoId: '$video'})),";
+        $output .= "playbackInfo: '$playbackInfo',";
         $output .= "theme: '$vdo_player_theme',";
         if ($player_tech !== '') {
             $output .= "techoverride: [" ;
