@@ -16,6 +16,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
         "this server.</p>\r\n</body></html>");
 }
 
+// This function is not being called anymore. Keeping here only until testing is complete.
 function vdo_send($action, $params, $posts = array())
 {
     $client_key = get_option('vdo_client_key');
@@ -36,6 +37,29 @@ function vdo_send($action, $params, $posts = array())
         return "";
     }
     return $response['body'];
+}
+
+function vdo_retrieve_id($title) {
+    $client_key = get_option('vdo_client_key');
+    if ($client_key == false || $client_key == "") {
+        return "Plugin not configured. Please set the key to embed videos.";
+    }
+    $url = "https://dev.vdocipher.com/api/videos?q=$title";
+    $headers = array(
+        'Authorization'=>'Apisecret '.$client_key,
+        'Content-Type'=>'application/json',
+        'Accept'=>'application/json'
+    );
+    $response = wp_remote_post($url, array(
+        'method'    =>  'GET',
+        'headers'   =>  $headers
+    ));
+    $video_json_response = $response['body'];
+    $video_list_object = json_decode($video_json_response);
+    $video_list = $video_list_object->{'rows'};
+    $video_object = $video_list[0];
+    $video_id = $video_object->{'id'};
+    return $video_id;
 }
 
 function vdo_otp($video, $otp_post_json) {
@@ -79,30 +103,32 @@ function vdo_shortcode($atts)
         if (!$atts['title']) {
             return "Required argument id for embedded video not found.";
         }
-        $params = array(
-                'search'=>array(
-                    'title'=>$title
-                    ),
-                'page'=>1,
-                'limit'=>30,
-                'type'=>'json'
-                );
-        $video = vdo_send("videos", $params);
-        $video = json_decode($video);
+        $video = vdo_retrieve_id($title);
+        return "<div>$video</div>";
+        // $params = array(
+                // 'search'=>array(
+                    // 'title'=>$title
+                    // ),
+                // 'page'=>1,
+                // 'limit'=>30,
+                // 'type'=>'json'
+                // );
+        // $video = vdo_send("videos", $params);
+
         if ($video == null) {
             return "404. Video not found.";
         }
-        $video = $video[0]->id;
-        if ($video == null) {
-            return "No video with given title found.";
-        }
+        // $video = $video[0]->id;
+        // if ($video == null) {
+            // return "No video with given title found.";
+        // }
     } else {
         $video = $id;
     }
 
-    $params = array(
-        'video'=>$video
-    );
+    // $params = array(
+    //     'video'=>$video
+    // );
     $otp_post_array = false;
     if (!function_exists("eval_date")) {
         function eval_date($matches)
