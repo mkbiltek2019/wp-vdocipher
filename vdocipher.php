@@ -16,29 +16,6 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
         "this server.</p>\r\n</body></html>");
 }
 
-// This function is not being called anymore. Keeping here only until testing is complete.
-function vdo_send($action, $params, $posts = array())
-{
-    $client_key = get_option('vdo_client_key');
-    if ($client_key == false || $client_key == "") {
-        return "Plugin not configured. Please set the key to embed videos.";
-    }
-
-    $getData = http_build_query($params);
-    $posts["clientSecretKey"] = $client_key;
-    $url = "http://api.vdocipher.com/v2/$action/?$getData";
-    $response = wp_safe_remote_post($url, array(
-        'method'    =>  'POST',
-        'body'      =>  $posts
-    ));
-    if (is_wp_error($response)) {
-        $error_message = $response->get_error_message();
-        echo "VdoCipher: Something went wrong: $error_message";
-        return "";
-    }
-    return $response['body'];
-}
-
 // Function called to retrieve id for when title given, starts
 function vdo_retrieve_id($title) {
     $client_key = get_option('vdo_client_key');
@@ -70,7 +47,7 @@ function vdo_retrieve_id($title) {
 // Function called to retrieve id for when title given, ends
 
 // Function called to get OTP, starts
-function vdo_otp($video, $otp_post_json) {
+function vdo_otp($video, $otp_post_array) {
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
         return "Plugin not configured. Please set the key to embed videos.";
@@ -81,6 +58,7 @@ function vdo_otp($video, $otp_post_json) {
         'Content-Type'=>'application/json',
         'Accept'=>'application/json'
     );
+    $otp_post_json = json_encode($otp_post_array);
     $response = wp_remote_post($url, array(
         'method'    =>  'POST',
         'headers'   =>  $headers,
@@ -121,17 +99,17 @@ function vdo_shortcode($atts)
         }
         else {
             $video = vdo_retrieve_id($title);
-
             if ($video == null) {
                 return "404. Video not found.";
             }
         }
-    } else {
+    }
+    else {
         $video = $id;
     }
 
-    // Initialize $otp_post_array, to be sent as part of OTP request, as false
-    $otp_post_array = false;
+    // Initialize $otp_post_array, to be sent as part of OTP request, as for time-to-live 300
+    $otp_post_array = array("ttl" => 300);
     if (!function_exists("eval_date")) {
         function eval_date($matches)
         {
@@ -155,14 +133,10 @@ function vdo_shortcode($atts)
         $vdo_annotate_code = apply_filters('vdocipher_annotate_postprocess', $vdo_annotate_code);
         // Add annotate code to $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
         if (!$no_annotate) {
-            // $otp_post_array = array("annotate" => $vdo_annotate_code);
             $otp_post_array["annotate"] = $vdo_annotate_code;
         }
     }
-    // Set time-to-live to 300s in $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
-    $otp_post_array["ttl"] = 300;
-    $otp_post_json = json_encode($otp_post_array);
-    $OTP_Response = vdo_otp($video, $otp_post_json);
+    $OTP_Response = vdo_otp($video, $otp_post_array);
     $OTP = $OTP_Response->otp;
     $playbackInfo = $OTP_Response->playbackInfo;
 
