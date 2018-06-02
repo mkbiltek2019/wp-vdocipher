@@ -119,8 +119,6 @@ function vdo_shortcode($atts)
     if (get_option('vdo_annotate_code') != "") {
         $current_user = wp_get_current_user();
         $vdo_annotate_code = get_option('vdo_annotate_code');
-        // The filter vdocipher_annotate_preprocess has not been added anywhere, and can be removed.
-        $vdo_annotate_code = apply_filters('vdocipher_annotate_preprocess', $vdo_annotate_code);
         if (is_user_logged_in()) {
             $vdo_annotate_code = str_replace('{name}', $current_user->display_name, $vdo_annotate_code);
             $vdo_annotate_code = str_replace('{email}', $current_user->user_email, $vdo_annotate_code);
@@ -129,18 +127,16 @@ function vdo_shortcode($atts)
         }
         $vdo_annotate_code = str_replace('{ip}', $_SERVER['REMOTE_ADDR'], $vdo_annotate_code);
         $vdo_annotate_code = preg_replace_callback('/\{date\.([^\}]+)\}/', "eval_date", $vdo_annotate_code);
-        // The filter vdocipher_annotate_postprocess has not been added anywhere, and can be removed.
-        $vdo_annotate_code = apply_filters('vdocipher_annotate_postprocess', $vdo_annotate_code);
         // Add annotate code to $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
         if (!$no_annotate) {
             $otp_post_array["annotate"] = $vdo_annotate_code;
         }
     }
+    // OTP is requested via vdo_otp function
     $OTP_Response = vdo_otp($video, $otp_post_array);
     $OTP = $OTP_Response->otp;
     $playbackInfo = $OTP_Response->playbackInfo;
 
-    return "<div>$OTP</div><div>$playbackInfo</div>";
     if (is_null($OTP)) {
 
         $output = "<span id='vdo$OTP' style='background:#555555;color:#FFFFFF'><h4>Video not found</h4></span>";
@@ -152,16 +148,14 @@ function vdo_shortcode($atts)
     if (isset($atts['version'])) {
         $version = $atts['version'];
     }
-    // Version, legacy, for flash only
 
-    // Video Embed version is updated, starts
+    // Video Embed version is updated
     if ((get_option('vdo_embed_version')) == false) {
         update_option('vdo_embed_version', '1.6.4');
     }
     $vdo_embed_version_str = get_option('vdo_embed_version');
-    // Video embed version, ends
 
-    // Video Player theme, update and as shortcode attribute, starts
+    // Video Player theme, update and as shortcode attribute
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
@@ -171,9 +165,8 @@ function vdo_shortcode($atts)
     else {
         $vdo_player_theme = $vdo_theme;
     }
-    // Video player theme ends
 
-    // tech override custom names start
+    // tech override custom names
     switch ($player_tech) {
         case "flash":
             $player_tech = "*,-dash";
@@ -193,7 +186,6 @@ function vdo_shortcode($atts)
         default:
             break;
     }
-    // tech override ends
 
     // Old Embed Code
     if ($vdo_embed_version_str === '0.5') {
@@ -225,8 +217,6 @@ function vdo_shortcode($atts)
         $output .= "/vdo.js','vdo');";
         $output .= "vdo.add({";
         $output .= "otp: '$OTP',";
-//        $output .= "playbackInfo: btoa(JSON.stringify({";
-//        $output .= "videoId: '$video'})),";
         $output .= "playbackInfo: '$playbackInfo',";
         $output .= "theme: '$vdo_player_theme',";
         if ($player_tech !== '') {
@@ -310,13 +300,11 @@ function register_vdo_settings()
 }
 // add the menu item and register settings (3 functions), ends
 
-// section for client key for new users, starts
+// section for client key for new users
 function vdo_show_form_client_key()
 {
     include('include/setting_form.php');
 }
-// section for client key, ends
-
 
 // Activation Hook starts
 function vdo_activate()
@@ -339,7 +327,6 @@ function vdo_activate()
     }
 }
 register_activation_hook(__FILE__, 'vdo_activate');
-// Activation Hook ends
 
 // Deactivation Hook starts
 function vdo_deactivate()
@@ -353,7 +340,6 @@ function vdo_deactivate()
     delete_option('vdo_watermark_flash_html');
 }
 register_deactivation_hook(__FILE__, 'vdo_deactivate');
-// Deactivation Hook ends
 
 // Admin notice to configure plugin for new installs, starts
 function vdo_admin_notice()
@@ -372,4 +358,3 @@ function vdo_admin_notice()
     }
 }
 add_action('admin_notices', 'vdo_admin_notice');
-// Admin notice to configure plugin for new installs, ends
