@@ -47,7 +47,7 @@ function vdo_retrieve_id($title) {
 // Function called to retrieve id for when title given, ends
 
 // Function called to get OTP, starts
-function vdo_otp($video, $otp_post_array) {
+function vdo_otp($video, $otp_post_array = array()) {
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
         return "Plugin not configured. Please set the key to embed videos.";
