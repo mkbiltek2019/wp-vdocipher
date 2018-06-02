@@ -39,6 +39,7 @@ function vdo_send($action, $params, $posts = array())
     return $response['body'];
 }
 
+// Function called to retrieve id for when title given, starts
 function vdo_retrieve_id($title) {
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
@@ -54,14 +55,21 @@ function vdo_retrieve_id($title) {
         'method'    =>  'GET',
         'headers'   =>  $headers
     ));
+    if (is_wp_error($response)) {
+        $error_message = $response->get_error_message();
+        echo "VdoCipher: Something went wrong: $error_message";
+        return "";
+    }
     $video_json_response = $response['body'];
     $video_list_object = json_decode($video_json_response);
-    $video_list = $video_list_object->{'rows'};
+    $video_list = $video_list_object->rows;
     $video_object = $video_list[0];
-    $video_id = $video_object->{'id'};
+    $video_id = $video_object->id;
     return $video_id;
 }
+// Function called to retrieve id for when title given, ends
 
+// Function called to get OTP, starts
 function vdo_otp($video, $otp_post_json) {
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
@@ -78,9 +86,17 @@ function vdo_otp($video, $otp_post_json) {
         'headers'   =>  $headers,
         'body'      =>  $otp_post_json
     ));
-    return $response['body'];
+    if (is_wp_error($response)) {
+        $error_message = $response->get_error_message();
+        echo "VdoCipher: Something went wrong: $error_message";
+        return "";
+    }
+    $OTP_Response =  $response['body'];
+    return json_decode($OTP_Response);
 }
+// Function called to get OTP, ends
 
+// VdoCipher Shortcode starts
 function vdo_shortcode($atts)
 {
     extract(shortcode_atts(
@@ -103,32 +119,18 @@ function vdo_shortcode($atts)
         if (!$atts['title']) {
             return "Required argument id for embedded video not found.";
         }
-        $video = vdo_retrieve_id($title);
-        return "<div>$video</div>";
-        // $params = array(
-                // 'search'=>array(
-                    // 'title'=>$title
-                    // ),
-                // 'page'=>1,
-                // 'limit'=>30,
-                // 'type'=>'json'
-                // );
-        // $video = vdo_send("videos", $params);
+        else {
+            $video = vdo_retrieve_id($title);
 
-        if ($video == null) {
-            return "404. Video not found.";
+            if ($video == null) {
+                return "404. Video not found.";
+            }
         }
-        // $video = $video[0]->id;
-        // if ($video == null) {
-            // return "No video with given title found.";
-        // }
     } else {
         $video = $id;
     }
 
-    // $params = array(
-    //     'video'=>$video
-    // );
+    // Initialize $otp_post_array, to be sent as part of OTP request, as false
     $otp_post_array = false;
     if (!function_exists("eval_date")) {
         function eval_date($matches)
@@ -139,6 +141,7 @@ function vdo_shortcode($atts)
     if (get_option('vdo_annotate_code') != "") {
         $current_user = wp_get_current_user();
         $vdo_annotate_code = get_option('vdo_annotate_code');
+        // The filter vdocipher_annotate_preprocess has not been added anywhere, and can be removed.
         $vdo_annotate_code = apply_filters('vdocipher_annotate_preprocess', $vdo_annotate_code);
         if (is_user_logged_in()) {
             $vdo_annotate_code = str_replace('{name}', $current_user->display_name, $vdo_annotate_code);
@@ -148,42 +151,53 @@ function vdo_shortcode($atts)
         }
         $vdo_annotate_code = str_replace('{ip}', $_SERVER['REMOTE_ADDR'], $vdo_annotate_code);
         $vdo_annotate_code = preg_replace_callback('/\{date\.([^\}]+)\}/', "eval_date", $vdo_annotate_code);
+        // The filter vdocipher_annotate_postprocess has not been added anywhere, and can be removed.
         $vdo_annotate_code = apply_filters('vdocipher_annotate_postprocess', $vdo_annotate_code);
         // Add annotate code to $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
         if (!$no_annotate) {
-            $otp_post_array = array("annotate" => $vdo_annotate_code);
+            // $otp_post_array = array("annotate" => $vdo_annotate_code);
+            $otp_post_array["annotate"] = $vdo_annotate_code;
         }
     }
     // Set time-to-live to 300s in $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
     $otp_post_array["ttl"] = 300;
     $otp_post_json = json_encode($otp_post_array);
     $OTP_Response = vdo_otp($video, $otp_post_json);
-    $OTP_Response = json_decode($OTP_Response);
     $OTP = $OTP_Response->otp;
     $playbackInfo = $OTP_Response->playbackInfo;
+
+    return "<div>$OTP</div><div>$playbackInfo</div>";
     if (is_null($OTP)) {
 
         $output = "<span id='vdo$OTP' style='background:#555555;color:#FFFFFF'><h4>Video not found</h4></span>";
         return $output;
     }
 
+    // Version, legacy, for flash only
     $version = 0;
     if (isset($atts['version'])) {
         $version = $atts['version'];
     }
+    // Version, legacy, for flash only
+
+    // Video Embed version is updated, starts
     if ((get_option('vdo_embed_version')) == false) {
         update_option('vdo_embed_version', '1.6.4');
     }
+    $vdo_embed_version_str = get_option('vdo_embed_version');
+    // Video embed version, ends
+
+    // Video Player theme, update and as shortcode attribute, starts
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
-    $vdo_embed_version_str = get_option('vdo_embed_version');
     if(!$vdo_theme){
         $vdo_player_theme = get_option('vdo_player_theme');
     }
     else {
         $vdo_player_theme = $vdo_theme;
     }
+    // Video player theme ends
 
     // tech override custom names start
     switch ($player_tech) {
@@ -258,10 +272,10 @@ function vdo_shortcode($atts)
     }
     return $output;
 }
-
 add_shortcode('vdo', 'vdo_shortcode');
+// VdoCipher Shortcode ends
 
-/// adding the settings link
+// adding the Settings link, starts
 $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'vdo_settings_link');
 
@@ -271,16 +285,16 @@ function vdo_settings_link($links)
     array_unshift($links, $settings_link);
     return $links;
 }
+// adding the Settings link, ends
 
-/// add the menu item and register settings
+// add the menu item and register settings (3 functions), starts
 if (is_admin()) { // admin actions
     add_action('admin_menu', 'vdo_menu');
     add_action('admin_init', 'register_vdo_settings');
 } else {
       // non-admin enqueues, actions, and filters
 }
-function vdo_menu()
-{
+function vdo_menu() {
     add_menu_page(
         'VdoCipher Options',
         'VdoCipher',
@@ -290,6 +304,7 @@ function vdo_menu()
         plugin_dir_url(__FILE__).'images/logo.png'
     );
 }
+
 function vdo_options()
 {
     if (!get_option('vdo_default_height')) {
@@ -319,23 +334,17 @@ function register_vdo_settings()
     register_setting('vdo_option-group', 'vdo_player_theme');
     register_setting('vdo_option-group', 'vdo_watermark_flash_html');
 }
+// add the menu item and register settings (3 functions), ends
 
-/// adding a section for asking for the client key
+// section for client key for new users, starts
 function vdo_show_form_client_key()
 {
     include('include/setting_form.php');
 }
-register_deactivation_hook(__FILE__, 'vdo_deactivate');
-function vdo_deactivate()
-{
-    delete_option('vdo_client_key');
-    delete_option('vdo_default_width');
-    delete_option('vdo_default_height');
-    delete_option('vdo_annotate_code');
-    delete_option('vdo_embed_version');
-    delete_option('vdo_player_theme');
-    delete_option('vdo_watermark_flash_html');
-}
+// section for client key, ends
+
+
+// Activation Hook starts
 function vdo_activate()
 {
     if ((get_option('vdo_default_height')) == false) {
@@ -356,6 +365,23 @@ function vdo_activate()
     }
 }
 register_activation_hook(__FILE__, 'vdo_activate');
+// Activation Hook ends
+
+// Deactivation Hook starts
+function vdo_deactivate()
+{
+    delete_option('vdo_client_key');
+    delete_option('vdo_default_width');
+    delete_option('vdo_default_height');
+    delete_option('vdo_annotate_code');
+    delete_option('vdo_embed_version');
+    delete_option('vdo_player_theme');
+    delete_option('vdo_watermark_flash_html');
+}
+register_deactivation_hook(__FILE__, 'vdo_deactivate');
+// Deactivation Hook ends
+
+// Admin notice to configure plugin for new installs, starts
 function vdo_admin_notice()
 {
     if ((!get_option('vdo_client_key') || strlen(get_option('vdo_client_key')) != 64)
@@ -372,3 +398,4 @@ function vdo_admin_notice()
     }
 }
 add_action('admin_notices', 'vdo_admin_notice');
+// Admin notice to configure plugin for new installs, ends
