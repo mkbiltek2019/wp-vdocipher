@@ -105,6 +105,7 @@ do_settings_sections('vdo_option-group');
         <p class="description">
             Player theme is not available for old player version(0.5). The default theme will be applied for old player.
         </p>
+        <p>Customize your <a href="<?php menu_page_url( 'themesvdo', 'echo' ); ?> " >player theme here</a></p>
         </td>
         </tr>
         <!-- Player Theme Options end-->

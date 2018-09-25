@@ -267,6 +267,19 @@ function vdo_menu() {
         'vdo_options',
         plugin_dir_url(__FILE__).'images/logo.png'
     );
+    add_submenu_page(
+        // 'vdocipher', comment out null and uncomment this if you want this to show as submenu
+        null,
+        'Video Player Themes',
+        'CustomPlayer',
+        'manage_options',
+        'themesvdo',
+        'themesvdo'
+    );
+}
+
+function themesvdo() {
+    include('include/player_themes.php');
 }
 
 function vdo_options()
