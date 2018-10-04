@@ -203,7 +203,7 @@ function vdo_shortcode($atts)
     } else {
         //New embed code
         if ($player_tech === '') {
-            if (get_option(vdo_watermark_flash_html) === 'flash') {
+            if (get_option('vdo_watermark_flash_html') === 'flash') {
                 $player_tech = "*,-dash";
             }
         }
@@ -219,6 +219,7 @@ function vdo_shortcode($atts)
         $output .= "otp: '$OTP',";
         $output .= "playbackInfo: '$playbackInfo',";
         $output .= "theme: '$vdo_player_theme',";
+        $output .= "themeDebug: true,";
         if ($player_tech !== '') {
             $output .= "techoverride: [" ;
             $techarray = explode(',', $player_tech);
@@ -253,8 +254,8 @@ function vdo_settings_link($links)
 
 // add the menu item and register settings (3 functions), starts
 if (is_admin()) { // admin actions
-    add_action('admin_menu', 'vdo_menu');
     add_action('admin_init', 'register_vdo_settings');
+    add_action('admin_menu', 'vdo_menu');
 } else {
       // non-admin enqueues, actions, and filters
 }
@@ -310,6 +311,7 @@ function register_vdo_settings()
     register_setting('vdo_option-group', 'vdo_embed_version');
     register_setting('vdo_option-group', 'vdo_player_theme');
     register_setting('vdo_option-group', 'vdo_watermark_flash_html');
+    register_setting('vdo_custom_theme', 'vdo_player_theme_options');
 }
 // add the menu item and register settings (3 functions), ends
 
@@ -351,6 +353,7 @@ function vdo_deactivate()
     delete_option('vdo_embed_version');
     delete_option('vdo_player_theme');
     delete_option('vdo_watermark_flash_html');
+    delete_option('vdo_player_theme_options');
 }
 register_deactivation_hook(__FILE__, 'vdo_deactivate');
 
