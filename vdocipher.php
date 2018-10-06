@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: VdoCipher
- * Plugin URI: http://www.vdocipher.com
+ * Plugin URI: https://www.vdocipher.com
  * Description: Secured video hosting for wordpress
- * Version: 1.21
+ * Version: 1.22
  * Author: VdoCipher
- * Author URI: http://www.vdocipher.com
+ * Author URI: https://www.vdocipher.com
  * License: GPL2
  */
 
@@ -25,7 +25,7 @@ function vdo_send($action, $params, $posts = array())
 
     $getData = http_build_query($params);
     $posts["clientSecretKey"] = $client_key;
-    $url = "http://api.vdocipher.com/v2/$action/?$getData";
+    $url = "https://api.vdocipher.com/v2/$action/?$getData";
     $response = wp_safe_remote_post($url, array(
         'method'    =>  'POST',
         'body'      =>  $posts
