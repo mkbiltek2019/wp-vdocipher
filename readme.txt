@@ -128,10 +128,11 @@ Bug fixes
 == Upgrade Notice ==
 
 = 1.23 =
-* Added vdo_theme attribute to vdo shortcode
+* Added player themes page
 
 = 1.22 =
 * bug fixes and security updates
+* Added vdo_theme attribute to vdo shortcode
 
 = 1.21 =
 * HTML5 watermark for custom version 1.6.4
