@@ -131,7 +131,7 @@ Bug fixes
 * Added player themes page
 
 = 1.22 =
-* bug fixes and security updates
+* bug fixes and security update
 * Added vdo_theme attribute to vdo shortcode
 
 = 1.21 =

@@ -1,3 +1,4 @@
+(function(){
 var vdoWatermarkJson = document.getElementById('vdo_watermarkjson');
 var vdoValidator = document.getElementById('vdojsonvalidator');
 
@@ -28,3 +29,4 @@ function checkValidity(){
 vdoWatermarkJson.onkeyup = checkValidity;
 window.onload = checkValidity;
 
+}());

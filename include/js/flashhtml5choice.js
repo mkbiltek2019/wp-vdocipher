@@ -10,7 +10,7 @@
 
 // The file picks up most stuff from the DOM, except the selected and available
 // embed versions which are picked up from the DOM
-
+(function(){
 var vdoPlayerVersion = document.getElementById('vdo_embed_version');
 var vdoCustomVersion = document.getElementById('vdo_custom_version');
 var vdoWatermarkOption = document.getElementById('vdo_watermark_html_flash');
@@ -118,3 +118,4 @@ function hideVdoCustomVersion() {
   vdoCustomVersion.style.display = 'none';
   vdoCustomVersion.value = vdoPlayerVersion.value;
 }
+}());
