@@ -7,7 +7,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 }
 ?>
 <div class="wrap">
-<form method="post" action="options.php"> 
+<form method="post" action="options.php">
 <?php
 settings_fields('vdo_option-group');
 do_settings_sections('vdo_option-group');

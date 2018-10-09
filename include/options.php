@@ -99,12 +99,18 @@ do_settings_sections('vdo_option-group');
         <tr valign="top">
         <th scope="row">Player Theme</th>
         <td>
-            <input type="text" name="vdo_player_theme"
-          value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>" max-length = "32" style="width: 320px"
+        <div style="display:inline-flex; margin-bottom:10px;">
+        <input type="text" name="vdo_player_theme"
+          value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>" max-length = "32" style="width: 320px" disabled
         />
+        <p style="margin-left:20px; position: relative">
+        <span><a href="<?php menu_page_url( 'themesvdo', 1 ); ?> " >Select Custom Player Theme</a><br/>
+        </p>
+        </div>
         <p class="description">
             Player theme is not available for old player version(0.5). The default theme will be applied for old player.
         </p>
+
         </td>
         </tr>
         <!-- Player Theme Options end-->
@@ -114,10 +120,10 @@ do_settings_sections('vdo_option-group');
           <th scope="row"> Choice of Watermark </th>
           <td>
             <?php
-            if ((get_option(vdo_watermark_flash_html) == 'html5')) {
+            if ((get_option('vdo_watermark_flash_html') == 'html5')) {
                 $vdocheckedhtml5 = 'checked';
                 $vdocheckedflash = '';
-            } elseif ((get_option(vdo_watermark_flash_html) == 'flash')) {
+            } elseif ((get_option('vdo_watermark_flash_html') == 'flash')) {
                 $vdocheckedhtml5 = '';
                 $vdocheckedflash = 'checked';
             }
@@ -134,8 +140,6 @@ do_settings_sections('vdo_option-group');
           </td>
         </tr>
         <!-- Player Watermark option - Flash/ HTML5 ends -->
-
-
         <tr valign="top">
         <th scope="row">Annotation Statement</th>
         <td>

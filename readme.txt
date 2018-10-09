@@ -63,6 +63,9 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 == Changelog ==
 
 = 1.23 =
+* Added player themes page
+
+= 1.22 =
 * Added vdo_theme attribute to vdo shortcode
 
 = 1.21 =
