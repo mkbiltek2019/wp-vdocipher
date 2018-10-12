@@ -1,62 +1,100 @@
 <?php
 ?>
-
+<style>
+@media screen and (min-width: 1200px){
+  .theme-select {
+    width: 32.7%;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1200px){
+  .theme-select {
+    width: 48.5%;
+  }
+}
+@media screen and (max-width: 700px){
+  .theme-select {
+    width: 98%;
+  }
+}
+.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.img-flex {
+  display: flex;
+  cursor: pointer;
+  align-items: baseline;
+  height: auto;
+}
+.img-flex img {
+  margin: auto;
+}
+.text-flex {
+  margin:20px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.text-flex button {
+  display: inline-block;
+}
+</style>
 <div style="padding-top: 10px;">
   <h1>Select a player theme </h1>
 </div>
-<div id="available_themes" style="display: flex; flex-wrap: wrap; justify-content: space-between; ">
-  <div id="default1" style="width:32.7%">
-    <div style = "display: flex; cursor: pointer; align-items: baseline; height: auto;">
-      <img id="default1-image" src="<?php echo plugin_dir_url(__FILE__).'img/default1.png' ?>" alt="VdoCipher Default player" width="100%" style="margin:auto;">
+<div id="available_themes" class="display-flex">
+  <div id="default1" class="theme-select">
+    <div class="img-flex">
+      <img id="default1-image" src="<?php echo plugin_dir_url(__FILE__).'img/default1.png' ?>" alt="VdoCipher Default player" width="100%">
     </div>
-    <div style="margin:20px 10px; display: flex; justify-content: space-between;">
-      <div>Theme ID: <span id="default1-id">1e0143ace9054f6cb638caf349b2b43f</span> </div>
-      <button id="default1-btn" style="display: inline-block;">Select</button>
-    </div>
-  </div>
-  <div id="default2" style="width: 32.7%">
-    <div style = "display: flex; cursor: pointer; align-items: baseline; height: auto;">
-      <img id="default2-image" src="<?php echo plugin_dir_url(__FILE__).'img/default2.png' ?>" alt="VdoCipher Default player" width="100%" style="margin:auto;">
-    </div>
-    <div style="margin:20px 10px; display: flex; justify-content: space-between;">
-      <div>Theme ID: <span id="default2-id">5962d374450d4ca3a152e318af41aa89</span> </div>
-      <button id="default2-btn" style="display: inline-block;">Select</button>
+    <div class="text-flex">
+      <div>Theme ID: <span id="default1-id">9ae8bbe8dd964ddc9bdb932cca1cb59a</span> </div>
+      <button id="default1-btn">Select</button>
     </div>
   </div>
-  <div id="default3" style="width: 32.7%">
-    <div style = "display: flex; cursor: pointer; align-items: baseline; height: auto;">
-      <img id="default3-image" src="<?php echo plugin_dir_url(__FILE__).'img/default3.png' ?>" alt="VdoCipher Default player" width="100%" style="margin:auto;">
+  <div id="default2" class="theme-select">
+    <div class="img-flex">
+      <img id="default2-image" src="<?php echo plugin_dir_url(__FILE__).'img/default2.png' ?>" alt="VdoCipher Default player" width="100%">
     </div>
-    <div style="margin:20px 10px; display: flex; justify-content: space-between;">
-      <div>Theme ID: <span id="default3-id">arsenal</span> </div>
-      <button id="default3-btn" style="display: inline-block;">Select</button>
-    </div>
-  </div>
-  <div id="color1" style="width: 32.7%">
-    <div style = "display: flex; cursor: pointer; align-items: baseline; height: auto;">
-      <img id="color1-image" src="<?php echo plugin_dir_url(__FILE__).'img/color1.png' ?>" alt="VdoCipher Default player" width="100%" style="margin:auto;">
-    </div>
-    <div style="margin:20px 10px; display: flex; justify-content: space-between;">
-      <div>Theme ID: <span id="color1-id">chelsea</span> </div>
-      <button id="color1-btn" style="display: inline-block;">Select</button>
+    <div class="text-flex">
+      <div>Theme ID: <span id="default2-id">b5e5a9020189409db6b7ecb2f762de45</span> </div>
+      <button id="default2-btn">Select</button>
     </div>
   </div>
-  <div id="color2" style="width: 32.7%">
-    <div style = "display: flex; cursor: pointer; align-items: baseline; height: auto;">
-      <img id="color2-image" src="<?php echo plugin_dir_url(__FILE__).'img/color2.png' ?>" alt="VdoCipher Default player" width="100%" style="margin:auto;">
+  <div id="default3" class="theme-select">
+    <div class="img-flex">
+      <img id="default3-image" src="<?php echo plugin_dir_url(__FILE__).'img/default3.png' ?>" alt="VdoCipher Default player" width="100%">
     </div>
-    <div style="margin:20px 10px; display: flex; justify-content: space-between;">
-      <div>Theme ID: <span id="color2-id">mancity</span> </div>
-      <button id="color2-btn" style="display: inline-block;">Select</button>
+    <div class="text-flex">
+      <div>Theme ID: <span id="default3-id">b9671d45d2d84c37b2d602940d340a00</span> </div>
+      <button id="default3-btn">Select</button>
     </div>
   </div>
-  <div id="color3" style="width: 32.7%">
-    <div style = "display: flex; cursor: pointer; align-items: baseline; height: auto;">
-      <img id="color3-image" src="<?php echo plugin_dir_url(__FILE__).'img/color3.png' ?>" alt="VdoCipher Default player" width="100%" style="margin:auto;">
+  <div id="color1" class="theme-select">
+    <div class="img-flex">
+      <img id="color1-image" src="<?php echo plugin_dir_url(__FILE__).'img/color1.png' ?>" alt="VdoCipher Default player" width="100%">
     </div>
-    <div style="margin:20px 10px; display: flex; justify-content: space-between;">
-      <div>Theme ID: <span id="color3-id">manutd</span> </div>
-      <button id="color3-btn" style="display: inline-block;">Select</button>
+    <div class="text-flex">
+      <div>Theme ID: <span id="color1-id">e2dbde7971d145cd9a3bc0271b75b0a5</span> </div>
+      <button id="color1-btn">Select</button>
+    </div>
+  </div>
+  <div id="color2" class="theme-select">
+    <div class="img-flex">
+      <img id="color2-image" src="<?php echo plugin_dir_url(__FILE__).'img/color2.png' ?>" alt="VdoCipher Default player" width="100%">
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="color2-id">7ccc1ba5a4814477b342927037003f12</span> </div>
+      <button id="color2-btn">Select</button>
+    </div>
+  </div>
+  <div id="color3" class="theme-select">
+    <div class="img-flex">
+      <img id="color3-image" src="<?php echo plugin_dir_url(__FILE__).'img/color3.png' ?>" alt="VdoCipher Default player" width="100%">
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="color3-id">3d115cb024bf422586bf4c17dbd831d5</span> </div>
+      <button id="color3-btn">Select</button>
     </div>
   </div>
 </div>

@@ -219,7 +219,6 @@ function vdo_shortcode($atts)
         $output .= "otp: '$OTP',";
         $output .= "playbackInfo: '$playbackInfo',";
         $output .= "theme: '$vdo_player_theme',";
-        $output .= "themeDebug: true,";
         if ($player_tech !== '') {
             $output .= "techoverride: [" ;
             $techarray = explode(',', $player_tech);
@@ -269,7 +268,6 @@ function vdo_menu() {
         plugin_dir_url(__FILE__).'images/logo.png'
     );
     add_submenu_page(
-        // 'vdocipher', comment out null and uncomment this if you want this to show as submenu
         null,
         'Video Player Themes',
         'CustomPlayer',
