@@ -5,37 +5,38 @@
 
   var currentState;
   window.onload = function(e){
-    toggleVisibility();
+    toggleSpanVis();
   }
   toggleKey.addEventListener('click', function(e){
     e.preventDefault();
-    toggleVisibility();
+    toggleSpanVis();
+    toggleVisibility(e);
   });
-
   inputField.addEventListener('keyup', function(e){
+    toggleSpanVis();
+  });
+  function toggleSpanVis(){
     if (inputField.value == false) {
       toggleSpan.style.display = 'none';
+      toggleKey.setAttribute('data-protected', 'On');
+      toggleKey.innerHTML = 'Show API Secret Key';
+      inputField.type='password';
     }
     else {
       toggleSpan.style.display = 'inline-block';
     }
-  });
-
-  function toggleVisibility(){
-    currentState = toggleKey.getAttribute('data-visible');
-    if (inputField.value == false) {
-      toggleSpan.style.display = 'none';
-    }
+  }
+  function toggleVisibility(e){
+    currentState = e.target.getAttribute('data-protected');
     if (currentState == 'On'){
-      toggleKey.innerHTML = 'Hide API Secret Key';
-      toggleKey.setAttribute('data-visible', 'Off');
+      e.target.setAttribute('data-protected', 'Off');
+      e.target.innerHTML = 'Hide API Secret Key';
       inputField.type='text';
     }
     else {
-      toggleKey.innerHTML = 'Show API Secret Key';
-      toggleKey.setAttribute('data-visible', 'On');
+      e.target.setAttribute('data-protected', 'On');
+      e.target.innerHTML = 'Show API Secret Key';
       inputField.type='password';
     }
   }
-
 }());

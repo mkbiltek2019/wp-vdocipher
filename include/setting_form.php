@@ -23,7 +23,7 @@ do_settings_sections('vdo_option-group');
                   value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
                   type="password">
                   <p style="margin-left:20px; position: relative">
-                      <span id="toggle_span" style="display:none"><button id="toggle_API_visibility" href="#" data-visible="Off"></button></span>
+                      <span id="toggle_span" style="display:none"><button id="toggle_API_visibility" href="#" data-protected="On"></button></span>
                   </p>
                 </div>
             </td>

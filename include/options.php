@@ -27,7 +27,7 @@ do_settings_sections('vdo_option-group');
           value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
           max-length="64" style="width: 640px" id="vdo_client_key" />
                 <p style="margin-left:20px; position: relative">
-                    <span id="toggle_span"><button id="toggle_API_visibility" href="#" data-visible="Off">Show API Secret Key</button></span>
+                    <span id="toggle_span"><button id="toggle_API_visibility" href="#" data-protected="On">Show API Secret Key</button></span>
                 </p>
             </div>
         </td>
