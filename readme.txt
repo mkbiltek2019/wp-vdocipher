@@ -2,7 +2,7 @@
 Contributors: vibhavsinha, milangupta4
 Tags: video, DRM, video plugin, sell video, e-learning, movie
 Requires at least: 3.5.1
-Tested up to: 4.9.6
+Tested up to: 4.9.8
 Stable tag: 1.23
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -23,7 +23,7 @@ VdoCipher is the perfect choice for premium video content, such as lecture video
 It would take you at most 10 minutes to signing up on [VdoCipher](http://www.vdocipher.com) and install the video plugin. You can embed videos to your website using a one-line shortcode.
 
 = Getting started =
-To get started, you should create an account on [VdoCipher](https://www.vdocipher.com). You will then receive a client_secret_key by email. You will need this client_secret_key to use the video plugin. You can upload vidoes to the VdoCipher dashboard, or import directly from URL or Dropbox.
+To get started, you should create an account on [VdoCipher](https://www.vdocipher.com). You will then find an API secret key in the Config section of the dashboard. You will need this API secret key to use the video plugin. You can upload vidoes to the VdoCipher dashboard, or import directly from URL or Dropbox.
 
 = Multi-Bitrate Video Streaming =
 With VdoCipher video plugin your users get the choice to watch low bitrate videos to optimize their data usage. Our encoding optimizations ensure that videos use the lowest bandwidth for high quality videos.
@@ -33,10 +33,14 @@ With VdoCipher video plugin your users get the choice to watch low bitrate video
 = Requirements =
 php5-curl need to be installed on the server for this plugin to work.
 
+= Choose from different video player themes =
+You can add your own custom-made player skin on top of our video player. The themes gallery in the plugin enables you to change player skin and color.
+
 = Additional Resources =
 [VdoCipher's video encryption technology](https://www.vdocipher.com/blog/2016/08/encrypted-video-streaming-vdocipher-technology-details/)
 [VdoCipher's complete feature set](https://www.vdocipher.com/blog/2016/12/video-hosting-for-business/)
 [Watermarking with the WordPress video plugin](https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/)
+[Choose Custom Player Theme](https://www.vdocipher.com/blog/2018/10/wordpress-custom-player-themes/)
 
 == Installation ==
 1. Activate the "VdoCipher" plugin .
@@ -55,10 +59,11 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 
 == Screenshots ==
 
-1. The setting screen to to enter the API key.
-2. The options page
-3. Using the shortcode to embed a video
-4. Video playing inside a post.
+1. Select from different player themes
+2. The setting screen to to enter the API key.
+3. The options page
+4. Using the shortcode to embed a video
+5. Video playing inside a post.
 
 == Changelog ==
 

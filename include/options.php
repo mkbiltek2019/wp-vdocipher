@@ -20,7 +20,7 @@ do_settings_sections('vdo_option-group');
     </div>
     <table class="form-table">
         <tr valign="top">
-        <th scope="row">Client Secret Key</th>
+        <th scope="row">API Secret Key</th>
         <td><input type="text" name="vdo_client_key"
           value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
           max-length="64" style="width: 640px" id="vdo_client_key" /></td>

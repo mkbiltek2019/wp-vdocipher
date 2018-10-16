@@ -12,7 +12,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 settings_fields('vdo_option-group');
 do_settings_sections('vdo_option-group');
 ?>
-    <h2>Please enter your VdoCipher CLIENT_SECRET_KEY</h2>
+    <h2>Please enter your VdoCipher API Secret Key</h2>
 
     <table class="form-table">
         <tbody><tr>
