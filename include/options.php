@@ -21,9 +21,16 @@ do_settings_sections('vdo_option-group');
     <table class="form-table">
         <tr valign="top">
         <th scope="row">API Secret Key</th>
-        <td><input type="text" name="vdo_client_key"
+        <td>
+            <div style="display: inline-flex;">
+                <input type="password" name="vdo_client_key"
           value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
-          max-length="64" style="width: 640px" id="vdo_client_key" /></td>
+          max-length="64" style="width: 640px" id="vdo_client_key" />
+                <p style="margin-left:20px; position: relative">
+                    <span id="toggle_span"><button id="toggle_API_visibility" href="#" data-visible="Off">Show API Secret Key</button></span>
+                </p>
+            </div>
+        </td>
         </tr>
 
         <tr valign="top">
@@ -176,6 +183,7 @@ do_settings_sections('vdo_option-group');
           'vdoWatermark' => $vdo_annotation_code
         ));
         wp_enqueue_script('vdo_html_flash_choice', plugin_dir_url(__FILE__).'js/flashhtml5choice.js');
+        wp_enqueue_script('vdo_hide_key', plugin_dir_url(__FILE__).'js/showkey.js');
         wp_localize_script('vdo_html_flash_choice', 'vdoVD', array(
           'vdoAV' => $vdo_embed_version_vars,
           'vdoSV' => $vdo_embed_version_str

@@ -16,15 +16,22 @@ do_settings_sections('vdo_option-group');
 
     <table class="form-table">
         <tbody><tr>
-            <td style="width: 160px;">VdoCipher secret key :</td>
+            <td style="width: 160px;">API Secret key :</td>
             <td>
-                <input name="vdo_client_key" style="width: 400px;"
+                <div style="display: inline-flex;">
+                <input id="vdo_client_key" name="vdo_client_key" style="width: 400px;"
                   value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
-                  type="text">
+                  type="password">
+                  <p style="margin-left:20px; position: relative">
+                      <span id="toggle_span" style="display:none"><button id="toggle_API_visibility" href="#" data-visible="Off"></button></span>
+                  </p>
+                </div>
             </td>
         </tr>
 
     </tbody></table>
+<?php wp_enqueue_script('vdo_hide_api_key', plugin_dir_url(__FILE__).'js/showkey.js');
+    ?>
 <?php submit_button(); ?>
 </form>
 </div>
