@@ -20,7 +20,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 function vdo_retrieve_id($title) {
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
-        return "Plugin not configured. Please set the key to embed videos.";
+        return "Plugin not configured. Please set the API key to embed videos.";
     }
     $url = "https://dev.vdocipher.com/api/videos?q=$title";
     $headers = array(
@@ -50,7 +50,7 @@ function vdo_retrieve_id($title) {
 function vdo_otp($video, $otp_post_array = array()) {
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
-        return "Plugin not configured. Please set the key to embed videos.";
+        return "Plugin not configured. Please set the API key to embed videos.";
     }
     $url = "https://dev.vdocipher.com/api/videos/$video/otp";
     $headers = array(

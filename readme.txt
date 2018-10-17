@@ -20,7 +20,7 @@ With VdoCipher's WordPress video plugin you get the highest protection from vide
 VdoCipher is the perfect choice for premium video content, such as lecture videos, music, and movies. VdoCipher WordPress video plugin seamlessly integrates with all popular WP membership plugins, including *Members*, *Restrict Content Pro*, *MemberPress* and *WP eMember*. The video plugin also works perfectly with top Learning Management systems such as *Sensei*, *LearnDash*, *WP CourseWare*, *LifterLMS* and *LearnPress*
 
 = Makes Embedding Secure Videos as Easy as Copying URLs =
-It would take you at most 10 minutes to signing up on [VdoCipher](http://www.vdocipher.com) and install the video plugin. You can embed videos to your website using a one-line shortcode.
+It would take you at most 10 minutes to signing up on [VdoCipher](https://www.vdocipher.com) and install the video plugin. You can embed videos to your website using a one-line shortcode.
 
 = Getting started =
 To get started, you should create an account on [VdoCipher](https://www.vdocipher.com). You will then find an API secret key in the Config section of the dashboard. You will need this API secret key to use the video plugin. You can upload vidoes to the VdoCipher dashboard, or import directly from URL or Dropbox.
@@ -40,7 +40,7 @@ You can add your own custom-made player skin on top of our video player. The the
 [VdoCipher's video encryption technology](https://www.vdocipher.com/blog/2016/08/encrypted-video-streaming-vdocipher-technology-details/)
 [VdoCipher's complete feature set](https://www.vdocipher.com/blog/2016/12/video-hosting-for-business/)
 [Watermarking with the WordPress video plugin](https://www.vdocipher.com/blog/2014/12/add-text-to-videos-with-watermark/)
-[Choose Custom Player Theme](https://www.vdocipher.com/blog/2018/10/wordpress-custom-player-themes/)
+[Choose from Custom Player Themes](https://www.vdocipher.com/blog/2018/10/video-player-themes/)
 
 == Installation ==
 1. Activate the "VdoCipher" plugin .
@@ -52,7 +52,7 @@ Your video plugin is ready to use. Inside a post or page you can write `[vdo id=
 To set width and height use, `[vdo id="id_of_video" width="300" and height="200"]`
 
 == Frequently Asked Questions ==
-Please refer to the [FAQ page on VdoCipher](http://www.vdocipher.com/page/faq)
+Please refer to the [FAQ page on VdoCipher](https://www.vdocipher.com/page/faq)
 
 = Is there a free trial? =
 On account creation, you shall be provided with 5GB of free trial bandwidth.
