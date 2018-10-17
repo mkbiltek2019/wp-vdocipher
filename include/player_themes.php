@@ -142,6 +142,6 @@
 <div>
   <h4><a href="<?php menu_page_url( 'vdocipher', 1 ); ?> ">Return to Settings Page </a></h4>
   <p>
-    For more details please visit this <a href="https://www.vdocipher.com/blog/2018/10/wordpress-custom-player-themes/" target="_blank">blogpost on Custom Themes</a>, or email us at <a href="mailto:support@vdocipher.com?Subject=Customize%20Video%20Player" target="_top">support@vdocipher.com</a>
+    For more details please visit this <a href="https://www.vdocipher.com/blog/2018/10/video-player-themes/" target="_blank">blogpost on Custom Themes</a>, or email us at <a href="mailto:support@vdocipher.com?Subject=Customize%20Video%20Player" target="_top">support@vdocipher.com</a>
   </p>
 </div>
