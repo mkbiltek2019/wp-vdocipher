@@ -2,8 +2,8 @@
 Contributors: vibhavsinha, milangupta4
 Tags: video, DRM, video plugin, sell video, e-learning, movie
 Requires at least: 3.5.1
-Tested up to: 4.9.8
-Stable tag: 1.23
+Tested up to: 5.0
+Stable tag: 1.24
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,9 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 5. Video playing inside a post.
 
 == Changelog ==
+
+= 1.24 =
+* Bug fixes
 
 = 1.23 =
 * Added player themes page
@@ -131,6 +134,9 @@ Bug fixes
 * A basic plugin which just makes it possible to embed vdocipher videos inside a wordpress plugin
 
 == Upgrade Notice ==
+
+= 1.24 =
+* Bug fixes
 
 = 1.23 =
 * Added player themes page
