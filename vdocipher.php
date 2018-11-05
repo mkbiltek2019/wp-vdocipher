@@ -119,6 +119,7 @@ function vdo_shortcode($atts)
     if (get_option('vdo_annotate_code') != "") {
         $current_user = wp_get_current_user();
         $vdo_annotate_code = get_option('vdo_annotate_code');
+        $vdo_annotate_code = apply_filters('vdocipher_annotate_preprocess', $vdo_annotate_code);
         if (is_user_logged_in()) {
             $vdo_annotate_code = str_replace('{name}', $current_user->display_name, $vdo_annotate_code);
             $vdo_annotate_code = str_replace('{email}', $current_user->user_email, $vdo_annotate_code);
@@ -127,6 +128,7 @@ function vdo_shortcode($atts)
         }
         $vdo_annotate_code = str_replace('{ip}', $_SERVER['REMOTE_ADDR'], $vdo_annotate_code);
         $vdo_annotate_code = preg_replace_callback('/\{date\.([^\}]+)\}/', "eval_date", $vdo_annotate_code);
+        $vdo_annotate_code = apply_filters('vdocipher_annotate_postprocess', $vdo_annotate_code);
         // Add annotate code to $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
         if (!$no_annotate) {
             $otp_post_array["annotate"] = $vdo_annotate_code;
