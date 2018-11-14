@@ -1,15 +1,14 @@
-// This file does 3 distinct but related things, all centered around
-// the user's player version.
-// First it enables users to add custom player version, separate from ones
-// specified in dropdown.
-// Secondly for users that choose player version >=1.5, if they are switching
+// 1. Enable users to add custom player version
+// 2. For users that choose player version >=1.5, if they are switching
 // from lower player version (< 1.5) to more than 1.5, height and width are
 // updated. If from heigher to lower again height/ width are updated as required
-// Thirdly, it enables HTML5 watermark for users with player version greater than
+// 3. Enables HTML5 watermark for users with player version greater than
 // 1.6
 
-// The file picks up most stuff from the DOM, except the selected and available
-// embed versions which are picked up from the DOM
+// The file picks up values for variables from DOM. The selected and available
+// embed versions which are enqueued from wp_localize_script function in
+// options.php
+
 (function(){
 var vdoPlayerVersion = document.getElementById('vdo_embed_version');
 var vdoCustomVersion = document.getElementById('vdo_custom_version');
