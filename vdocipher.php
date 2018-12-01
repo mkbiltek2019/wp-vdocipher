@@ -186,55 +186,29 @@ function vdo_shortcode($atts)
             $player_tech = "*,-hlse";
             break;
         default:
-            break;
-    }
-
-    // Old Embed Code
-    if ($vdo_embed_version_str === '0.5') {
-        $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
-        $output .= "<script> (function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
-            " (v[o].d=v[o].d||[]).push(a);};";
-        $output .= "if(!v[o].l) { v[o].l=1*new Date();a=i.createElement(d),m=i.getElementsByTagName(d)[0];a.async=1;".
-            "a.src=e; m.parentNode.insertBefore(a,m);}";
-        $output .= " })(window,document,'script','//de122v0opjemw.cloudfront.net/vdo.js','vdo'); vdo.add({ ";
-        $output .= "o: '$OTP', ";
-        if ($version == 32) {
-            $output .= "version: '$version' ";
-        }
-        $output .= "}); </script>";
-    } else {
-        //New embed code
-        if ($player_tech === '') {
             if (get_option('vdo_watermark_flash_html') === 'flash') {
                 $player_tech = "*,-dash";
-            }
-        }
+            };
+            break;
+    }
+    if ($vdo_embed_version_str === '0.5') {
+        $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
+        wp_enqueue_script('vdo_legacy_embed', plugin_dir_url(__FILE__).'include/js/legacyEmbed.js');
+        wp_localize_script('vdo_legacy_embed', 'vdoLES', array(
+          'vdoOTP' => $OTP,
+          'vdoVersion' => $version
+        ));
+    }
+    else {
         $output .= "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
-        $output .= "<script>(function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
-            "(v[o].d=v[o].d||[]).push(a);};";
-        $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0];";
-        $output .= "a.async=1; a.src=e; m.parentNode.insertBefore(a,m);}";
-        $output .= "})(window,document,'script','https://d1z78r8i505acl.cloudfront.net/playerAssets/";
-        $output .= "$vdo_embed_version_str";
-        $output .= "/vdo.js','vdo');";
-        $output .= "vdo.add({";
-        $output .= "otp: '$OTP',";
-        $output .= "playbackInfo: '$playbackInfo',";
-        $output .= "theme: '$vdo_player_theme',";
-        if ($player_tech !== '') {
-            $output .= "techoverride: [" ;
-            $techarray = explode(',', $player_tech);
-            for ($i = 0; $i < sizeof($techarray); $i++) {
-                $techStr = $techarray[$i];
-                $output .= "'$techStr'";
-                if ($i !== sizeof($techarray)-1) {
-                    $output .= ", ";
-                }
-            }
-            $output .= "],";
-        }
-        $output .= "container: document.querySelector('#vdo$OTP'),});";
-        $output .= "</script>";
+        wp_enqueue_script('vdo_embed', plugin_dir_url(__FILE__).'include/js/vdoEmbed.js');
+        wp_localize_script('vdo_embed', 'vdoES', array(
+          'vdoOTP' => $OTP,
+          'vdoPlaybackInfo' => $playbackInfo,
+          'vdoEmbedVersion' => $vdo_embed_version_str,
+          'vdoEmbedTheme' => $vdo_player_theme,
+          'vdoPlayerTech' => $player_tech
+        ));
     }
     return $output;
 }
