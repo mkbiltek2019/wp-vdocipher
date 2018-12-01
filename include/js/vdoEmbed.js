@@ -23,7 +23,6 @@
       container: document.querySelector('#vdo'+otp)
     });
   }
-  console.log('Techoverride: ' + techoverride);
   window.onload=vdoScript;
 }());
 
