@@ -24,7 +24,7 @@ var scssConfig = {
 
 module.exports = {
   context: __dirname,
-  devtool: debug ? 'inline-sourcemap' : null,
+  devtool: debug ? 'inline-sourcemap' : false,
   mode: debug ? 'development' : 'production',
   entry: './src/blocks.js',
   output: {
@@ -55,5 +55,5 @@ module.exports = {
     ]
   },
   plugins: plugins,
-  watch: debug === true ? true : false;
+  watch: debug
 }

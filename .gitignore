@@ -2,4 +2,3 @@
 include/.DS_Store
 include/block/dist/
 include/block/node_modules/
-include/block/package-lock.json
