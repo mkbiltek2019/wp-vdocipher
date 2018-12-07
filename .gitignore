@@ -1,3 +1,6 @@
 .DS_Store
 include/.DS_Store
 include/img/.DS_Store
+include/src/.DS_Store
+include/dist/
+include/node_modules
