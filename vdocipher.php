@@ -347,17 +347,17 @@ register_activation_hook(__FILE__, 'vdo_activate');
 function vdo_register_block() {
   wp_register_script(
     'vdo-block-script',
-    plugins_url('/include/dist/blocks.build.js', __FILE__),
+    plugins_url('/include/block/dist/blocks.build.js', __FILE__),
     array('wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n')
   );
   wp_register_style(
     'vdo-block-base-style',
-    plugins_url('/include/dist/blocks.style.build.css', __FILE__),
+    plugins_url('/include/block/dist/blocks.style.build.css', __FILE__),
     array('wp-blocks')
   );
   wp_register_style(
     'vdo-block-editor-style',
-    plugins_url('/include/dist/blocks.editor.build.css', __FILE__),
+    plugins_url('/include/block/dist/blocks.editor.build.css', __FILE__),
     array('wp-edit-blocks')
   );
   register_block_type(
