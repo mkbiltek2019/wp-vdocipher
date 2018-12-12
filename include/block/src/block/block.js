@@ -1,9 +1,6 @@
 import './style.scss';
 import './editor.scss';
-// import { VdoEmbed } from './components/VdoEmbed';
-
 const { __ } = wp.i18n;
-// const { RichText, MediaUpload, PlainText } = wp.editor;
 const { registerBlockType } = wp.blocks;
 const { Component } = wp.element;
 const { Button, TextControl } = wp.components;
@@ -40,12 +37,11 @@ registerBlockType( 'vdo/block', {
          value={vid}
          onChange = {onVIDChange}
          />
-        <button style={{display: "inlineBlock"}} className="vdo-preview">Preview</button>
       </div>
     );
    },
 
-   save({ attributes, setAttributes }){
+   save({ attributes }){
     return (
         <p>[vdo id="{attributes.vid}"]</p>
     );

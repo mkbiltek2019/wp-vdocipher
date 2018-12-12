@@ -2,12 +2,10 @@
   "name": "vdocipher-block",
   "version": "0.5.0",
   "description": "Add VdoCipher videos to your website using blocks in WordPress 5.0 or with Gutenberg plugin",
-  "main": "index.js",
   "scripts": {
     "postinstall": "npm run build",
     "build": "NODE_ENV=production webpack",
-    "build:dev": "NODE_ENV=development webpack",
-    "start": "webpack-dev-server"
+    "build:dev": "NODE_ENV=development webpack"
   },
   "author": "VdoCipher",
   "license": "GPL-2.0",
