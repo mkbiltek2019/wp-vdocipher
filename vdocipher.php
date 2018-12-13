@@ -366,7 +366,8 @@ function vdo_register_block() {
         array(
           'editor_script'=>'vdo-block-script',
           'style'=>'vdo-block-base-style',
-          'editor-style'=>'vdo-block-editor-style'
+          'editor-style'=>'vdo-block-editor-style',
+          'render_callback'=>'vdo_shortcode'
         )
       );
   }

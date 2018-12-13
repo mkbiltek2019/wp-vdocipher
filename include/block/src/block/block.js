@@ -16,35 +16,33 @@ registerBlockType( 'vdo/block', {
      __('vdo'),
   ],
   attributes: {
-    vid: {
+    id: {
       type: 'string'
     },
   },
    edit: function(props) {
-
-    const { vid } = props.attributes;
-
-    function onVIDChange(vid){
-      props.setAttributes({vid});
+    const { id } = props.attributes;
+    function onIDChange(id){
+      props.setAttributes({id});
     }
 
     return (
       <div className={props.className}>
-        <h2> VdoCipher Embed</h2>
-        <span style={{marginBottom: 5}}>Video ID: </span>
+        <h3> VdoCipher Embed</h3>
+        <span>Video ID: </span>
         <TextControl
          id="vdo-id-input"
-         value={vid}
-         onChange = {onVIDChange}
+         value={id}
+         onChange = {onIDChange}
          />
       </div>
     );
    },
 
    save({ attributes }){
-    return (
-        <p>[vdo id="{attributes.vid}"]</p>
-    );
+    return null;
+    // return (
+    //     <p>[vdo id="{attributes.id}"]</p>
+    // );
    },
 });
-
