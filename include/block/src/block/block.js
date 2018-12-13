@@ -41,8 +41,5 @@ registerBlockType( 'vdo/block', {
 
    save({ attributes }){
     return null;
-    // return (
-    //     <p>[vdo id="{attributes.id}"]</p>
-    // );
    },
 });
