@@ -80,8 +80,8 @@ function vdo_shortcode($atts)
     $vdo_args = shortcode_atts(
         array(
             'title' => 'TITLE_OF_VIDEO',
-            'width' => get_option('vdo_default_width') . "px",
-            'height' => get_option('vdo_default_height') . "px",
+            'width' => get_option('vdo_default_width'),
+            'height' => get_option('vdo_default_height'),
             'id'    => 'id',
             'no_annotate'=> false,
             'version'=> 0,
@@ -97,22 +97,14 @@ function vdo_shortcode($atts)
     $version = $vdo_args['version'];
     $vdo_theme = $vdo_args['vdo_theme'];
     $player_tech = $vdo_args['player_tech'];
-    // extract(shortcode_atts(
-    //     array(
-    //                 'title' => 'TITLE_OF_VIDEO',
-    //                 'width' => get_option('vdo_default_width') . "px",
-    //                 'height' => get_option('vdo_default_height') . "px",
-    //                 'id'    => 'id',
-    //                 'no_annotate'=> false,
-    //                 'version'=> 0,
-    //                 'vdo_theme'=> false,
-    //                 'player_tech'=> ''
-    //                 ),
-    //     $atts
-    // ));
 
-    if ((get_option('vdo_default_height')) == 'auto') {
-        $height = 'auto';
+    if (!preg_match('/.*px$/', $width)){
+        $width = $width."px";
+    }
+    if (!preg_match('/.*px$/', $height)){
+        if ($height != 'auto'){
+            $height = $height."px";
+        }
     }
     if (!$atts['id']) {
         if (!$atts['title']) {
