@@ -86,6 +86,7 @@ function vdo_shortcode($atts)
             'no_annotate'=> false,
             'version'=> 0,
             'vdo_theme'=> false,
+            'vdo_version'=> false,
             'player_tech'=> ''
         ),$atts
     );
@@ -96,6 +97,7 @@ function vdo_shortcode($atts)
     $no_annotate = $vdo_args['no_annotate'];
     $version = $vdo_args['version'];
     $vdo_theme = $vdo_args['vdo_theme'];
+    $vdo_version = $vdo_args['vdo_version'];
     $player_tech = $vdo_args['player_tech'];
 
     if (!preg_match('/.*px$/', $width)){
@@ -164,17 +166,22 @@ function vdo_shortcode($atts)
         $version = $atts['version'];
     }
 
-    // Video Embed version is updated
+    // Video Embed version is retrieved from options table or from shortcode attribute
     if ((get_option('vdo_embed_version')) == false) {
         update_option('vdo_embed_version', '1.6.4');
     }
-    $vdo_embed_version_str = get_option('vdo_embed_version');
+    if (!$vdo_version){
+        $vdo_embed_version_str = get_option('vdo_embed_version');
+    }
+    else {
+        $vdo_embed_version_str = $vdo_version;
+    }
 
     // Video Player theme, update and as shortcode attribute
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
-    if(!$vdo_theme){
+    if (!$vdo_theme){
         $vdo_player_theme = get_option('vdo_player_theme');
     }
     else {

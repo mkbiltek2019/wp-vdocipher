@@ -62,9 +62,9 @@ do_settings_sections('vdo_option-group');
                 $vdo_embed_version_vars = array(
                     '0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.4'
                 );
-                $vdo_embed_version_str = get_option('vdo_embed_version');
+                $vdo_embed_version_string = get_option('vdo_embed_version');
                 foreach ($vdo_embed_version_vars as $vdo_embed_version_var) {
-                    if ($vdo_embed_version_str == $vdo_embed_version_var) {
+                    if ($vdo_embed_version_string == $vdo_embed_version_var) {
                         $selected = 'selected';
                     } else {
                         $selected = '';
@@ -186,7 +186,7 @@ do_settings_sections('vdo_option-group');
         wp_enqueue_script('vdo_hide_key', plugin_dir_url(__FILE__).'js/showkey.js');
         wp_localize_script('vdo_html_flash_choice', 'vdoVD', array(
           'vdoAV' => $vdo_embed_version_vars,
-          'vdoSV' => $vdo_embed_version_str
+          'vdoSV' => $vdo_embed_version_string
         ));
         ?>
 <?php submit_button(); ?>
