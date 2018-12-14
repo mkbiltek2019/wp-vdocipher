@@ -380,6 +380,27 @@ function vdo_register_block() {
           'editor_script'=>'vdo-block-script',
           'style'=>'vdo-block-base-style',
           'editor-style'=>'vdo-block-editor-style',
+          'attributes'=>array(
+            'id'=>array(
+                'type'=>'string',
+            ),
+            'width'=>array(
+                'type'=>'string',
+                'default'=>get_option('vdo_default_width')
+            ),
+            'height'=>array(
+                'type'=>'string',
+                'default'=>get_option('vdo_default_height')
+            ),
+            'vdo_theme'=>array(
+                'type'=>'string',
+                'default'=>get_option('vdo_player_theme')
+            ),
+            'vdo_version'=>array(
+                'type'=>'string',
+                'default'=>get_option('vdo_embed_version')
+            ),
+          ),
           'render_callback'=>'vdo_shortcode'
         )
       );

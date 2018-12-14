@@ -16,26 +16,9 @@ registerBlockType( 'vdo/block', {
      __('video embed' ),
      __('vdo'),
   ],
-  attributes: {
-    id: {
-      type: 'string'
-    },
-    width: {
-      type: 'string'
-    },
-    height: {
-      type: 'string'
-    },
-    vdo_theme: {
-      type: 'string'
-    },
-    playerVersion: {
-      type: 'string'
-    }
-  },
    edit: function(props) {
     const { focus, setAttributes } = props;
-    const { id, height, width, vdo_theme, playerVersion } = props.attributes;
+    const { id, height, width, vdo_theme, vdo_version } = props.attributes;
     function onIDChange(id){
       setAttributes({id});
     }
@@ -48,8 +31,8 @@ registerBlockType( 'vdo/block', {
     function onPlayerThemeChange(vdo_theme){
       setAttributes({vdo_theme});
     }
-    function onPlayerVersionChange(playerVersion){
-      setAttributes({playerVersion});
+    function onPlayerVersionChange(vdo_version){
+      setAttributes({vdo_version});
     }
     return (
       <div className={props.className}>
@@ -79,6 +62,15 @@ registerBlockType( 'vdo/block', {
                 label='Player Theme'
                 value={ vdo_theme }
                 onChange={ onPlayerThemeChange }
+              />
+            </PanelRow>
+          </PanelBody>
+          <PanelBody title="VdoPlayer Version">
+            <PanelRow>
+              <TextControl
+                label='Player Version'
+                value={ vdo_version }
+                onChange={ onPlayerVersionChange }
               />
             </PanelRow>
           </PanelBody>
