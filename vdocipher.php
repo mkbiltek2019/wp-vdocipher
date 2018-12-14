@@ -413,7 +413,6 @@ function vdo_register_block() {
       'render_callback'=>'vdo_shortcode'
     )
   );
-  }
 }
 
 add_action('init', 'vdo_register_block');
