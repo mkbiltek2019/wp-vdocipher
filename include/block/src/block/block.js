@@ -25,11 +25,17 @@ registerBlockType( 'vdo/block', {
     },
     height: {
       type: 'string'
+    },
+    vdo_theme: {
+      type: 'string'
+    },
+    playerVersion: {
+      type: 'string'
     }
   },
    edit: function(props) {
     const { focus, setAttributes } = props;
-    const { id, height, width } = props.attributes;
+    const { id, height, width, vdo_theme, playerVersion } = props.attributes;
     function onIDChange(id){
       setAttributes({id});
     }
@@ -38,6 +44,12 @@ registerBlockType( 'vdo/block', {
     }
     function onWidthChange(width){
       setAttributes({width});
+    }
+    function onPlayerThemeChange(vdo_theme){
+      setAttributes({vdo_theme});
+    }
+    function onPlayerVersionChange(playerVersion){
+      setAttributes({playerVersion});
     }
     return (
       <div className={props.className}>
@@ -55,6 +67,18 @@ registerBlockType( 'vdo/block', {
                 label='Player Height'
                 value={ height }
                 onChange={ onHeightChange }
+              />
+            </PanelRow>
+          </PanelBody>
+          <PanelBody title="Player Theme (Custom Skins)">
+            <PanelRow>
+              <p>Visit <a target="_blank" href="https://www.vdocipher.com/blog/2018/10/video-player-themes/">Custom Skins blog</a> to get themeID value</p>
+            </PanelRow>
+            <PanelRow>
+              <TextControl
+                label='Player Theme'
+                value={ vdo_theme }
+                onChange={ onPlayerThemeChange }
               />
             </PanelRow>
           </PanelBody>
