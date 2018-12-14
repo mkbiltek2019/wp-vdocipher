@@ -77,19 +77,40 @@ function vdo_otp($video, $otp_post_array = array()) {
 // VdoCipher Shortcode starts
 function vdo_shortcode($atts)
 {
-    extract(shortcode_atts(
+    $vdo_args = shortcode_atts(
         array(
-                    'title' => 'TITLE_OF_VIDEO',
-                    'width' => get_option('vdo_default_width') . "px",
-                    'height' => get_option('vdo_default_height') . "px",
-                    'id'    => 'id',
-                    'no_annotate'=> false,
-                    'version'=> 0,
-                    'vdo_theme'=> false,
-                    'player_tech'=> ''
-                    ),
-        $atts
-    ));
+            'title' => 'TITLE_OF_VIDEO',
+            'width' => get_option('vdo_default_width') . "px",
+            'height' => get_option('vdo_default_height') . "px",
+            'id'    => 'id',
+            'no_annotate'=> false,
+            'version'=> 0,
+            'vdo_theme'=> false,
+            'player_tech'=> ''
+        ),$atts
+    );
+    $title = $vdo_args['title'];
+    $width = $vdo_args['width'];
+    $height = $vdo_args['height'];
+    $id = $vdo_args['id'];
+    $no_annotate = $vdo_args['no_annotate'];
+    $version = $vdo_args['version'];
+    $vdo_theme = $vdo_args['vdo_theme'];
+    $player_tech = $vdo_args['player_tech'];
+    // extract(shortcode_atts(
+    //     array(
+    //                 'title' => 'TITLE_OF_VIDEO',
+    //                 'width' => get_option('vdo_default_width') . "px",
+    //                 'height' => get_option('vdo_default_height') . "px",
+    //                 'id'    => 'id',
+    //                 'no_annotate'=> false,
+    //                 'version'=> 0,
+    //                 'vdo_theme'=> false,
+    //                 'player_tech'=> ''
+    //                 ),
+    //     $atts
+    // ));
+
     if ((get_option('vdo_default_height')) == 'auto') {
         $height = 'auto';
     }
