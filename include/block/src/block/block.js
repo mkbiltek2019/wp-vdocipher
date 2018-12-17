@@ -1,5 +1,7 @@
 import './style.scss';
 import './editor.scss';
+import { vdoSVG } from './vdoIcon.js';
+
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { Component } = wp.element;
@@ -9,7 +11,7 @@ const { BlockControls, InspectorControls, RichText, AlignmentToolbar } = wp.edit
 registerBlockType( 'vdo/block', {
   title:  __('VdoCipher Embed video'),
   description: __('Embed videos from your VdoCipher account'),
-  icon: 'video-alt3',
+  icon: vdoSVG,
   category: 'embed',
   keywords: [
      __('vdocipher' ),
