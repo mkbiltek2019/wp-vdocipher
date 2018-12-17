@@ -5,7 +5,7 @@ export const vdoSVG = (
     xmlns="http://www.w3.org/2000/svg"
     width="1052.3625"
     height="744.09998"
-    viewBox="0 0 1052.3625 744.09998">
+    viewBox="60 80 876.968 620.083">
     <G
       transform="matrix(1.25,0,0,-1.25,0,744.1)">
       <G
