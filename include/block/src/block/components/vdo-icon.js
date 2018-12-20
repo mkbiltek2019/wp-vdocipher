@@ -1,6 +1,6 @@
 const { G, Path, SVG } = wp.components;
 
-export const vdoSVG = (
+export const VdoSVG = (
   <SVG
     xmlns="http://www.w3.org/2000/svg"
     width="1052.3625"
