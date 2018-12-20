@@ -97,6 +97,33 @@
       <button id="color3-btn">Select</button>
     </div>
   </div>
+  <div id="square1" class="theme-select">
+    <div class="img-flex">
+      <img id="square1-image" src="<?php echo plugin_dir_url(__FILE__).'img/square1.png' ?>" alt="VdoCipher Default player" width="100%">
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="square1-id"></span> </div>
+      <button id="square1-btn">Select</button>
+    </div>
+  </div>
+  <div id="square2" class="theme-select">
+    <div class="img-flex">
+      <img id="square2-image" src="<?php echo plugin_dir_url(__FILE__).'img/square2.png' ?>" alt="VdoCipher Default player" width="100%">
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="square2-id"></span> </div>
+      <button id="square2-btn">Select</button>
+    </div>
+  </div>
+  <div id="square3" class="theme-select">
+    <div class="img-flex">
+      <img id="square3-image" src="<?php echo plugin_dir_url(__FILE__).'img/square3.png' ?>" alt="VdoCipher Default player" width="100%">
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="square3-id"></span> </div>
+      <button id="square3-btn">Select</button>
+    </div>
+  </div>
 </div>
 <div>
 <form name="playerThemeForm" method="post" action="options.php">
