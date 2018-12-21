@@ -1,11 +1,10 @@
 /* global wp */
-const { _x } = wp.i18n;
-const { Button, Placeholder, TextControl } = wp.components;
+const { Placeholder, TextControl } = wp.components;
 const { BlockIcon } = wp.editor;
 import { VdoSVG } from './vdo-icon';
 
 export const VdoEmbed = ( props ) => {
-  const { id, onIDChange, onButtonClick } = props;
+  const { id, onIDChange } = props;
   return (
     <div>
       <Placeholder
@@ -19,12 +18,6 @@ export const VdoEmbed = ( props ) => {
           onChange={ onIDChange }
           className="components-placeholder__input"
         />
-        <Button
-          onClick={ onButtonClick }
-          isLarge
-          type="submit">
-          { _x( 'Embed', 'button label' ) }
-        </Button>
       </Placeholder>
     </div>
   );

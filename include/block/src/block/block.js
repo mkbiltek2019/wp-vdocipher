@@ -24,13 +24,6 @@ registerBlockType( 'vdo/block', {
     function onIDChange( id ) {
       setAttributes( { id } );
     }
-    // set Video id attribute (state) of edit component
-    function setVdoId( event ) {
-      if ( event ) {
-        event.preventDefault();
-      }
-      setAttributes( { id } );
-    }
     // set width attribute (state) of edit component
     function onWidthChange( width ) {
       setAttributes( { width } );
@@ -63,7 +56,6 @@ registerBlockType( 'vdo/block', {
         <VdoEmbed
           id={ id }
           onIDChange={ onIDChange }
-          onButtonClick={ setVdoId }
         />
       </div>
     );
