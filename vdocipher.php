@@ -392,8 +392,8 @@ function vdo_register_block()
         'vdo/block',
         array(
         'editor_script'=>'vdo-block-script',
+        'editor_style'=>'vdo-block-editor-style',
         'style'=>'vdo-block-base-style',
-        'editor-style'=>'vdo-block-editor-style',
         'attributes'=>array(
         'id'=>array(
             'type'=>'string',

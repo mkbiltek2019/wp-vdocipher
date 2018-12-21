@@ -1,7 +1,8 @@
 /* global wp */
-const { Placeholder, TextControl } = wp.components;
+const { Placeholder, TextControl, Dashicon } = wp.components;
 const { BlockIcon } = wp.editor;
 import { VdoSVG } from './vdo-icon';
+import '../editor.scss';
 
 export const VdoEmbed = ( props ) => {
   const { id, onIDChange } = props;
@@ -18,6 +19,7 @@ export const VdoEmbed = ( props ) => {
           onChange={ onIDChange }
           className="components-placeholder__input"
         />
+        <Dashicon icon="yes" size='36' className="dashicon dashicon-yes dashicon-green" />
       </Placeholder>
     </div>
   );
