@@ -17,7 +17,8 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 }
 
 // Function called to retrieve id for when title given, starts
-function vdo_retrieve_id($title) {
+function vdo_retrieve_id($title)
+{
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
         return "Plugin not configured. Please set the API key to embed videos.";
@@ -47,7 +48,8 @@ function vdo_retrieve_id($title) {
 // Function called to retrieve id for when title given, ends
 
 // Function called to get OTP, starts
-function vdo_otp($video, $otp_post_array = array()) {
+function vdo_otp($video, $otp_post_array = array())
+{
     $client_key = get_option('vdo_client_key');
     if ($client_key == false || $client_key == "") {
         return "Plugin not configured. Please set the API key to embed videos.";
@@ -59,11 +61,14 @@ function vdo_otp($video, $otp_post_array = array()) {
         'Accept'=>'application/json'
     );
     $otp_post_json = json_encode($otp_post_array);
-    $response = wp_remote_post($url, array(
-        'method'    =>  'POST',
-        'headers'   =>  $headers,
-        'body'      =>  $otp_post_json
-    ));
+    $response = wp_remote_post(
+        $url,
+        array(
+            'method'    =>  'POST',
+            'headers'   =>  $headers,
+            'body'      =>  $otp_post_json
+        )
+    );
     if (is_wp_error($response)) {
         $error_message = $response->get_error_message();
         echo "VdoCipher: Something went wrong: $error_message";
@@ -88,7 +93,8 @@ function vdo_shortcode($atts)
             'vdo_theme'=> false,
             'vdo_version'=> false,
             'player_tech'=> ''
-        ),$atts
+        ),
+        $atts
     );
     $title = $vdo_args['title'];
     $width = $vdo_args['width'];
@@ -100,26 +106,24 @@ function vdo_shortcode($atts)
     $vdo_version = $vdo_args['vdo_version'];
     $player_tech = $vdo_args['player_tech'];
 
-    if (!preg_match('/.*px$/', $width)){
+    if (!preg_match('/.*px$/', $width)) {
         $width = $width."px";
     }
-    if (!preg_match('/.*px$/', $height)){
-        if ($height != 'auto'){
+    if (!preg_match('/.*px$/', $height)) {
+        if ($height != 'auto') {
             $height = $height."px";
         }
     }
     if (!$atts['id']) {
         if (!$atts['title']) {
             return "Required argument id for embedded video not found.";
-        }
-        else {
+        } else {
             $video = vdo_retrieve_id($title);
             if ($video == null) {
                 return "404. Video not found.";
             }
         }
-    }
-    else {
+    } else {
         $video = $id;
     }
 
@@ -144,7 +148,8 @@ function vdo_shortcode($atts)
         $vdo_annotate_code = str_replace('{ip}', $_SERVER['REMOTE_ADDR'], $vdo_annotate_code);
         $vdo_annotate_code = preg_replace_callback('/\{date\.([^\}]+)\}/', "eval_date", $vdo_annotate_code);
         $vdo_annotate_code = apply_filters('vdocipher_annotate_postprocess', $vdo_annotate_code);
-        // Add annotate code to $otp_post_array, which will be converted to Json and then sent as POST body to API endpoint
+        // Add annotate code to $otp_post_array, which will be
+        // converted to Json and then sent as POST body to API endpoint
         if (!$no_annotate) {
             $otp_post_array["annotate"] = $vdo_annotate_code;
         }
@@ -155,7 +160,6 @@ function vdo_shortcode($atts)
     $playbackInfo = $OTP_Response->playbackInfo;
 
     if (is_null($OTP)) {
-
         $output = "<span id='vdo$OTP' style='background:#555555;color:#FFFFFF'><h4>Video not found</h4></span>";
         return $output;
     }
@@ -170,10 +174,9 @@ function vdo_shortcode($atts)
     if ((get_option('vdo_embed_version')) == false) {
         update_option('vdo_embed_version', '1.6.9');
     }
-    if (!$vdo_version){
+    if (!$vdo_version) {
         $vdo_embed_version_str = get_option('vdo_embed_version');
-    }
-    else {
+    } else {
         $vdo_embed_version_str = $vdo_version;
     }
 
@@ -181,10 +184,9 @@ function vdo_shortcode($atts)
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
-    if (!$vdo_theme){
+    if (!$vdo_theme) {
         $vdo_player_theme = get_option('vdo_player_theme');
-    }
-    else {
+    } else {
         $vdo_player_theme = $vdo_theme;
     }
 
@@ -280,7 +282,8 @@ if (is_admin()) { // admin actions
 } else {
       // non-admin enqueues, actions, and filters
 }
-function vdo_menu() {
+function vdo_menu()
+{
     add_menu_page(
         'VdoCipher Options',
         'VdoCipher',
@@ -299,7 +302,8 @@ function vdo_menu() {
     );
 }
 
-function themesvdo() {
+function themesvdo()
+{
     include('include/player_themes.php');
 }
 
@@ -364,32 +368,33 @@ function vdo_activate()
 register_activation_hook(__FILE__, 'vdo_activate');
 
 // Registering and specifying Gutenberg block
-function vdo_register_block() {
-  if ( !function_exists( 'register_block_type' ) ) {
-    return ;
-  }
-  wp_register_script(
-    'vdo-block-script',
-    plugins_url('/include/block/dist/blocks.build.js', __FILE__),
-    array('wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n')
-  );
-  wp_register_style(
-    'vdo-block-base-style',
-    plugins_url('/include/block/dist/blocks.style.build.css', __FILE__),
-    array('wp-blocks')
-  );
-  wp_register_style(
-    'vdo-block-editor-style',
-    plugins_url('/include/block/dist/blocks.editor.build.css', __FILE__),
-    array('wp-edit-blocks')
-  );
-  register_block_type(
-    'vdo/block',
-    array(
-      'editor_script'=>'vdo-block-script',
-      'style'=>'vdo-block-base-style',
-      'editor-style'=>'vdo-block-editor-style',
-      'attributes'=>array(
+function vdo_register_block()
+{
+    if (!function_exists('register_block_type')) {
+        return ;
+    }
+    wp_register_script(
+        'vdo-block-script',
+        plugins_url('/include/block/dist/blocks.build.js', __FILE__),
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n')
+    );
+    wp_register_style(
+        'vdo-block-base-style',
+        plugins_url('/include/block/dist/blocks.style.build.css', __FILE__),
+        array('wp-blocks')
+    );
+    wp_register_style(
+        'vdo-block-editor-style',
+        plugins_url('/include/block/dist/blocks.editor.build.css', __FILE__),
+        array('wp-edit-blocks')
+    );
+    register_block_type(
+        'vdo/block',
+        array(
+        'editor_script'=>'vdo-block-script',
+        'style'=>'vdo-block-base-style',
+        'editor-style'=>'vdo-block-editor-style',
+        'attributes'=>array(
         'id'=>array(
             'type'=>'string',
         ),
@@ -409,10 +414,10 @@ function vdo_register_block() {
             'type'=>'string',
             'default'=>get_option('vdo_embed_version')
         ),
-      ),
-      'render_callback'=>'vdo_shortcode'
-    )
-  );
+        ),
+        'render_callback'=>'vdo_shortcode'
+        )
+    );
 }
 
 add_action('init', 'vdo_register_block');

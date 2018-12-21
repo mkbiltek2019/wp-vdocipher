@@ -23,7 +23,9 @@ do_settings_sections('vdo_option-group');
                   value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
                   type="password">
                   <p style="margin-left:20px; position: relative">
-                      <span id="toggle_span" style="display:none"><button id="toggle_API_visibility" href="#" data-protected="On"></button></span>
+                      <span id="toggle_span" style="display:none">
+                        <button id="toggle_API_visibility" href="#" data-protected="On"></button>
+                      </span>
                   </p>
                 </div>
             </td>
@@ -31,7 +33,7 @@ do_settings_sections('vdo_option-group');
 
     </tbody></table>
 <?php wp_enqueue_script('vdo_hide_api_key', plugin_dir_url(__FILE__).'js/showkey.js');
-    ?>
+?>
 <?php submit_button(); ?>
 </form>
 </div>
