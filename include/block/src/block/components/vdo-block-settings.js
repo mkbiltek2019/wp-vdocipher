@@ -1,6 +1,6 @@
-import { HeightWidthSetting } from './height-width.js';
-import { PlayerThemeSetting } from './player-theme.js';
-import { PlayerVersionSetting } from './player-version.js';
+import { HeightWidthSetting } from './height-width';
+import { PlayerThemeSetting } from './player-theme';
+import { PlayerVersionSetting } from './player-version';
 
 const { InspectorControls } = wp.editor;
 
@@ -25,6 +25,7 @@ export const VdoBlockSettings = (props) => {
           height={height}
           onHeightChange={onHeightChange}
           />
+        {/*
         <PlayerThemeSetting
           vdo_theme={vdo_theme}
           onPlayerThemeChange={onPlayerThemeChange}
@@ -33,6 +34,7 @@ export const VdoBlockSettings = (props) => {
           vdo_version={vdo_version}
           onPlayerVersionChange={onPlayerVersionChange}
           />
+          */}
       </InspectorControls>
     </div>
   );

@@ -1,8 +1,8 @@
 import './style.scss';
 import './editor.scss';
-import { VdoSVG } from './components/vdo-icon.js';
-import { VdoEmbed } from './components/vdo-embed.js';
-import { VdoBlockSettings } from './components/vdo-block-settings.js'
+import { VdoSVG } from './components/vdo-icon';
+import { VdoEmbed } from './components/vdo-embed';
+import { VdoBlockSettings } from './components/vdo-block-settings'
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
@@ -22,6 +22,12 @@ registerBlockType( 'vdo/block', {
     const { focus, setAttributes } = props;
     const { id, width, height, vdo_theme, vdo_version } = props.attributes;
     function onIDChange(id){
+      setAttributes({id});
+    }
+    function setVdoId(event) {
+      if ( event ) {
+        event.preventDefault();
+      }
       setAttributes({id});
     }
     function onWidthChange(width){
@@ -49,7 +55,11 @@ registerBlockType( 'vdo/block', {
           vdo_version={vdo_version}
           onPlayerVersionChange={onPlayerVersionChange}
         />
-        <VdoEmbed id={id} onIDChange={onIDChange} />
+        <VdoEmbed
+          id={id}
+          onIDChange={onIDChange}
+          onButtonClick={ setVdoId }
+        />
       </div>
     );
    },
