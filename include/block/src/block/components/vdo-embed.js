@@ -5,7 +5,7 @@ import { VdoSVG } from './vdo-icon';
 import '../editor.scss';
 
 export const VdoEmbed = ( props ) => {
-  const { id, onIDChange } = props;
+  const { id, onIDChange, showYesDashicon, showNoDashicon } = props;
   return (
     <div>
       <Placeholder
@@ -19,7 +19,8 @@ export const VdoEmbed = ( props ) => {
           onChange={ onIDChange }
           className="components-placeholder__input"
         />
-        <Dashicon icon="yes" size='36' className="dashicon dashicon-yes dashicon-green" />
+        { showYesDashicon && <Dashicon icon="yes" size="36" className="dashicon dashicon-yes dashicon-green" /> }
+        { showNoDashicon && <Dashicon icon="no" size="28" className="dashicon dashicon-yes dashicon-red" /> }
       </Placeholder>
     </div>
   );
