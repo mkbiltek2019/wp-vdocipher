@@ -1,6 +1,7 @@
+/* global wp */
 const { TextControl, PanelBody, PanelRow } = wp.components;
 
-export const HeightWidthSetting = (props) => {
+export const HeightWidthSetting = ( props ) => {
   const {
     width,
     height,
@@ -12,18 +13,18 @@ export const HeightWidthSetting = (props) => {
     <PanelBody title="Player Width and Height Settings">
       <PanelRow>
         <TextControl
-          label='Player Width'
+          label="Player Width"
           value={ width }
           onChange={ onWidthChange }
         />
       </PanelRow>
       <PanelRow>
         <TextControl
-          label='Player Height'
+          label="Player Height"
           value={ height }
           onChange={ onHeightChange }
         />
       </PanelRow>
     </PanelBody>
   );
-}
+};

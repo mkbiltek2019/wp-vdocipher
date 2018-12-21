@@ -1,31 +1,32 @@
 import { HeightWidthSetting } from './height-width';
-import { PlayerThemeSetting } from './player-theme';
-import { PlayerVersionSetting } from './player-version';
+// import { PlayerThemeSetting } from './player-theme';
+// import { PlayerVersionSetting } from './player-version';
 
+/* global wp */
 const { InspectorControls } = wp.editor;
 
-export const VdoBlockSettings = (props) => {
+export const VdoBlockSettings = ( props ) => {
   const {
     width,
     height,
-    vdo_theme,
-    vdo_version,
     onWidthChange,
     onHeightChange,
-    onPlayerThemeChange,
-    onPlayerVersionChange
+    // vdo_theme,
+    // vdo_version,
+    // onPlayerThemeChange,
+    // onPlayerVersionChange,
   } = props;
 
   return (
     <div>
       <InspectorControls>
         <HeightWidthSetting
-          width={width}
-          onWidthChange={onWidthChange}
-          height={height}
-          onHeightChange={onHeightChange}
-          />
-        {/*
+          width={ width }
+          onWidthChange={ onWidthChange }
+          height={ height }
+          onHeightChange={ onHeightChange }
+        />
+        { /*
         <PlayerThemeSetting
           vdo_theme={vdo_theme}
           onPlayerThemeChange={onPlayerThemeChange}
@@ -34,7 +35,7 @@ export const VdoBlockSettings = (props) => {
           vdo_version={vdo_version}
           onPlayerVersionChange={onPlayerVersionChange}
           />
-          */}
+          */ }
       </InspectorControls>
     </div>
   );
