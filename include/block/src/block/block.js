@@ -30,8 +30,8 @@ registerBlockType( 'vdo/block', {
       this.onPlayerVersionChange = this.onPlayerVersionChange.bind( this );
 
       this.state = {
-        showYesDashicon: false,
-        showNoDashicon: false,
+        showYesDashicon: this.evaluateValidId( this.props.attributes.id ),
+        showNoDashicon: this.evaluateInvalidId( this.props.attributes.id ),
       };
     }
 
@@ -58,10 +58,10 @@ registerBlockType( 'vdo/block', {
       this.props.setAttributes( { vdo_version } );
     }
     evaluateValidId( id ) {
-      if ( id.length === 32 ) return true;
+      if ( id.match( /^[0-9a-f]{32}$/ ) ) return true;
     }
     evaluateInvalidId( id ) {
-      if ( id.length > 10 && id.length !== 32 ) return true;
+      if ( id.length > 0 && ! id.match( /^[0-9a-f]{32}$/ ) ) return true;
     }
     render() {
       const { className } = this.props;
