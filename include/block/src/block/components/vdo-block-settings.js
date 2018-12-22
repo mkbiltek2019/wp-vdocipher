@@ -8,9 +8,13 @@ const { InspectorControls } = wp.editor;
 export const VdoBlockSettings = ( props ) => {
   const {
     width,
-    height,
     onWidthChange,
+    showYesDashiconWidth,
+    showNoDashiconWidth,
+    height,
     onHeightChange,
+    showYesDashiconHeight,
+    showNoDashiconHeight,
     // vdo_theme,
     // vdo_version,
     // onPlayerThemeChange,
@@ -25,6 +29,10 @@ export const VdoBlockSettings = ( props ) => {
           onWidthChange={ onWidthChange }
           height={ height }
           onHeightChange={ onHeightChange }
+          showYesDashiconWidth={ showYesDashiconWidth }
+          showNoDashiconWidth={ showNoDashiconWidth }
+          showYesDashiconHeight={ showYesDashiconHeight }
+          showNoDashiconHeight={ showNoDashiconHeight }
         />
         { /*
         <PlayerThemeSetting
