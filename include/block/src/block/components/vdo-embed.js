@@ -1,20 +1,9 @@
 /* global wp */
-const { Placeholder, TextControl, Dashicon } = wp.components;
+const { Placeholder, TextControl } = wp.components;
 const { BlockIcon } = wp.editor;
+import { YesNoIcon } from './yes-no-icon';
 import { VdoSVG } from './vdo-icon';
 import '../editor.scss';
-
-const IdValid = ( { IdDashicon } ) => {
-  if ( ! IdDashicon ) return null;
-  else if ( IdDashicon === 1 ) {
-    return (
-      <Dashicon icon="yes" size="36" className="dashicon dashicon-yes dashicon-green" />
-    );
-  }
-  return (
-    <Dashicon icon="no" size="28" className="dashicon dashicon-yes dashicon-red" />
-  );
-};
 
 export const VdoEmbed = ( { id, onIdChange, IdDashicon } ) => {
   return (
@@ -30,7 +19,7 @@ export const VdoEmbed = ( { id, onIdChange, IdDashicon } ) => {
           onChange={ onIdChange }
           className="components-placeholder__input"
         />
-        <IdValid IdDashicon={ IdDashicon } />
+        <YesNoIcon DashiconState={ IdDashicon } size="36" />
       </Placeholder>
     </div>
   );

@@ -1,18 +1,7 @@
 /* global wp */
-const { TextControl, PanelBody, PanelRow, Dashicon } = wp.components;
+const { TextControl, PanelBody, PanelRow } = wp.components;
+import { YesNoIcon } from './yes-no-icon';
 import '../editor.scss';
-
-const DashiconState = ( { DashiconState } ) => {
-  if ( ! DashiconState ) return null;
-  else if ( DashiconState === 1 ) {
-    return (
-      <Dashicon icon="yes" size="28" className="dashicon dashicon-yes dashicon-green" />
-    );
-  }
-  return (
-    <Dashicon icon="no" size="22" className="dashicon dashicon-yes dashicon-red" />
-  );
-};
 
 export const HeightWidthSetting = ( props ) => {
   const {
@@ -32,7 +21,7 @@ export const HeightWidthSetting = ( props ) => {
           value={ width }
           onChange={ onWidthChange }
         />
-        <DashiconState DashiconState={ WidthDashicon } />
+        <YesNoIcon DashiconState={ WidthDashicon } size="28" />
       </PanelRow>
       <PanelRow>
         <TextControl
@@ -40,7 +29,7 @@ export const HeightWidthSetting = ( props ) => {
           value={ height }
           onChange={ onHeightChange }
         />
-        <DashiconState DashiconState={ HeightDashicon } />
+        <YesNoIcon DashiconState={ HeightDashicon } size="28" />
       </PanelRow>
     </PanelBody>
   );

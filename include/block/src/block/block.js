@@ -56,12 +56,12 @@ registerBlockType( 'vdo/block', {
       if ( id.match( /^[0-9a-f]{32}$/ ) ) return 1;
       else if ( id.length > 0 && ! id.match( /^[0-9a-f]{32}$/ ) ) return -1;
     }
-    // evaluate width
+    // evaluate if width value entered is valid
     evaluateWidth( width ) {
       if ( width.match( /^[1-9][0-9]{1,3}(px)?$/ ) ) return 1;
       else if ( width.length > 0 && ! width.match( /^[1-9][0-9]{0,3}(px)?$/ ) ) return -1;
     }
-    // evaluate height
+    // evaluate if height value entered is valid
     evaluateHeight( height ) {
       if ( ( height.match( /^[1-9][0-9]{1,3}(px)?$/ ) ) || ( height.match( /^\bauto\b$/ ) ) ) return 1;
       else if ( height.length > 0 &&
