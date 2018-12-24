@@ -2,9 +2,9 @@
 const { TextControl, PanelBody, PanelRow, Dashicon } = wp.components;
 import '../editor.scss';
 
-const WidthValid = ( { WidthDashicon } ) => {
-  if ( ! WidthDashicon ) return null;
-  else if ( WidthDashicon === 1 ) {
+const DashiconState = ( { DashiconState } ) => {
+  if ( ! DashiconState ) return null;
+  else if ( DashiconState === 1 ) {
     return (
       <Dashicon icon="yes" size="28" className="dashicon dashicon-yes dashicon-green" />
     );
@@ -13,19 +13,6 @@ const WidthValid = ( { WidthDashicon } ) => {
     <Dashicon icon="no" size="22" className="dashicon dashicon-yes dashicon-red" />
   );
 };
-
-const HeightValid = ( { HeightDashicon } ) => {
-  if ( ! HeightDashicon ) return null;
-  else if ( HeightDashicon === 1 ) {
-    return (
-      <Dashicon icon="yes" size="28" className="dashicon dashicon-yes dashicon-green" />
-    );
-  }
-  return (
-    <Dashicon icon="no" size="22" className="dashicon dashicon-yes dashicon-red" />
-  );
-};
-
 
 export const HeightWidthSetting = ( props ) => {
   const {
@@ -45,7 +32,7 @@ export const HeightWidthSetting = ( props ) => {
           value={ width }
           onChange={ onWidthChange }
         />
-        <WidthValid WidthDashicon={ WidthDashicon } />
+        <DashiconState DashiconState={ WidthDashicon } />
       </PanelRow>
       <PanelRow>
         <TextControl
@@ -53,7 +40,7 @@ export const HeightWidthSetting = ( props ) => {
           value={ height }
           onChange={ onHeightChange }
         />
-        <HeightValid HeightDashicon={ HeightDashicon } />
+        <DashiconState DashiconState={ HeightDashicon } />
       </PanelRow>
     </PanelBody>
   );
