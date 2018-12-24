@@ -4,8 +4,19 @@ const { BlockIcon } = wp.editor;
 import { VdoSVG } from './vdo-icon';
 import '../editor.scss';
 
-export const VdoEmbed = ( props ) => {
-  const { id, onIDChange, showYesDashiconId, showNoDashiconId } = props;
+const IdValid = ( { IdDashicon } ) => {
+  if ( ! IdDashicon ) return null;
+  else if ( IdDashicon === 1 ) {
+    return (
+      <Dashicon icon="yes" size="36" className="dashicon dashicon-yes dashicon-green" />
+    );
+  }
+  return (
+    <Dashicon icon="no" size="28" className="dashicon dashicon-yes dashicon-red" />
+  );
+};
+
+export const VdoEmbed = ( { id, onIdChange, IdDashicon } ) => {
   return (
     <div>
       <Placeholder
@@ -16,11 +27,10 @@ export const VdoEmbed = ( props ) => {
           placeholder="Enter Video ID here"
           id="vdo-id-input"
           value={ id }
-          onChange={ onIDChange }
+          onChange={ onIdChange }
           className="components-placeholder__input"
         />
-        { showYesDashiconId && <Dashicon icon="yes" size="36" className="dashicon dashicon-yes dashicon-green" /> }
-        { showNoDashiconId && <Dashicon icon="no" size="28" className="dashicon dashicon-yes dashicon-red" /> }
+        <IdValid IdDashicon={ IdDashicon } />
       </Placeholder>
     </div>
   );

@@ -9,12 +9,10 @@ export const VdoBlockSettings = ( props ) => {
   const {
     width,
     onWidthChange,
-    showYesDashiconWidth,
-    showNoDashiconWidth,
+    WidthDashicon,
     height,
     onHeightChange,
-    showYesDashiconHeight,
-    showNoDashiconHeight,
+    HeightDashicon,
     // vdo_theme,
     // vdo_version,
     // onPlayerThemeChange,
@@ -27,12 +25,10 @@ export const VdoBlockSettings = ( props ) => {
         <HeightWidthSetting
           width={ width }
           onWidthChange={ onWidthChange }
+          WidthDashicon={ WidthDashicon }
           height={ height }
           onHeightChange={ onHeightChange }
-          showYesDashiconWidth={ showYesDashiconWidth }
-          showNoDashiconWidth={ showNoDashiconWidth }
-          showYesDashiconHeight={ showYesDashiconHeight }
-          showNoDashiconHeight={ showNoDashiconHeight }
+          HeightDashicon={ HeightDashicon }
         />
         { /*
         <PlayerThemeSetting
