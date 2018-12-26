@@ -52,7 +52,7 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
         <?php
         if ((get_option('vdo_embed_version')) == false) {
-            update_option('vdo_embed_version', '1.6.4');
+            update_option('vdo_embed_version', '1.6.9');
         }
         ?>
         <tr valign="top">
