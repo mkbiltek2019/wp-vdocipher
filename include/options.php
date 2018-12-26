@@ -101,7 +101,7 @@ do_settings_sections('vdo_option-group');
 
         <!-- Player Theme Options -->
         <?php
-        if ((get_option('vdo_player_theme')) == false) {
+        if (!(get_option('vdo_player_theme'))) {
             update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
         }
         ?>
@@ -115,7 +115,7 @@ do_settings_sections('vdo_option-group');
             value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>"
             max-length = "32"
             style="width: 320px"
-            disabled
+            readonly
         />
         <p style="margin-left:20px; position: relative">
         <span><a href="<?php menu_page_url('themesvdo', 1); ?> " >Select Custom Player Theme</a><br/>
