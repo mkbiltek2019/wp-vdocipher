@@ -30,9 +30,9 @@ registerBlockType( 'vdo/block', {
       // this.onPlayerVersionChange = this.onPlayerVersionChange.bind( this );
 
       this.state = {
-        IdDashicon: this.evaluateId( this.props.attributes.id ),
-        WidthDashicon: this.evaluateWidth( this.props.attributes.width ),
-        HeightDashicon: this.evaluateHeight( this.props.attributes.height ),
+        IdDashicon: ! this.props.attributes.id ? null : this.evaluateId( this.props.attributes.id ),
+        WidthDashicon: ! this.props.attributes.width ? null : this.evaluateWidth( this.props.attributes.width ),
+        HeightDashicon: ! this.props.attributes.height ? null : this.evaluateHeight( this.props.attributes.height ),
       };
     }
 
