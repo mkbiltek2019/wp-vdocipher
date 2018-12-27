@@ -1,6 +1,7 @@
 (function(){
 
 var vdoTheme = document.getElementById('vdo_player_theme_options');
+var vdoThemeCopy = document.getElementById('vdo_player_theme_options_copy');
 
 var vdoThemeArr = [
   [
@@ -48,11 +49,12 @@ var vdoThemeNumber = vdoThemeArr[0].length;
 
 window.onload = function(){
   vdoThemeSelect(vdoThemeArr[2].indexOf(vdoTheme.value));
-}
-
-for (var k = 0; k < vdoThemeNumber; k++){
-  vdoThemeArr[0][k].addEventListener('click', vdoThemeImageClick);
-  vdoThemeArr[1][k].addEventListener('click', vdoThemeBtnClick);
+  vdoCopyThemeValue();
+  vdoTheme.addEventListener('change', vdoThemeManualInput)
+  for (var k = 0; k < vdoThemeNumber; k++){
+    vdoThemeArr[0][k].addEventListener('click', vdoThemeImageClick);
+    vdoThemeArr[1][k].addEventListener('click', vdoThemeBtnClick);
+  }
 }
 
 function vdoThemeImageClick(e){
@@ -81,6 +83,15 @@ function vdoThemeSelect(index){
       vdoThemeArr[1][j].style.backgroundColor = "#fff";
     }
   }
+  vdoCopyThemeValue();
+}
+
+function vdoThemeManualInput(e){
+  vdoThemeSelect(vdoThemeArr[2].indexOf(e.target.value));
+}
+
+function vdoCopyThemeValue(){
+  vdoThemeCopy.value = vdoTheme.value;
 }
 
 }());
