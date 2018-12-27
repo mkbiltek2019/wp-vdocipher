@@ -26,7 +26,7 @@ module.exports = {
   context: __dirname,
   devtool: debug ? 'inline-sourcemap' : false,
   mode: debug ? 'development' : 'production',
-  entry: './src/blocks.js',
+  entry: './src/index.js',
   output: {
     path: __dirname + '/dist/',
     filename: 'blocks.build.js'
