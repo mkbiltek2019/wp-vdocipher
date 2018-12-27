@@ -29,6 +29,13 @@ do_settings_sections('vdo_option-group');
                   </p>
                 </div>
             </td>
+            <tr style="display:none;">
+              <td>Plugin version no.: </td>
+              <td><input
+                id="vdo_plugin_version" name="vdo_plugin_version"
+                value="<?php echo esc_attr(get_option('vdo_plugin_version')); ?>" readonly>
+              </td>
+            </tr>
         </tr>
 
     </tbody></table>

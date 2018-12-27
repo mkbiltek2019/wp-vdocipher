@@ -16,6 +16,38 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
         "this server.</p>\r\n</body></html>");
 }
 
+if (!defined('VDOCIPHER_PLUGIN_VERSION')) {
+    define('VDOCIPHER_PLUGIN_VERSION', '1.25');
+}
+
+if (!defined('VDOCIPHER_PLAYER_VERSION')) {
+    define('VDOCIPHER_PLAYER_VERSION', '1.6.9');
+}
+
+function vdo_plugin_check_version()
+{
+// This applies only for installs 1.24 and below
+    if (!get_option('vdo_plugin_version')) {
+        if (preg_match('/^1\.[0123456]\.[0-9]{1,2}$/', get_option('vdo_embed_version'))) {
+            update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
+        }
+        if (preg_match('/^1\.[01234]\.[0-9]{1,2}$/', get_option('vdo_embed_version'))) {
+            update_option('vdo_default_height', 'auto');
+        }
+        update_option('vdo_plugin_version', VDOCIPHER_PLUGIN_VERSION);
+        return ;
+    }
+ // This applies for all new installs after 1.25
+    if (VDOCIPHER_PLUGIN_VERSION !== get_option('vdo_plugin_version')) {
+        update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
+        update_option('vdo_plugin_version', VDOCIPHER_PLUGIN_VERSION);
+        return ;
+    }
+    return ;
+}
+
+add_action('plugins_loaded', 'vdo_plugin_check_version');
+
 // Function called to retrieve id for when title given, starts
 function vdo_retrieve_id($title)
 {
@@ -172,7 +204,7 @@ function vdo_shortcode($atts)
 
     // Video Embed version is retrieved from options table or from shortcode attribute
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '1.6.9');
+        update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
     }
     if (!$vdo_version) {
         $vdo_embed_version_str = get_option('vdo_embed_version');
@@ -335,6 +367,7 @@ function register_vdo_settings()
     register_setting('vdo_option-group', 'vdo_embed_version');
     register_setting('vdo_option-group', 'vdo_player_theme');
     register_setting('vdo_option-group', 'vdo_watermark_flash_html');
+    register_setting('vdo_option-group', 'vdo_plugin_version');
     register_setting('vdo_custom_theme', 'vdo_player_theme_options');
 }
 // add the menu item and register settings (3 functions), ends
@@ -356,13 +389,16 @@ function vdo_activate()
     }
     //https://stackoverflow.com/a/2173318/5022684
     if ((get_option('vdo_embed_version')) == false) {
-        update_option('vdo_embed_version', '1.6.9');
+        update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
     }
     if ((get_option('vdo_player_theme')) == false) {
         update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
     }
     if ((get_option('vdo_watermark_flash_html')) == false) {
         update_option('vdo_watermark_flash_html', 'html5');
+    }
+    if ((get_option('vdo_plugin_version')) == false) {
+        update_option('vdo_plugin_version', VDOCIPHER_PLUGIN_VERSION);
     }
 }
 register_activation_hook(__FILE__, 'vdo_activate');
@@ -433,6 +469,7 @@ function vdo_deactivate()
     delete_option('vdo_player_theme');
     delete_option('vdo_watermark_flash_html');
     delete_option('vdo_player_theme_options');
+    delete_option('vdo_plugin_version');
 }
 register_deactivation_hook(__FILE__, 'vdo_deactivate');
 

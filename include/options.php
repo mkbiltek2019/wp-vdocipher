@@ -52,7 +52,7 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
         <?php
         if ((get_option('vdo_embed_version')) == false) {
-            update_option('vdo_embed_version', '1.6.9');
+            update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
         }
         ?>
         <tr valign="top">
@@ -75,7 +75,7 @@ do_settings_sections('vdo_option-group');
                         case '0.5':
                             $version_old_new = ' (old player)';
                             break;
-                        case '1.6.9':
+                        case VDOCIPHER_PLAYER_VERSION:
                             $version_old_new = ' (newest player)' ;
                             break;
                         default:
@@ -182,6 +182,13 @@ do_settings_sections('vdo_option-group');
                 </a>
           </p>
         </td>
+        </tr>
+        <tr style="display:none;">
+          <td>Plugin version no.: </td>
+          <td><input
+            id="vdo_plugin_version" name="vdo_plugin_version"
+            value="<?php echo esc_attr(get_option('vdo_plugin_version')); ?>" readonly>
+          </td>
         </tr>
     </table>
     <?php
