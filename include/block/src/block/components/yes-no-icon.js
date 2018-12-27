@@ -3,7 +3,7 @@ const { Dashicon } = wp.components;
 
 export const YesNoIcon = ( { DashiconState, size } ) => {
   if ( ! DashiconState ) return null;
-  else if ( DashiconState === 1 ) {
+  if ( DashiconState === 1 ) {
     return (
       <Dashicon icon="yes" size={ size } className="dashicon dashicon-yes dashicon-green" />
     );

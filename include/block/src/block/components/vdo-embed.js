@@ -5,7 +5,7 @@ import { YesNoIcon } from './yes-no-icon';
 import { VdoSVG } from './vdo-icon';
 import '../editor.scss';
 
-export const VdoEmbed = ( { id, onIdChange, IdDashicon } ) => {
+export const VdoEmbed = ( { id, onIdChange, idDashicon } ) => {
   return (
     <div>
       <Placeholder
@@ -19,7 +19,7 @@ export const VdoEmbed = ( { id, onIdChange, IdDashicon } ) => {
           onChange={ onIdChange }
           className="components-placeholder__input"
         />
-        <YesNoIcon DashiconState={ IdDashicon } size="36" />
+        <YesNoIcon DashiconState={ idDashicon } size="36" />
       </Placeholder>
     </div>
   );

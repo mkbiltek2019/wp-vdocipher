@@ -7,10 +7,10 @@ export const HeightWidthSetting = ( props ) => {
   const {
     width,
     onWidthChange,
-    WidthDashicon,
+    widthDashicon,
     height,
     onHeightChange,
-    HeightDashicon,
+    heightDashicon,
   } = props;
 
   return (
@@ -21,7 +21,7 @@ export const HeightWidthSetting = ( props ) => {
           value={ width }
           onChange={ onWidthChange }
         />
-        <YesNoIcon DashiconState={ WidthDashicon } size="28" />
+        <YesNoIcon DashiconState={ widthDashicon } size="28" />
       </PanelRow>
       <PanelRow>
         <TextControl
@@ -29,7 +29,7 @@ export const HeightWidthSetting = ( props ) => {
           value={ height }
           onChange={ onHeightChange }
         />
-        <YesNoIcon DashiconState={ HeightDashicon } size="28" />
+        <YesNoIcon DashiconState={ heightDashicon } size="28" />
       </PanelRow>
     </PanelBody>
   );

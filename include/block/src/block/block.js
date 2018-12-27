@@ -30,44 +30,41 @@ registerBlockType( 'vdo/block', {
       // this.onPlayerVersionChange = this.onPlayerVersionChange.bind( this );
 
       this.state = {
-        IdDashicon: ! this.props.attributes.id ? null : this.evaluateId( this.props.attributes.id ),
-        WidthDashicon: ! this.props.attributes.width ? null : this.evaluateWidth( this.props.attributes.width ),
-        HeightDashicon: ! this.props.attributes.height ? null : this.evaluateHeight( this.props.attributes.height ),
+        idDashicon: this.evaluateId( this.props.attributes.id ),
+        widthDashicon: this.evaluateWidth( this.props.attributes.width ),
+        heightDashicon: this.evaluateHeight( this.props.attributes.height ),
       };
     }
 
     // set video id attribute (state) of edit component
     onIdChange( id ) {
       this.props.setAttributes( { id } );
-      this.setState( { IdDashicon: this.evaluateId( id ) } );
+      this.setState( { idDashicon: this.evaluateId( id ) } );
     }
     // set width attribute (state) of edit component
     onWidthChange( width ) {
       this.props.setAttributes( { width } );
-      this.setState( { WidthDashicon: this.evaluateWidth( width ) } );
+      this.setState( { widthDashicon: this.evaluateWidth( width ) } );
     }
     // set height attribute (state) of edit component
     onHeightChange( height ) {
       this.props.setAttributes( { height } );
-      this.setState( { HeightDashicon: this.evaluateHeight( height ) } );
+      this.setState( { heightDashicon: this.evaluateHeight( height ) } );
     }
     // evaluate if video ID entered is 32-characters and characters are in range 0-9a-f
     evaluateId( id ) {
-      if ( id.match( /^[0-9a-f]{32}$/ ) ) return 1;
-      else if ( id.length > 0 && ! id.match( /^[0-9a-f]{32}$/ ) ) return -1;
+      if ( ! id ) return 0;
+      return ( id.match( /^[0-9a-f]{32}$/ ) ) ? 1 : -1;
     }
     // evaluate if width value entered is valid
     evaluateWidth( width ) {
-      if ( width.match( /^[1-9][0-9]{1,3}(px)?$/ ) ) return 1;
-      else if ( width.length > 0 && ! width.match( /^[1-9][0-9]{0,3}(px)?$/ ) ) return -1;
+      if ( ! width ) return 0;
+      return ( width.match( /^[1-9][0-9]{1,3}(px)?$/ ) ) ? 1 : -1;
     }
     // evaluate if height value entered is valid
     evaluateHeight( height ) {
-      if ( ( height.match( /^[1-9][0-9]{1,3}(px)?$/ ) ) || ( height.match( /^\bauto\b$/ ) ) ) return 1;
-      else if ( height.length > 0 &&
-        ! ( ( height.match( /^[1-9][0-9]{1,3}(px)?$/ ) ) || ( height.match( /^\bauto\b$/ ) ) ) ) {
-        return -1;
-      }
+      if ( ! height ) return 0;
+      return ( ( height.match( /^[1-9][0-9]{1,3}(px)?$/ ) ) || ( height.match( /^\bauto\b$/ ) ) ) ? 1 : -1;
     }
     //
     render() {
@@ -84,10 +81,10 @@ registerBlockType( 'vdo/block', {
           <VdoBlockSettings
             width={ width }
             onWidthChange={ this.onWidthChange }
-            WidthDashicon={ this.state.WidthDashicon }
+            widthDashicon={ this.state.widthDashicon }
             height={ height }
             onHeightChange={ this.onHeightChange }
-            HeightDashicon={ this.state.HeightDashicon }
+            heightDashicon={ this.state.heightDashicon }
             // vdo_theme={ vdo_theme }
             // onPlayerThemeChange={ this.onPlayerThemeChange }
             // vdo_version={ vdo_version }
@@ -96,7 +93,7 @@ registerBlockType( 'vdo/block', {
           <VdoEmbed
             id={ id }
             onIdChange={ this.onIdChange }
-            IdDashicon={ this.state.IdDashicon }
+            idDashicon={ this.state.idDashicon }
           />
         </div>
       );
