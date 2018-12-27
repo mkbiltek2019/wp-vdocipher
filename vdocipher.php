@@ -39,7 +39,9 @@ function vdo_plugin_check_version()
     }
  // This applies for all new installs after 1.25
     if (VDOCIPHER_PLUGIN_VERSION !== get_option('vdo_plugin_version')) {
-        update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
+        if (preg_match('/^1\.[0-9]{1,2}\.[0-9]{1,2}$/', get_option('vdo_embed_version'))) {
+            update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
+        }
         update_option('vdo_plugin_version', VDOCIPHER_PLUGIN_VERSION);
         return ;
     }
