@@ -265,7 +265,7 @@ function vdo_shortcode($atts)
                 $player_tech = "*,-dash";
             }
         }
-        $output .= "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
+        $output = "<div id='vdo$OTP' style='height:$height;width:$width;max-width:100%' ></div>";
         $output .= "<script>(function(v,i,d,e,o){v[o]=v[o]||{}; v[o].add = v[o].add || function V(a){".
             "(v[o].d=v[o].d||[]).push(a);};";
         $output .= "if(!v[o].l) { v[o].l=1*new Date(); a=i.createElement(d), m=i.getElementsByTagName(d)[0];";
