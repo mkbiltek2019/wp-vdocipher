@@ -97,32 +97,6 @@
       <button id="default1-btn">Select</button>
     </div>
   </div>
-  <div id="default2" class="theme-select">
-    <div class="img-flex">
-      <img
-        id="default2-image"
-        src="<?php echo plugin_dir_url(__FILE__).'img/default2.png' ?>"
-        alt="VdoCipher Default player"
-        width="100%" >
-    </div>
-    <div class="text-flex">
-      <div>Theme ID: <span id="default2-id">b5e5a9020189409db6b7ecb2f762de45</span> </div>
-      <button id="default2-btn">Select</button>
-    </div>
-  </div>
-  <div id="default3" class="theme-select">
-    <div class="img-flex">
-      <img
-        id="default3-image"
-        src="<?php echo plugin_dir_url(__FILE__).'img/default3.png' ?>"
-        alt="VdoCipher Default player"
-        width="100%" >
-    </div>
-    <div class="text-flex">
-      <div>Theme ID: <span id="default3-id">b9671d45d2d84c37b2d602940d340a00</span> </div>
-      <button id="default3-btn">Select</button>
-    </div>
-  </div>
   <div id="color1" class="theme-select">
     <div class="img-flex">
       <img
@@ -134,32 +108,6 @@
     <div class="text-flex">
       <div>Theme ID: <span id="color1-id">e2dbde7971d145cd9a3bc0271b75b0a5</span> </div>
       <button id="color1-btn">Select</button>
-    </div>
-  </div>
-  <div id="color2" class="theme-select">
-    <div class="img-flex">
-      <img
-        id="color2-image"
-        src="<?php echo plugin_dir_url(__FILE__).'img/color2.png' ?>"
-        alt="VdoCipher Default player"
-        width="100%" >
-    </div>
-    <div class="text-flex">
-      <div>Theme ID: <span id="color2-id">7ccc1ba5a4814477b342927037003f12</span> </div>
-      <button id="color2-btn">Select</button>
-    </div>
-  </div>
-  <div id="color3" class="theme-select">
-    <div class="img-flex">
-      <img
-        id="color3-image"
-        src="<?php echo plugin_dir_url(__FILE__).'img/color3.png' ?>"
-        alt="VdoCipher Default player"
-        width="100%" >
-    </div>
-    <div class="text-flex">
-      <div>Theme ID: <span id="color3-id">3d115cb024bf422586bf4c17dbd831d5</span> </div>
-      <button id="color3-btn">Select</button>
     </div>
   </div>
   <div id="square1" class="theme-select">
@@ -175,6 +123,32 @@
       <button id="square1-btn">Select</button>
     </div>
   </div>
+  <div id="default2" class="theme-select">
+    <div class="img-flex">
+      <img
+        id="default2-image"
+        src="<?php echo plugin_dir_url(__FILE__).'img/default2.png' ?>"
+        alt="VdoCipher Default player"
+        width="100%" >
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="default2-id">b5e5a9020189409db6b7ecb2f762de45</span> </div>
+      <button id="default2-btn">Select</button>
+    </div>
+  </div>
+  <div id="color2" class="theme-select">
+    <div class="img-flex">
+      <img
+        id="color2-image"
+        src="<?php echo plugin_dir_url(__FILE__).'img/color2.png' ?>"
+        alt="VdoCipher Default player"
+        width="100%" >
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="color2-id">7ccc1ba5a4814477b342927037003f12</span> </div>
+      <button id="color2-btn">Select</button>
+    </div>
+  </div>
   <div id="square2" class="theme-select">
     <div class="img-flex">
       <img
@@ -186,6 +160,32 @@
     <div class="text-flex">
       <div>Theme ID: <span id="square2-id">8c4e41316cb240b6ae820611c097a743</span> </div>
       <button id="square2-btn">Select</button>
+    </div>
+  </div>
+  <div id="default3" class="theme-select">
+    <div class="img-flex">
+      <img
+        id="default3-image"
+        src="<?php echo plugin_dir_url(__FILE__).'img/default3.png' ?>"
+        alt="VdoCipher Default player"
+        width="100%" >
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="default3-id">b9671d45d2d84c37b2d602940d340a00</span> </div>
+      <button id="default3-btn">Select</button>
+    </div>
+  </div>
+  <div id="color3" class="theme-select">
+    <div class="img-flex">
+      <img
+        id="color3-image"
+        src="<?php echo plugin_dir_url(__FILE__).'img/color3.png' ?>"
+        alt="VdoCipher Default player"
+        width="100%" >
+    </div>
+    <div class="text-flex">
+      <div>Theme ID: <span id="color3-id">3d115cb024bf422586bf4c17dbd831d5</span> </div>
+      <button id="color3-btn">Select</button>
     </div>
   </div>
   <div id="square3" class="theme-select">
