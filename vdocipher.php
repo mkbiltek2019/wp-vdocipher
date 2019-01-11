@@ -17,11 +17,11 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 }
 
 if (!defined('VDOCIPHER_PLUGIN_VERSION')) {
-    define('VDOCIPHER_PLUGIN_VERSION', '1.25');
+    define('VDOCIPHER_PLUGIN_VERSION', '1.24');
 }
 
 if (!defined('VDOCIPHER_PLAYER_VERSION')) {
-    define('VDOCIPHER_PLAYER_VERSION', '1.6.9');
+    define('VDOCIPHER_PLAYER_VERSION', '1.6.10');
 }
 
 function vdo_plugin_check_version()

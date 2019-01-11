@@ -62,7 +62,7 @@ do_settings_sections('vdo_option-group');
             <select id="vdo_embed_version">
                 <?php
                 $vdo_embed_version_vars = array(
-                    '0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.4','1.6.9'
+                    '0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.4','1.6.10'
                 );
                 $vdo_embed_version_string = get_option('vdo_embed_version');
                 foreach ($vdo_embed_version_vars as $vdo_embed_version_var) {
