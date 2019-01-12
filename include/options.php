@@ -27,7 +27,9 @@ do_settings_sections('vdo_option-group');
           value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
           max-length="64" style="width: 640px" id="vdo_client_key" />
                 <p style="margin-left:20px; position: relative">
-                    <span id="toggle_span"><button id="toggle_API_visibility" href="#" data-protected="On">Show API Secret Key</button></span>
+                    <span id="toggle_span">
+                        <button id="toggle_API_visibility" href="#" data-protected="On">Show API Secret Key</button>
+                    </span>
                 </p>
             </div>
         </td>
@@ -50,7 +52,7 @@ do_settings_sections('vdo_option-group');
         <!-- Version Number -->
         <?php
         if ((get_option('vdo_embed_version')) == false) {
-            update_option('vdo_embed_version', '1.6.4');
+            update_option('vdo_embed_version', VDOCIPHER_PLAYER_VERSION);
         }
         ?>
         <tr valign="top">
@@ -60,11 +62,11 @@ do_settings_sections('vdo_option-group');
             <select id="vdo_embed_version">
                 <?php
                 $vdo_embed_version_vars = array(
-                    '0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.4'
+                    '0.5', '1.0.0', '1.1.0', '1.1.3', '1.2.7', '1.3.3', '1.4.5','1.5.0','1.6.4','1.6.10'
                 );
-                $vdo_embed_version_str = get_option('vdo_embed_version');
+                $vdo_embed_version_string = get_option('vdo_embed_version');
                 foreach ($vdo_embed_version_vars as $vdo_embed_version_var) {
-                    if ($vdo_embed_version_str == $vdo_embed_version_var) {
+                    if ($vdo_embed_version_string == $vdo_embed_version_var) {
                         $selected = 'selected';
                     } else {
                         $selected = '';
@@ -73,14 +75,14 @@ do_settings_sections('vdo_option-group');
                         case '0.5':
                             $version_old_new = ' (old player)';
                             break;
-                        case '1.6.4':
+                        case VDOCIPHER_PLAYER_VERSION:
                             $version_old_new = ' (newest player)' ;
                             break;
                         default:
                             $version_old_new = ' (new player)';
                             break;
                     }
-                ?>
+                    ?>
                     <option value="<?php echo $vdo_embed_version_var; ?>" <?php echo $selected; ?> >
                         <?php echo $vdo_embed_version_var . $version_old_new ; ?>
                     </option>
@@ -99,7 +101,7 @@ do_settings_sections('vdo_option-group');
 
         <!-- Player Theme Options -->
         <?php
-        if ((get_option('vdo_player_theme')) == false) {
+        if (!(get_option('vdo_player_theme'))) {
             update_option('vdo_player_theme', '9ae8bbe8dd964ddc9bdb932cca1cb59a');
         }
         ?>
@@ -107,11 +109,16 @@ do_settings_sections('vdo_option-group');
         <th scope="row">Player Theme</th>
         <td>
         <div style="display:inline-flex; margin-bottom:10px;">
-        <input type="text" name="vdo_player_theme"
-          value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>" max-length = "32" style="width: 320px" disabled
+        <input
+            type="text"
+            name="vdo_player_theme"
+            value="<?php echo esc_attr(get_option('vdo_player_theme')); ?>"
+            max-length = "32"
+            style="width: 320px"
+            readonly
         />
         <p style="margin-left:20px; position: relative">
-        <span><a href="<?php menu_page_url( 'themesvdo', 1 ); ?> " >Select Custom Player Theme</a><br/>
+        <span><a href="<?php menu_page_url('themesvdo', 1); ?> " >Select Custom Player Theme</a><br/>
         </p>
         </div>
         <p class="description">
@@ -176,6 +183,13 @@ do_settings_sections('vdo_option-group');
           </p>
         </td>
         </tr>
+        <tr style="display:none;">
+          <td>Plugin version no.: </td>
+          <td><input
+            id="vdo_plugin_version" name="vdo_plugin_version"
+            value="<?php echo esc_attr(get_option('vdo_plugin_version')); ?>" readonly>
+          </td>
+        </tr>
     </table>
     <?php
         wp_enqueue_script('vdo_validate_watermark', plugin_dir_url(__FILE__).'js/validatewatermark.js');
@@ -186,7 +200,7 @@ do_settings_sections('vdo_option-group');
         wp_enqueue_script('vdo_hide_key', plugin_dir_url(__FILE__).'js/showkey.js');
         wp_localize_script('vdo_html_flash_choice', 'vdoVD', array(
           'vdoAV' => $vdo_embed_version_vars,
-          'vdoSV' => $vdo_embed_version_str
+          'vdoSV' => $vdo_embed_version_string
         ));
         ?>
 <?php submit_button(); ?>

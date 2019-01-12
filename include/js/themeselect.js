@@ -10,6 +10,9 @@ var vdoThemeArr = [
     document.getElementById('color1-image'),
     document.getElementById('color2-image'),
     document.getElementById('color3-image'),
+    document.getElementById('square1-image'),
+    document.getElementById('square2-image'),
+    document.getElementById('square3-image'),
   ],
   [
     document.getElementById('default1-btn'),
@@ -18,6 +21,9 @@ var vdoThemeArr = [
     document.getElementById('color1-btn'),
     document.getElementById('color2-btn'),
     document.getElementById('color3-btn'),
+    document.getElementById('square1-btn'),
+    document.getElementById('square2-btn'),
+    document.getElementById('square3-btn'),
   ],
   [
     document.getElementById('default1-id').innerHTML,
@@ -26,6 +32,9 @@ var vdoThemeArr = [
     document.getElementById('color1-id').innerHTML,
     document.getElementById('color2-id').innerHTML,
     document.getElementById('color3-id').innerHTML,
+    document.getElementById('square1-id').innerHTML,
+    document.getElementById('square2-id').innerHTML,
+    document.getElementById('square3-id').innerHTML,
   ],
 ];
 
@@ -39,11 +48,11 @@ var vdoThemeNumber = vdoThemeArr[0].length;
 
 window.onload = function(){
   vdoThemeSelect(vdoThemeArr[2].indexOf(vdoTheme.value));
-}
-
-for (var k = 0; k < vdoThemeNumber; k++){
-  vdoThemeArr[0][k].addEventListener('click', vdoThemeImageClick);
-  vdoThemeArr[1][k].addEventListener('click', vdoThemeBtnClick);
+  vdoTheme.addEventListener('change', vdoThemeManualInput)
+  for (var k = 0; k < vdoThemeNumber; k++){
+    vdoThemeArr[0][k].addEventListener('click', vdoThemeImageClick);
+    vdoThemeArr[1][k].addEventListener('click', vdoThemeBtnClick);
+  }
 }
 
 function vdoThemeImageClick(e){
@@ -74,6 +83,9 @@ function vdoThemeSelect(index){
   }
 }
 
+function vdoThemeManualInput(e){
+  vdoThemeSelect(vdoThemeArr[2].indexOf(e.target.value));
+}
 }());
 
 

@@ -23,15 +23,24 @@ do_settings_sections('vdo_option-group');
                   value="<?php echo esc_attr(get_option('vdo_client_key')); ?>"
                   type="password">
                   <p style="margin-left:20px; position: relative">
-                      <span id="toggle_span" style="display:none"><button id="toggle_API_visibility" href="#" data-protected="On"></button></span>
+                      <span id="toggle_span" style="display:none">
+                        <button id="toggle_API_visibility" href="#" data-protected="On"></button>
+                      </span>
                   </p>
                 </div>
             </td>
+            <tr style="display:none;">
+              <td>Plugin version no.: </td>
+              <td><input
+                id="vdo_plugin_version" name="vdo_plugin_version"
+                value="<?php echo esc_attr(get_option('vdo_plugin_version')); ?>" readonly>
+              </td>
+            </tr>
         </tr>
 
     </tbody></table>
 <?php wp_enqueue_script('vdo_hide_api_key', plugin_dir_url(__FILE__).'js/showkey.js');
-    ?>
+?>
 <?php submit_button(); ?>
 </form>
 </div>

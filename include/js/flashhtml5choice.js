@@ -9,7 +9,7 @@
 // 1.6
 
 // The file picks up most stuff from the DOM, except the selected and available
-// embed versions which are picked up from the DOM
+// embed versions which are enqueued from options.php
 (function(){
 var vdoPlayerVersion = document.getElementById('vdo_embed_version');
 var vdoCustomVersion = document.getElementById('vdo_custom_version');
