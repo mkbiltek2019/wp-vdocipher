@@ -3,7 +3,7 @@
  * Plugin Name: VdoCipher
  * Plugin URI: https://www.vdocipher.com
  * Description: Secured video hosting for wordpress
- * Version: 1.24
+ * Version: 1.25
  * Author: VdoCipher
  * Author URI: https://www.vdocipher.com
  * License: GPL2
@@ -17,7 +17,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) {
 }
 
 if (!defined('VDOCIPHER_PLUGIN_VERSION')) {
-    define('VDOCIPHER_PLUGIN_VERSION', '1.24');
+    define('VDOCIPHER_PLUGIN_VERSION', '1.25');
 }
 
 if (!defined('VDOCIPHER_PLAYER_VERSION')) {
