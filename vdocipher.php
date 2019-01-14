@@ -282,10 +282,8 @@ function vdo_shortcode($atts)
         $output .= "options: {";
         $output .= "preset: 'default',";
         $output .= "bindings: {";
-        $output .= "'Up' : (player) => player.setVolume(player.volume + 0.2),";
-        $output .= "'Down' : (player) => player.setVolume(player.volume - 0.2),";
-        $output .= "'Left' : (player) => player.seek(player.currentTime - 10),";
-        $output .= "'Right' : (player) => player.seek(player.currentTime + 10),";
+        $output .= "'Left' : (player) => player.seek(player.currentTime - 15),";
+        $output .= "'Right' : (player) => player.seek(player.currentTime + 15),";
         $output .= "},";
         $output .= "}";
         $output .= "}],";
