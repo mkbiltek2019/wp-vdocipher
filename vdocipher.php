@@ -277,6 +277,16 @@ function vdo_shortcode($atts)
         $output .= "otp: '$OTP',";
         $output .= "playbackInfo: '$playbackInfo',";
         $output .= "theme: '$vdo_player_theme',";
+        $output .= "plugins: [{";
+        $output .= "name: 'keyboard',";
+        $output .= "options: {";
+        $output .= "preset: 'default',";
+        $output .= "bindings: {";
+        $output .= "'Left' : (player) => player.seek(player.currentTime - 15),";
+        $output .= "'Right' : (player) => player.seek(player.currentTime + 15),";
+        $output .= "},";
+        $output .= "}";
+        $output .= "}],";
         if ($player_tech !== '') {
             $output .= "techoverride: [" ;
             $techarray = explode(',', $player_tech);
