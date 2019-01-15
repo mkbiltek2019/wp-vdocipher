@@ -302,6 +302,8 @@ function vdo_shortcode($atts)
         $output .= "container: document.querySelector('#vdo$OTP'),});";
         $output .= "</script>";
     }
+    wp_enqueue_script('vdo_vdocipher_api_ready', plugin_dir_url(__FILE__).'/include/img-overlay/vdocipherapiready.js');
+    wp_enqueue_style('vdo_overlay_css', plugin_dir_url(__FILE__).'/include/img-overlay/overlay.css');
     return $output;
 }
 add_shortcode('vdo', 'vdo_shortcode');
