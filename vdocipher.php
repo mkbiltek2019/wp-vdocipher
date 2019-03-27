@@ -126,7 +126,8 @@ function vdo_shortcode($atts)
             'version'=> 0,
             'vdo_theme'=> false,
             'vdo_version'=> false,
-            'player_tech'=> ''
+            'player_tech'=> '',
+            'chapters'=> ''
         ),
         $atts
     );
@@ -139,6 +140,14 @@ function vdo_shortcode($atts)
     $vdo_theme = $vdo_args['vdo_theme'];
     $vdo_version = $vdo_args['vdo_version'];
     $player_tech = $vdo_args['player_tech'];
+    $chapters = $vdo_args['chapters'];
+    if ($chapters !== '') {
+        $chapter_array = explode(',', $chapters);
+        wp_enqueue_script('vdo_vdocipher_api_ready', plugin_dir_url(__FILE__).'/include/img-overlay/vdocipherapiready.js');
+        wp_localize_script('vdo_vdocipher_api_ready', 'vdoApiReady', array(
+          'chaptersArr' => $chapter_array
+        ));
+    }
 
     if (!preg_match('/.*px$/', $width)) {
         $width = $width."px";
@@ -284,6 +293,8 @@ function vdo_shortcode($atts)
         $output .= "bindings: {";
         $output .= "'Left' : (player) => player.seek(player.currentTime - 15),";
         $output .= "'Right' : (player) => player.seek(player.currentTime + 15),";
+        $output .= "'Up' : (player) => player.setVolume(player.volume + 0.2),";
+        $output .= "'Down' : (player) => player.setVolume(player.volume - 0.2),";
         $output .= "},";
         $output .= "}";
         $output .= "}],";
