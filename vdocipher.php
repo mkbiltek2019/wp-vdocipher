@@ -141,13 +141,6 @@ function vdo_shortcode($atts)
     $vdo_version = $vdo_args['vdo_version'];
     $player_tech = $vdo_args['player_tech'];
     $chapters = $vdo_args['chapters'];
-    if ($chapters !== '') {
-        $chapter_array = explode(',', $chapters);
-        wp_enqueue_script('vdo_vdocipher_api_ready', plugin_dir_url(__FILE__).'/include/img-overlay/vdocipherapiready.js');
-        wp_localize_script('vdo_vdocipher_api_ready', 'vdoApiReady', array(
-          'chaptersArr' => $chapter_array
-        ));
-    }
 
     if (!preg_match('/.*px$/', $width)) {
         $width = $width."px";
@@ -312,6 +305,13 @@ function vdo_shortcode($atts)
         }
         $output .= "container: document.querySelector('#vdo$OTP'),});";
         $output .= "</script>";
+    }
+    if ($chapters !== '') {
+        $chapter_array = explode(',', $chapters);
+        wp_enqueue_script('vdo_chapters_print', plugin_dir_url(__FILE__).'/include/img-overlay/printchapters.js');
+        wp_localize_script('vdo_chapters_print', 'vdoChapters', array(
+          'chaptersArr' => $chapter_array
+        ));
     }
     wp_enqueue_script('vdo_vdocipher_api_ready', plugin_dir_url(__FILE__).'/include/img-overlay/vdocipherapiready.js');
     wp_enqueue_style('vdo_overlay_css', plugin_dir_url(__FILE__).'/include/img-overlay/overlay.css');
