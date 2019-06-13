@@ -116,18 +116,20 @@ function vdo_otp($video, $otp_post_array = array())
 // VdoCipher Shortcode starts
 function vdo_shortcode($atts)
 {
+    $shortcode_defaults = array(
+        'title' => 'TITLE_OF_VIDEO',
+        'width' => get_option('vdo_default_width'),
+        'height' => get_option('vdo_default_height'),
+        'id'    => 'id',
+        'no_annotate'=> false,
+        'version'=> 0,
+        'vdo_theme'=> false,
+        'vdo_version'=> false,
+        'player_tech'=> ''
+    );
+    $shortcode_defaults = apply_filters('vdocipher_add_shortcode_attributes', $shortcode_defaults);
     $vdo_args = shortcode_atts(
-        array(
-            'title' => 'TITLE_OF_VIDEO',
-            'width' => get_option('vdo_default_width'),
-            'height' => get_option('vdo_default_height'),
-            'id'    => 'id',
-            'no_annotate'=> false,
-            'version'=> 0,
-            'vdo_theme'=> false,
-            'vdo_version'=> false,
-            'player_tech'=> ''
-        ),
+        $shortcode_defaults,
         $atts
     );
     $title = $vdo_args['title'];
@@ -188,6 +190,7 @@ function vdo_shortcode($atts)
             $otp_post_array["annotate"] = $vdo_annotate_code;
         }
     }
+    $otp_post_array = apply_filters('vdocipher_modify_otp_request', $otp_post_array);
     // OTP is requested via vdo_otp function
     $OTP_Response = vdo_otp($video, $otp_post_array);
     $OTP = $OTP_Response->otp;
@@ -302,6 +305,7 @@ function vdo_shortcode($atts)
         $output .= "container: document.querySelector('#vdo$OTP'),});";
         $output .= "</script>";
     }
+    do_action('vdocipher_customize_player', $vdo_args);
     return $output;
 }
 add_shortcode('vdo', 'vdo_shortcode');
