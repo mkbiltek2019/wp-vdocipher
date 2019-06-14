@@ -3,7 +3,7 @@ Contributors: vibhavsinha, milangupta4
 Tags: video, DRM, video plugin, sell video, e-learning, movie
 Requires at least: 3.5.1
 Tested up to: 5.0
-Stable tag: 1.25
+Stable tag: 1.26
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,11 @@ On account creation, you shall be provided with 5GB of free trial bandwidth.
 5. Video playing inside a post.
 
 == Changelog ==
+
+= 1.26 =
+* Added hook vdocipher_customize_player and filter vdocipher_add_shortcode_attributes to customize plugin
+* Added filter vdocipher_modify_otp_request with which to add OTP restrictions
+* Plugin can be extended using [Wp-vdocipher-customize plugin](https://github.com/VdoCipher/wp-vdocipher-customize)
 
 = 1.25 =
 * Added gutenberg block support
@@ -144,6 +149,11 @@ Bug fixes
 * A basic plugin which just makes it possible to embed vdocipher videos inside a wordpress plugin
 
 == Upgrade Notice ==
+
+= 1.26 =
+* Added hook vdocipher_customize_player and filter vdocipher_add_shortcode_attributes to customize plugin
+* Added filter vdocipher_modify_otp_request with which to add OTP restrictions
+* Plugin can be extended using [Wp-vdocipher-customize plugin](https://github.com/VdoCipher/wp-vdocipher-customize)
 
 = 1.25 =
 * Gutenberg block support
